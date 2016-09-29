@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Lobster|Raleway:300,400,500,700");
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -5765,5 +5765,11 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+#hero-img {
+  width: 100%;
+  height: 500px;
+  background-color: blue;
+  margin: 0px; }
 
 /*# sourceMappingURL=app.css.map */
