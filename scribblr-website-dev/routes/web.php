@@ -11,7 +11,7 @@
 |
 */
 
-
+use App\User;
 
 Auth::routes();
 

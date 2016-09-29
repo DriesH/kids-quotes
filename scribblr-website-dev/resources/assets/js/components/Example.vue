@@ -6,7 +6,7 @@
                     <div class="panel-heading">Example Component</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        Naam kind: {{ test }}
                     </div>
                 </div>
             </div>
@@ -16,8 +16,18 @@
 
 <script>
     export default {
-        ready() {
-            console.log('Component ready.')
+        data: function () {
+            return {
+                test: ''
+            }
+        },
+        ready: function () {
+            this.$http.get('/api/children').then((response) => {
+                this.test =  response //response.body[0].name
+                console.log(response)
+            }, (response) => {
+                console.log('error' + response)
+            });
         }
     }
 </script>
