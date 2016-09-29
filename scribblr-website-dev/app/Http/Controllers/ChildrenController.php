@@ -8,21 +8,22 @@ use App\Http\Requests;
 
 use App\User;
 
-use \Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ChildrenController extends Controller
 {
-    function getChildren ()
-    {
-        if(Auth::check()) {
-            $userId = Auth::id();
 
-            $children = User::find($userId)->children;
+    function getChildren (Request $request)
+    {
+        $user = $request->user()->id;
+        dd($user);
+        if($user) {
+            $children = User::find($user->id)->children;
 
             return json_decode($children);
         }
         else{
-            return 'error boiii';
+            return json_encode('error boiii');
         }
     }
 

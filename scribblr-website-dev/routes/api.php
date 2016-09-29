@@ -17,8 +17,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/children', function (Request $request) {
-    dd(Auth::user(), $request->user());
-})->middleware('auth:api');
-
+Route::get('/children', 'ChildrenController@getChildren');
 Route::get('/children/{id}/quote', 'ChildrenController@getQuotes');
