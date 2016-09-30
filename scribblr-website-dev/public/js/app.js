@@ -7,19 +7,21 @@ $(document).ready(function(){
     });
 
     $('#newChildForm').submit(function (e) {
+        var formJSON = JSON.stringify( $('#newChildForm').serializeObject() );
+
         $.ajax({
             type: 'POST',
             url: '/api/child',
-            data: $('#newChildForm').serialize(),
+            data: formJSON,
             contentType: 'json',
             headers: {
                 'X-CSRF-TOKEN' : csrf_token
             },
             success: function (data) {
-                
+
             }
         });
-        console.log( $('#newChildForm').serialize() );
+        console.log( $('#newChildForm').serializeObject() );
 
         e.preventDefault();
     })

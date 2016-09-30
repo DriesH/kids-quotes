@@ -11,8 +11,7 @@ use App\Child;
 class ChildController extends Controller
 {
     public function newChild (Request $request) {
-
-        $data = $request->json();
+        $data = $request->json('_token');
         dd($data);
     }
 
