@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::post('api/child', 'ChildController@newChild');
+Route::get('api/child', 'ChildController@getChildren');
