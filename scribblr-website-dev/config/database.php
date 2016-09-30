@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'fetch' => PDO::FETCH_OBJ,
+    'fetch' => PDO::FETCH_CLASS,
 
     /*
     |--------------------------------------------------------------------------
@@ -57,12 +57,12 @@ return [
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'root'),
+            'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
-            'strict' => true,
+            'strict' => false,
             'engine' => null,
         ],
 
@@ -76,7 +76,6 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-            'sslmode' => 'prefer',
         ],
 
     ],
