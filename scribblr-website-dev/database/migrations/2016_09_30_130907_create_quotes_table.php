@@ -13,11 +13,11 @@ class CreateQuotesTable extends Migration
     public function up()
     {
         Schema::create('quotes', function (Blueprint $table) {
-          $table->increments('id');
-          $table->mediumText('quote');
-          $table->string('backgr_img');
-          $table->integer('child_id');
-          $table->timestamps();
+            $table->increments('id');
+            $table->string('backgr_img');
+            $table->mediumText('quote');
+            $table->integer('child_id');
+            $table->timestamps();
         });
     }
 

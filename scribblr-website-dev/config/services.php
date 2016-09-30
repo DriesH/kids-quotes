@@ -39,10 +39,4 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'facebook' => [
-    'client_id' => '250628245334965',
-    'client_secret' => '8794795db0b56c2420bbb7b4c1556c15',
-    'redirect' => 'http://scribblr-dev.local/callback',
-],
-
 ];
