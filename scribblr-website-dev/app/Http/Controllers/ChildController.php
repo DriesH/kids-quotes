@@ -20,13 +20,20 @@ class ChildController extends Controller
         $_dateOfBirth = $request->json('dateOfBirth');
         $dateOfBirth  = date_create_from_format('d/M/Y', $_dateOfBirth);
         $userId       = Auth::user()->id;
-        
-        Child::create([
+
+        $newChild = Child::create([
             'name' => $childName,
             'dateOfBirth' => $dateOfBirth,
             'gender' => $gender,
             'user_id' => $userId
         ]);
+
+        if ( $newChild ) {
+            return response('Success');
+        }
+        else if (!$newChild ){
+            return response('Error with adding new object to database');
+        }
     }
 
     public function getChildren () {
