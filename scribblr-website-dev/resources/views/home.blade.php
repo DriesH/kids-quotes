@@ -19,11 +19,11 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="childName">Name: </label>
-                                <input type="text" name="childName" value="" id="childName">
+                                <input type="text" name="childName" value="Test" id="childName">
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="boy" value="boy">
+                                    <input type="radio" name="optionsRadios" id="boy" value="boy" checked>
                                     Boy
                                 </label>
                             </div>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="childName">Date of birth: </label>
-                                <input type="text" name="dateOfBirth" value="">
+                                <input type="text" name="dateOfBirth" value="11/11/01">
                             </div>
                             <button type="submit" name="addChild" id="addChildButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
                         </form>

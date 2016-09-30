@@ -5,20 +5,21 @@ $(document).ready(function(){
         $(this).hide();
         $('#newChildForm').show('fast');
     });
+
     $('#newChildForm').submit(function (e) {
         $.ajax({
-            type: "POST",
-            url: "/api/child",
-            data: JSON.stringify($('#newChildForm').serializeArray()),
-            contentType: "jsonp",
+            type: 'POST',
+            url: '/api/child',
+            data: $('#newChildForm').serialize(),
+            contentType: 'json',
             headers: {
                 'X-CSRF-TOKEN' : csrf_token
             },
             success: function (data) {
-                console.log(data);
+                
             }
         });
-        console.log( $('#newChildForm').serializeArray());
+        console.log( $('#newChildForm').serialize() );
 
         e.preventDefault();
     })
