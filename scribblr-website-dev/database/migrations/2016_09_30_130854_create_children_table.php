@@ -14,6 +14,9 @@ class CreateChildrenTable extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->date('date_of_birth');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
