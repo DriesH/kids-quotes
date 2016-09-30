@@ -11,9 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('quotes')->insert([
-            'quote' => str_random(18),
-            'children_id' => 1
-        ]);
+        // $this->call(UsersTableSeeder::class);
     }
 }

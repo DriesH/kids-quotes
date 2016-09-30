@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class ChildrenController extends Controller
 {
 
-    function getChildren (Request $request)
+    function getChildren ()
     {
-        $user = $request->user()->id;
+        $user = Auth::user();
         dd($user);
         if($user) {
             $children = User::find($user->id)->children;
@@ -23,7 +23,7 @@ class ChildrenController extends Controller
             return json_decode($children);
         }
         else{
-            return json_encode('error boiii');
+            return 'error boiii';
         }
     }
 
