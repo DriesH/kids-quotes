@@ -18,12 +18,11 @@ Route::get('/', function () {
 Route::auth();
 
 //handles homepage loading + all child loading to homepage
-Route::get('/children-dashboard', 'ChildController@childrenDashboard');
+Route::get('children-dashboard', 'ChildController@childrenDashboard');
+Route::get('quotes-dashboard', 'QuoteController@quotesDashboard');
 
 //API routes
 Route::post('api/child', 'ChildController@newChild');
+Route::get('api/child', 'ChildController@getChildren');
+
 Route::post('api/quote', 'QuoteController@newQuote');
-
-//Route::get('api/child', 'ChildController@getChildren');
-
-Route::get('quotes-dashboard', 'QuoteController@quotesDashboard');

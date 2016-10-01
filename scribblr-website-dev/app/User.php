@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -24,7 +25,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Children()
+    public function children()
     {
         return $this->hasMany('App\Child');
     }
