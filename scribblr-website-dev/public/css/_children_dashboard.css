@@ -1,3 +1,16 @@
 #newChildForm {
     display: none;
 }
+
+#addNewChildThumb {
+    text-align: center;
+    width: 65%;
+    height: 250px;
+}
+
+#showFormButton {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: 50px;
+}
