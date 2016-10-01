@@ -2,24 +2,12 @@
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
             <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar" id="childrenList" v-if="currentChildren !== null">
-                    <!--@if($children == 'empty')
-                        <li>No children yet!</li>
-                    @else
-                        @foreach($children as $child)
-                            <li class="childListItem">
-                                <a>{{ $child->name }}
-                                    <i class="fa fa-cog fa-vc pull-right"></i>
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif-->
-
+                <ul class="nav nav-sidebar" id="childrenList" v-if="currentChildren.length === 0">
                     <li>No children yet!</li>
-
                 </ul>
                 <ul class="nav nav-sidebar" id="childrenList" v-else>
                     <li v-for="child in currentChildren"><a href="#">{{child.name}}</a></li>
+                    <li><button type="button" name="button" class="btn btn-default">add child</button></li>
                 </ul>
             </div>
 
@@ -27,17 +15,20 @@
                 <h1 class="page-header">Dashboard</h1>
 
                 <div class="row placeholders">
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <div class="thumbnail" id="addNewChildThumb" v-if="">
-                            <h3>Add a new child!</h3>
-                            <div class="caption">
-                                <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="addChildFormToggle"><i class="fa fa-plus"></i></button>
+                    <div class="col-xs-6 col-sm-3 placeholder" v-if="currentChildren.length === 0">
+                        <div class="thumbnail" id="addNewChildThumb" v-if="!addingNewChild">
+                            <div class="center-text">
+                                <h3>Add a new child!</h3>
+                                <div class="caption">
+                                    <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="showHideForm"><i class="fa fa-plus"></i></button>
+                                </div>
                             </div>
+
                         </div>
-                        <div class="thumbnail" id="addNewChildThumb" v-else="">
-                            <h3>Add a new child!</h3>
+
+                        <div class="thumbnail" id="addNewChildThumb" v-else="addingNewChild">
                             <div class="caption">
-                                <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="addChildFormToggle"><i class="fa fa-plus"></i></button>
+                                <child-add-form></child-add-form>
                             </div>
                         </div>
 
@@ -67,7 +58,7 @@
                 currentChildren: [
 
                 ],
-
+                addingNewChild: false
             }
         },
         computed: {},
@@ -84,13 +75,16 @@
         attached () {},
         methods: {
             addNewChild: function () {
-                this.$http.post('/api/child').then((success_response) => {
-                    alert('success');
+                this.$http.post('/api/child', this.newChild).then((success_response) => {
+                    this.currentChildren.push(success_response.body)
                 },
                 (error_response) => {
                     alert('error');
                 });
             },
+            showHideForm: function () {
+                this.addingNewChild = !this.addingNewChild;
+            }
         },
         components: {},
     }
