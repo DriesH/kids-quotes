@@ -18,12 +18,10 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN' : csrf_token
             },
             success: function (data) {
-                if (data === 'Success') {
-                    alert ('Success');
-                }
+                alert ('Success');
             },
             error: function (data) {
-                alert('Error! Something happend while adding something to the database!')
+                alert('Error! Something happend while adding something to the database! PIPI KAKA')
             }
         });
         console.log( $('#newChildForm').serializeObject() );
