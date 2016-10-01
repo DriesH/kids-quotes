@@ -50,6 +50,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/children-dashboard') }}">My children</a></li>
+                    <li><a href="{{ url('/quotes-dashboard') }}">My Quotes</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
