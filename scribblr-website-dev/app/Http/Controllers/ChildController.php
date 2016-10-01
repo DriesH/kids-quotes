@@ -14,15 +14,17 @@ use Auth;
 
 class ChildController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function childrenDashboard()
     {
-        $userId     = Auth::user()->id;
-        $children   = User::findOrFail($userId)->Children()->get();
+        $userId   = Auth::user()->id;
+        $children = User::findOrFail($userId)->Children()->get();
 
         if ( $children->count() == 0 ) {
             return view('children-dashboard', [
@@ -55,6 +57,10 @@ class ChildController extends Controller
     }
 
     public function getChildren () {
+        $userId = Auth::user()->id;
 
+        $userChildren = User::find($userId)->children()->get();
+
+        return json_encode($userChildren);
     }
 }
