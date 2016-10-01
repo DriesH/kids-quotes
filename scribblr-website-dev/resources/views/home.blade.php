@@ -14,6 +14,11 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
+                      <ul>
+                      @foreach($children as $child)
+                          <li>{{$child->name}}</li>                        
+                      @endforeach
+                      </ul>
                         <button type="button" name="showForm" id="showFormButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
                         <form id="newChildForm" method="post">
                             {{ csrf_field() }}

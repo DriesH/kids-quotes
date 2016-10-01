@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
+use App\Child;
+
+use App\User;
+
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -24,6 +30,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $userId     = Auth::user()->id;
+      $children   = User::findOrFail($userId)->Children()->get();
+      //dd($children);
+      return view('home', [
+        'children' => $children
+      ]);
     }
 }
