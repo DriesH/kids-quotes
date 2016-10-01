@@ -18,7 +18,30 @@
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-
+                    <form id="newChildForm" method="post">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="childName">Name: </label>
+                            <input type="text" name="childName" value="Test" id="childName">
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="boy" value="boy" checked>
+                                Boy
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="girl" value="girl">
+                                Girl
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of birth: </label>
+                            <input type="text" name="dateOfBirth" value="11/11/01">
+                        </div>
+                        <button type="submit" name="addChild" id="addChildButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -38,8 +61,10 @@
                             <li><a >{{ $child->name }}</a></li>
                         @endforeach
                     @endif
+                    <li><button type="button" name="showForm" id="showFormButton" class="btn btn-default" data-toggle="modal" data-target="#modal-transparent"><i class="fa fa-plus"></i></button></li>
                 </ul>
             </div>
+
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Dashboard</h1>
 
@@ -48,37 +73,9 @@
                         <div class="thumbnail" id="addNewChildThumb">
                             <h3>Add a new child!</h3>
                             <div class="caption">
-                                <button type="button" name="showForm" id="showFormButton" class="btn btn-default"><i class="fa fa-plus"></i></button>
+                                <button type="button" name="showForm" id="showFormButton" class="btn btn-default" data-toggle="modal" data-target="#modal-transparent"><i class="fa fa-plus"></i></button>
                             </div>
                         </div>
-
-
-                    </div>
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <form id="newChildForm" method="post">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label for="childName">Name: </label>
-                                <input type="text" name="childName" value="Test" id="childName">
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="boy" value="boy" checked>
-                                    Boy
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="girl" value="girl">
-                                    Girl
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Date of birth: </label>
-                                <input type="text" name="dateOfBirth" value="11/11/01">
-                            </div>
-                            <button type="submit" name="addChild" id="addChildButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
-                        </form>
                     </div>
                 </div>
 
