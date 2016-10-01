@@ -1,11 +1,8 @@
 <template lang="html">
-
-    <add-child-modal transition="modal" v-if="showModalForm"></add-child-modal>
-
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
             <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav nav-sidebar" id="childrenList" v-if="">
+                <ul class="nav nav-sidebar" id="childrenList" v-if="currentChildren !== null">
                     <!--@if($children == 'empty')
                         <li>No children yet!</li>
                     @else
@@ -31,12 +28,19 @@
 
                 <div class="row placeholders">
                     <div class="col-xs-6 col-sm-3 placeholder">
-                        <div class="thumbnail" id="addNewChildThumb">
+                        <div class="thumbnail" id="addNewChildThumb" v-if="">
                             <h3>Add a new child!</h3>
                             <div class="caption">
                                 <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="addChildFormToggle"><i class="fa fa-plus"></i></button>
                             </div>
                         </div>
+                        <div class="thumbnail" id="addNewChildThumb" v-else="">
+                            <h3>Add a new child!</h3>
+                            <div class="caption">
+                                <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="addChildFormToggle"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -55,7 +59,6 @@
     export default {
         data () {
             return {
-                showModalForm: false,
                 newChild: {
                     childName: '',
                     gender: '',
@@ -63,7 +66,8 @@
                 },
                 currentChildren: [
 
-                ]
+                ],
+
             }
         },
         computed: {},
@@ -87,9 +91,6 @@
                     alert('error');
                 });
             },
-            addChildFormToggle: function () {
-                this.showModalForm = !this.showModalForm;
-            }
         },
         components: {},
     }

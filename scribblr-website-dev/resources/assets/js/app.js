@@ -23,3 +23,5 @@ const app = new Vue({
         showModalForm: false
     }
 });
+
+var vm = new Vue({});
