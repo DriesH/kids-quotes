@@ -46,3 +46,12 @@
      width: 1170px;
   }
 }
+
+.childListItem a .fa.fa-cog{
+    opacity: 0;
+    vertical-align: -5px;
+}
+
+.childListItem a:hover .fa-cog{
+    opacity: 1;
+}

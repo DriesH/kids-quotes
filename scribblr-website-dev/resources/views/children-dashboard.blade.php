@@ -58,10 +58,13 @@
                         <li><a>No children yet!</a></li>
                     @else
                         @foreach($children as $child)
-                            <li><a >{{ $child->name }}</a></li>
+                            <li class="childListItem">
+                                <a>{{ $child->name }}
+                                    <i class="fa fa-cog fa-vc pull-right"></i>
+                                </a>
+                            </li>
                         @endforeach
                     @endif
-                    <li><button type="button" name="showForm" id="showFormButton" class="btn btn-default" data-toggle="modal" data-target="#modal-transparent"><i class="fa fa-plus"></i></button></li>
                 </ul>
             </div>
 
@@ -92,6 +95,5 @@
 
 @section('scripts')
     <script src="js/serializeObject.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
-    <script src="js/quote.js" charset="utf-8"></script>
+    <script src="js/child.js" charset="utf-8"></script>
 @endsection
