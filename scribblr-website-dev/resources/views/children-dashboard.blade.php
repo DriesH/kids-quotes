@@ -93,4 +93,5 @@
 @section('scripts')
     <script src="js/serializeObject.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/quote.js" charset="utf-8"></script>
 @endsection
