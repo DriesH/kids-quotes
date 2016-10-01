@@ -28,7 +28,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -42,7 +42,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Scribblr
                 </a>
             </div>
 
