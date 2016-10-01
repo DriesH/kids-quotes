@@ -3,14 +3,20 @@ var alertSuccess = '<div class="alert alert-success" id="successAlert"><strong>S
 
 $(document).ready(function(){
 
-    $('#showFormButton').on('click', function(){
-        $(this).hide();
-        $('#newChildForm').show('fast');
+    $(".modal-transparent").on('show.bs.modal', function () {
+        setTimeout( function() {
+            $(".modal-backdrop").addClass("modal-backdrop-transparent");
+        }, 0);
     });
+
+    $(".modal-transparent").on('hidden.bs.modal', function () {
+        $(".modal-backdrop").addClass("modal-backdrop-transparent");
+    });
+
 
     $('#newChildForm').submit(function (e) {
         var formJSON = JSON.stringify( $('#newChildForm').serializeObject() );
-
+        console.log('test');
         $.ajax({
             type: 'POST',
             url: '/api/child',
