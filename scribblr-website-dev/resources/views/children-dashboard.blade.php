@@ -2,23 +2,27 @@
 
 
 @section('styles')
-    <link rel="stylesheet" href="/css/_child_view.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/_children_dashboard.css" media="screen" title="no title">
 @endsection
 
 
 @section('content')
-    <div class="container">
-        <div class="row">
+    <div class="container" id="dashboardMain">
+        <div class="row" id="dashboardMainRow">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-                      <ul>
-                      @foreach($children as $child)
-                          <li>{{$child->name}}</li>                        
-                      @endforeach
-                      </ul>
+                        <ul id="childrenList">
+                            @if($children == 'empty')
+                                <li>No children yet!</li>
+                            @else
+                                @foreach($children as $child)
+                                    <li>{{ $child->name }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
                         <button type="button" name="showForm" id="showFormButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
                         <form id="newChildForm" method="post">
                             {{ csrf_field() }}
