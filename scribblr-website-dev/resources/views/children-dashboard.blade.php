@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
             <div class="col-sm-3 col-md-2 sidebar">
@@ -96,4 +96,5 @@
 @section('scripts')
     <script src="js/serializeObject.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/quote.js" charset="utf-8"></script>
 @endsection
