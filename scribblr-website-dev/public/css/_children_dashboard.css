@@ -1,7 +1,9 @@
 #addNewChildThumb {
-    text-align: center;
     width: 65%;
-    height: 250px;
+}
+
+.center-text {
+    text-align: center;
 }
 
 #showFormButton {

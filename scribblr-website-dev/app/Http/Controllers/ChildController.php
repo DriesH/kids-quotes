@@ -41,7 +41,7 @@ class ChildController extends Controller
 
     public function newChild (Request $request) {
         $childName    = $request->json('childName');
-        $gender       = $request->json('optionsRadios');
+        $gender       = $request->json('gender');
         $_dateOfBirth = $request->json('dateOfBirth');
         $dateOfBirth  = date_create_from_format('d/M/Y', $_dateOfBirth);
         $userId       = Auth::user()->id;
