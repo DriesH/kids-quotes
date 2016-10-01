@@ -28,12 +28,7 @@ class ChildController extends Controller
             'user_id' => $userId
         ]);
 
-        /*if ( $newChild ) {
-            return response('Success');
-        }
-        else if (!$newChild ){
-            return response('Error with adding new object to database');
-        }*/
+        return;
     }
 
     public function getChildren () {
