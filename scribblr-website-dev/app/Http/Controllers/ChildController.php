@@ -28,7 +28,7 @@ class ChildController extends Controller
             'user_id' => $userId
         ]);
 
-        return;
+        return $newChild;
     }
 
     public function getChildren () {

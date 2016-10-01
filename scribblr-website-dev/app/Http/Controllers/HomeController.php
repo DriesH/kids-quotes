@@ -28,13 +28,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function childrenDashboard()
     {
-      $userId     = Auth::user()->id;
-      $children   = User::findOrFail($userId)->Children()->get();
-      //dd($children);
-      return view('home', [
-        'children' => $children
-      ]);
+        $userId     = Auth::user()->id;
+        $children   = User::findOrFail($userId)->Children()->get();
+
+        if ( $children->count() == 0 ) {
+            return view('children-dashboard', [
+              'children' => 'empty'
+            ]);
+        }
+        else {
+            return view('children-dashboard', [
+              'children' => $children
+            ]);
+        }
+
     }
 }

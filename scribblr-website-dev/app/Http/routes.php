@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::auth();
 
 //handles homepage loading + all child loading to homepage
-Route::get('/home', 'HomeController@index');
+Route::get('/children-dashboard', 'HomeController@childrenDashboard');
 
 Route::post('api/child', 'ChildController@newChild');
 
