@@ -40,11 +40,11 @@
                             <label for="dateOfBirth">Date of birth: </label>
                             <input type="text" name="dateOfBirth" value="11/11/01">
                         </div>
-                        <button type="submit" name="addChild" id="addChildButton" class="btn btn-default" data-dismiss="modal"><i class="fa fa-plus"></i> add child</button>
+                        <button type="submit" name="addChild" id="addChildButton" class="btn btn-default"><i class="fa fa-plus"></i> add child</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" >Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
