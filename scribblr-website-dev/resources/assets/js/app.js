@@ -15,13 +15,9 @@ require('./bootstrap');
 
 
 Vue.component('childDashboard', require('./components/ChildDashboard.vue'));
-Vue.component('addChildModal', require('./components/AddChildModal.vue'));
+Vue.component('childOverview', require('./components/ChildOverview.vue'));
+Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
 
 const app = new Vue({
     el: '#app',
-    data: {
-        showModalForm: false
-    }
 });
-
-var vm = new Vue({});
