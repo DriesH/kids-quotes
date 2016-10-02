@@ -3,9 +3,15 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="modal-body">
-                    <button type="button" name="close" class="pull-right" @click="$parent.showHideForm"><i class="fa fa-times"></i></button>
-
+                    <div class="alert alert-danger" v-if="$parent.errorMessagesForm.error === true">
+                        <strong v-if="$parent.errorMessagesForm.childName">{{ $parent.errorMessagesForm.childName }}</strong>
+                        <br>
+                        <strong v-if="$parent.errorMessagesForm.gender">{{ $parent.errorMessagesForm.gender }}</strong>
+                        <br>
+                        <strong v-if="$parent.errorMessagesForm.dateOfBirth">{{ $parent.errorMessagesForm.dateOfBirth }}</strong>
+                    </div>
                     <slot name="body">
+                        <button type="button" name="close" class="pull-right" @click="$parent.showHideForm"><i class="fa fa-times"></i></button>
                         <form>
                             <div class="form-group">
                                 <label for="childName">Full name: </label>
@@ -26,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="">Date Of Birth:</label>
+                                <label for="dateOfBirth">Date Of Birth:</label>
                                 <input type="text" class="form-control" id="dateOfBirth" placeholder="01-01-2001" v-model="$parent.newChild.dateOfBirth">
                             </div>
                             <button type="button" name="addChild" class="btn btn-success" @click="$parent.addNewChild"><i class="fa fa-plus"></i> add</button>

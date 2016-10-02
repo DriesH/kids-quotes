@@ -8,7 +8,7 @@
                     <li>No children yet!</li>
                 </ul>
                 <ul class="nav nav-sidebar" id="childrenList" v-else>
-                    <li v-for="child in currentChildren"><a href="#">{{child.name}}</a></li>
+                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id)"><a>{{child.name}}</a></li>
                     <li><button type="button" name="button" class="btn btn-default" @click="showHideForm">add child</button></li>
                 </ul>
             </div>
@@ -28,13 +28,7 @@
                         </div>
                     </div>
                 </div>
-
-                <h2 class="sub-header"></h2>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-
-                    </table>
-                </div>
+                <add-quote v-if="showQuoteAddForm"></add-quote>
             </div>
         </div>
     </div>
@@ -52,13 +46,21 @@
                 currentChildren: [
 
                 ],
-                addingNewChild: false
+                addingNewChild: false,
+                errorMessagesForm: {
+                    error: false,
+                    childName: '',
+                    gender: '',
+                    dateOfBirth: ''
+                },
+                showQuoteAddForm: false,
+                currentSelectedChildId: ''
             }
         },
         computed: {},
         ready () {
             this.$http.get('/api/child').then((success_response) => {
-                this.currentChildren = JSON.parse(success_response.body);
+                this.currentChildren = JSON.parse(success_response.body)
             },
             (error_response) => {
                 alert('error');
@@ -74,11 +76,20 @@
                     this.addingNewChild = !this.addingNewChild
                 },
                 (error_response) => {
-                    alert('error');
+                    this.errorMessagesForm.error = true
+                    this.errorMessagesForm.childName = error_response.body.childName
+                    this.errorMessagesForm.gender = error_response.body.gender
+                    this.errorMessagesForm.dateOfBirth = error_response.body.dateOfBirth
                 });
             },
             showHideForm: function () {
                 this.addingNewChild = !this.addingNewChild
+            },
+            addQuoteForCurrentChild: function (id) {
+                if(this.showQuoteAddForm !== true) {
+                    this.showQuoteAddForm = !this.showQuoteAddForm
+                }
+                this.currentSelectedChildId = id
             }
         },
         components: {},
