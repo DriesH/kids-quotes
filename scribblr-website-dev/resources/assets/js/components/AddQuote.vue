@@ -18,14 +18,12 @@
         },
         computed: {},
         ready () {
-            getOldQuotes: function () {
-                this.$http.get('/api/quote/' + $parent.currentSelectedChildId).then((success_response) => {
-                    console.log(success_response.body)
-                },
-                (error_response) => {
-                    alert('error');
-                });
-            }
+            this.$http.get('/api/quote/' + $parent.currentSelectedChildId).then((success_response) => {
+                console.log(success_response.body)
+            },
+            (error_response) => {
+                alert('error');
+            });
         },
         attached () {},
         methods: {
