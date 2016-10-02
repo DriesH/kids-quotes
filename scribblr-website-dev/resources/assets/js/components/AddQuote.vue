@@ -20,7 +20,7 @@
             return {
                 newQuote: {
                     quote: '',
-                    child_id:
+                    child_id: this.$parent.currentSelectedChildId
                 }
             }
         },
