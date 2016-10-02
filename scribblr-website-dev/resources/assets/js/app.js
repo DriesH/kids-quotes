@@ -17,6 +17,7 @@ require('./bootstrap');
 Vue.component('childDashboard', require('./components/ChildDashboard.vue'));
 Vue.component('childOverview', require('./components/ChildOverview.vue'));
 Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
+Vue.component('addQuote', require('./components/AddQuote.vue'));
 
 const app = new Vue({
     el: '#app',
