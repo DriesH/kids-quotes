@@ -4,6 +4,7 @@
             <div class="modal-container">
                 <div class="modal-body">
                     <button type="button" name="close" class="pull-right" @click="$parent.showHideForm"><i class="fa fa-times"></i></button>
+
                     <slot name="body">
                         <form>
                             <div class="form-group">

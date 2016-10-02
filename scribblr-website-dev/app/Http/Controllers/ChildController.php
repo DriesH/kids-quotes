@@ -46,6 +46,12 @@ class ChildController extends Controller
         $dateOfBirth  = date_create_from_format('d/M/Y', $_dateOfBirth);
         $userId       = Auth::user()->id;
 
+        $this->validate($request, [
+        'childName' => 'required',
+        'gender' => 'required',
+        'dateOfBirth' => 'required|date',
+        ]);
+
         $newChild = Child::create([
             'name' => $childName,
             'dateOfBirth' => $dateOfBirth,
