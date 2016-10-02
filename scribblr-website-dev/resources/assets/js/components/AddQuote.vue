@@ -20,21 +20,12 @@
             return {
                 newQuote: {
                     quote: '',
-                    child_id:
+                    child_id: this.$parent.currentSelectedChildId
                 }
             }
         },
         computed: {},
         ready () {
-<<<<<<< HEAD
-            this.$http.get('/api/quote/' + $parent.currentSelectedChildId).then((success_response) => {
-                console.log(success_response.body)
-            },
-            (error_response) => {
-                alert('error');
-            });
-=======
->>>>>>> refs/remotes/origin/master
         },
         attached () {},
         methods: {
