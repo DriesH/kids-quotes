@@ -52,7 +52,13 @@
                 currentChildren: [
 
                 ],
-                addingNewChild: false
+                addingNewChild: false,
+                errorMessagesForm: {
+                    error: false,
+                    childName: '',
+                    gender: '',
+                    dateOfBirth: ''
+                }
             }
         },
         computed: {},
@@ -74,7 +80,10 @@
                     this.addingNewChild = !this.addingNewChild
                 },
                 (error_response) => {
-                    alert('error');
+                    this.errorMessagesForm.error = true
+                    this.errorMessagesForm.childName = error_response.body.childName
+                    this.errorMessagesForm.gender = error_response.body.gender
+                    this.errorMessagesForm.dateOfBirth = error_response.body.dateOfBirth
                 });
             },
             showHideForm: function () {
