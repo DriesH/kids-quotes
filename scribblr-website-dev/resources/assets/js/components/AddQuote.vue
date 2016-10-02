@@ -18,7 +18,7 @@
         },
         computed: {},
         ready () {
-            this.$http.get('/api/quote/' + $parent.currentSelectedChildId).then((success_response) => {
+            this.$http.get('/api/quote/' + this.$parent.currentSelectedChildId).then((success_response) => {
                 console.log(success_response.body)
             },
             (error_response) => {
