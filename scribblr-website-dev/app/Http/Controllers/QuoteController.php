@@ -21,18 +21,11 @@ class QuoteController extends Controller
     }
 
 
-    public function quotesDashboard()
+    public function getOldQuotes($childId)
     {
-        $userId     = Auth::user()->id;
-        //$quotes   = User::findOrFail($userId)->Children()->Quotes()->get();
-        $children   = User::findOrFail($userId)->Children()->get();
-        /*if ( $children->count() == 0 ) {
-            return view('quotes-dashboard');
-        }*/
+        $oldQuotes = Child::find($childId)->quotes()->get();
 
-        return view('quotes-dashboard',  [
-          'children' => $children
-        ]);
+        return json_encode($oldQuotes);
     }
 
     public function newQuote (Request $request) {
