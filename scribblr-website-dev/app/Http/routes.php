@@ -26,3 +26,4 @@ Route::post('api/child', 'ChildController@newChild');
 Route::get('api/child', 'ChildController@getChildren');
 
 Route::post('api/quote', 'QuoteController@newQuote');
+Route::get('api/quote', 'QuoteController@getOldQuotes');

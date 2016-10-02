@@ -12,6 +12,9 @@
     height: 70px;
     margin-top: 50px;
 }
+#childrenList li{
+    cursor: pointer;
+}
 
 .modal-mask {
   position: fixed;

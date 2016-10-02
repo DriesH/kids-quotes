@@ -43,13 +43,13 @@ class ChildController extends Controller
         $childName    = $request->json('childName');
         $gender       = $request->json('gender');
         $_dateOfBirth = $request->json('dateOfBirth');
-        $dateOfBirth  = date_create_from_format('d/M/Y', $_dateOfBirth);
+        $dateOfBirth  = date_create_from_format('Y/M/d', $_dateOfBirth);
         $userId       = Auth::user()->id;
 
         $this->validate($request, [
         'childName' => 'required',
         'gender' => 'required',
-        'dateOfBirth' => 'required|date',
+        'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
         $newChild = Child::create([

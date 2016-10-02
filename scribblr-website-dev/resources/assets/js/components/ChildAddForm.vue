@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="">Date Of Birth:</label>
+                                <label for="dateOfBirth">Date Of Birth:</label>
                                 <input type="text" class="form-control" id="dateOfBirth" placeholder="01-01-2001" v-model="$parent.newChild.dateOfBirth">
                             </div>
                             <button type="button" name="addChild" class="btn btn-success" @click="$parent.addNewChild"><i class="fa fa-plus"></i> add</button>
