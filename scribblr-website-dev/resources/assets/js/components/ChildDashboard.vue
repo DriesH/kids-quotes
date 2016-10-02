@@ -54,7 +54,10 @@
                     dateOfBirth: ''
                 },
                 showQuoteAddForm: false,
-                currentSelectedChildId: ''
+                currentSelectedChildId: '',
+                previousQuotes: [
+
+                ]
             }
         },
         computed: {},
@@ -89,7 +92,19 @@
                 if(this.showQuoteAddForm !== true) {
                     this.showQuoteAddForm = !this.showQuoteAddForm
                 }
+                if( this.currentSelectedChildId !== null ){
+                    this.currentSelectedChildId = ''
+                }
+
                 this.currentSelectedChildId = id
+
+                this.$http.get('/api/quote/' + id).then((success_response) => {
+                    this.previousQuotes = JSON.parse(success_response.body)
+                },
+                (error_response) => {
+                    alert('error');
+                });
+
             }
         },
         components: {},

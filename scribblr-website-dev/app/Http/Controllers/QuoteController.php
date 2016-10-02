@@ -30,15 +30,14 @@ class QuoteController extends Controller
 
     public function newQuote (Request $request) {
         $quote        = $request->json('quote');
-        $child_id     = $request->json('child_id_radio');
-        $backgr_img   = "";
-
+        $child_id     = $request->json('child_id');
 
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
-            'backgr_img' => $backgr_img,
+            'backgr_img' => 'test',
         ]);
+
 
         return $newQuote;
     }
