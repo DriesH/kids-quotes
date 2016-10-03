@@ -4,7 +4,7 @@
         <form>
             <div class="form-group">
                 <label for="quote">Quote: </label>
-                <input type="text" class="form-control" id="quote" placeholder="Quote" v-model="newQuote.quote">
+                <input type="text" class="form-control" id="quote" placeholder="Quote" v-model="newQuote">
             </div>
             <button type="button" name="addChild" class="btn btn-success" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
         </form>
@@ -16,12 +16,10 @@
 
 <script>
     export default {
+        props: ['currentSelectedChildId'],
         data () {
             return {
-                newQuote: {
-                    quote: '',
-                    child_id:
-                }
+                newQuote: ''
             }
         },
         computed: {},
@@ -30,16 +28,14 @@
         attached () {},
         methods: {
             addNewQuote: function () {
-                this.$http.post('api/quote', this.newQuote).then((success_response) => {
+                this.$http.post('api/quote', {quote: this.newQuote, child_id: this.currentSelectedChildId}).then((success_response) => {
                     console.log(success_response.body)
-                    console.log(this.newQuote.child_id)
                 },
                 (error_response) => {
                     console.log('error')
                 });
             }
-        },
-        components: {}
+        }
     }
 </script>
 
