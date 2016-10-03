@@ -3,10 +3,10 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="modal-body">
-                    <div class="alert alert-danger" v-if="$parent.errorMessagesForm.error === true">
-                        <strong v-if="$parent.errorMessagesForm.childName">{{ $parent.errorMessagesForm.childName }}</strong>
-                        <strong v-if="$parent.errorMessagesForm.gender">{{ $parent.errorMessagesForm.gender }}</strong>
-                        <strong v-if="$parent.errorMessagesForm.dateOfBirth">{{ $parent.errorMessagesForm.dateOfBirth }}</strong>
+                    <div v-if="$parent.errorMessagesForm.length > 0">
+                        <div v-for="error in $parent.errorMessagesForm" class="alert alert-danger animated shake">
+                            <strong>{{ error[0] }}</strong>
+                        </div>
                     </div>
                     <slot name="body">
                         <button type="button" name="close" class="pull-right" @click="$parent.showHideForm"><i class="fa fa-times"></i></button>

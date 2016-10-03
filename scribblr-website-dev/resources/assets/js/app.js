@@ -26,6 +26,8 @@ Vue.transition('slideIn', {
 });
 
 
+
+
 const app = new Vue({
     el: '#app',
 });
