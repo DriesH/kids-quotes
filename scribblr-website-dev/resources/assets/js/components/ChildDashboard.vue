@@ -54,6 +54,7 @@
                 },
                 showQuoteAddForm: false,
                 currentSelectedChildId: '',
+                isActive: false,
                 previousQuotes: [
 
                 ]
@@ -88,9 +89,9 @@
                 this.addingNewChild = !this.addingNewChild
             },
             addQuoteForCurrentChild: function (id) {
-                if(this.showQuoteAddForm !== true) {
-                    this.showQuoteAddForm = !this.showQuoteAddForm
-                }
+
+                this.showQuoteAddForm = !this.showQuoteAddForm
+
                 if( this.currentSelectedChildId !== null ){
                     this.currentSelectedChildId = ''
                 }
