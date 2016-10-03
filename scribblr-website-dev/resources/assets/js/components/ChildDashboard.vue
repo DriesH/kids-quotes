@@ -46,12 +46,7 @@
 
                 ],
                 addingNewChild: false,
-                errorMessagesForm: {
-                    error: false,
-                    childName: '',
-                    gender: '',
-                    dateOfBirth: ''
-                },
+                errorMessagesForm: [],
                 showQuoteAddForm: false,
                 currentSelectedChildId: '',
                 isActive: false,
@@ -81,13 +76,20 @@
                     this.addingNewChild = !this.addingNewChild
                 },
                 (error_response) => {
-                    this.errorMessagesForm.error = true
-                    this.errorMessagesForm.childName = error_response.body.childName
-                    this.errorMessagesForm.gender = error_response.body.gender
-                    this.errorMessagesForm.dateOfBirth = error_response.body.dateOfBirth
+                    this.errorMessagesForm = [];
+                    error_response.body.childName != undefined && this.errorMessagesForm.push(error_response.body.childName);
+                    error_response.body.gender != undefined && this.errorMessagesForm.push(error_response.body.gender);
+                    error_response.body.dateOfBirth != undefined && this.errorMessagesForm.push(error_response.body.dateOfBirth);
+                    console.log(this.errorMessagesForm);
                 });
             },
             showHideForm: function () {
+                this.errorMessagesForm = [];
+                this.newChild = {
+                    childName: '',
+                    gender: '',
+                    dateOfBirth: ''
+                }
                 this.addingNewChild = !this.addingNewChild
             },
             addQuoteForCurrentChild: function (id) {
