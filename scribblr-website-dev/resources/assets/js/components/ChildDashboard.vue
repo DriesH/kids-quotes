@@ -8,7 +8,7 @@
                     <li>No children yet!</li>
                 </ul>
                 <ul class="nav nav-sidebar" id="childrenList" v-else>
-                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id)" class="childListItem"><a>{{child.name}}<i class="fa fa-cog pull-right"></i></a></li>
+                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id, child.name)" class="childListItem"><a>{{child.name}}<i class="fa fa-cog pull-right"></i></a></li>
                     <li><button type="button" name="button" class="btn btn-default" @click="showHideForm">add child</button></li>
                 </ul>
             </div>
@@ -54,6 +54,7 @@
                 },
                 showQuoteAddForm: false,
                 currentSelectedChildId: '',
+                currentSelectedChildName: '',
                 isActive: false,
                 previousQuotes: [
 
@@ -90,7 +91,7 @@
             showHideForm: function () {
                 this.addingNewChild = !this.addingNewChild
             },
-            addQuoteForCurrentChild: function (id) {
+            addQuoteForCurrentChild: function (id, name) {
 
                 var self = this;
 
@@ -121,6 +122,7 @@
                 }
 
                 this.currentSelectedChildId = id
+                this.currentSelectedChildName = name
 
                 this.$http.get('/api/quote/' + id).then((success_response) => {
                     this.previousQuotes = JSON.parse(success_response.body)
