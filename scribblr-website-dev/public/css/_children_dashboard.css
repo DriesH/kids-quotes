@@ -16,6 +16,19 @@
     cursor: pointer;
 }
 
+.childListItem a .fa.fa-cog{
+    opacity: 0;
+    vertical-align: -5px;
+}
+
+.childListItem a:hover .fa-cog{
+    opacity: 1;
+}
+
+.activeSelectedChild {
+
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -78,13 +91,4 @@
 .modal-leave .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
-
-.childListItem a .fa.fa-cog{
-    opacity: 0;
-    vertical-align: -5px;
-}
-
-.childListItem a:hover .fa-cog{
-    opacity: 1;
 }

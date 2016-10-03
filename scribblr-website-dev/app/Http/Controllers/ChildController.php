@@ -27,12 +27,12 @@ class ChildController extends Controller
         $children = User::findOrFail($userId)->Children()->get();
 
         if ( $children->count() == 0 ) {
-            return view('children-dashboard', [
+            return view('dashboard', [
               'children' => 'empty'
             ]);
         }
         else {
-            return view('children-dashboard', [
+            return view('dashboard', [
               'children' => $children
             ]);
         }

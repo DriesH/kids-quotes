@@ -8,14 +8,13 @@
                     <li>No children yet!</li>
                 </ul>
                 <ul class="nav nav-sidebar" id="childrenList" v-else>
-                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id)"><a>{{child.name}}</a></li>
+                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id)" class="childListItem"><a>{{child.name}}<i class="fa fa-cog pull-right"></i></a></li>
                     <li><button type="button" name="button" class="btn btn-default" @click="showHideForm">add child</button></li>
                 </ul>
             </div>
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">Dashboard</h1>
-
                 <div class="row placeholders">
                     <div class="col-xs-6 col-sm-3 placeholder" v-if="currentChildren.length === 0">
                         <div class="thumbnail" id="addNewChildThumb">
@@ -28,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <add-quote v-if="showQuoteAddForm"></add-quote>
+                <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId"></add-quote>
             </div>
         </div>
     </div>
@@ -55,6 +54,7 @@
                 },
                 showQuoteAddForm: false,
                 currentSelectedChildId: '',
+                isActive: false,
                 previousQuotes: [
 
                 ]
@@ -89,9 +89,9 @@
                 this.addingNewChild = !this.addingNewChild
             },
             addQuoteForCurrentChild: function (id) {
-                if(this.showQuoteAddForm !== true) {
-                    this.showQuoteAddForm = !this.showQuoteAddForm
-                }
+
+                this.showQuoteAddForm = !this.showQuoteAddForm
+
                 if( this.currentSelectedChildId !== null ){
                     this.currentSelectedChildId = ''
                 }
