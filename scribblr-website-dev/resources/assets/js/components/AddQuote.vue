@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="col-xs-4 col-sm-2">
+    <div class="col-xs-4 col-sm-2 animated">
         {{ $parent.currentSelectedChildId }}
         <form>
             <div class="form-group">
@@ -8,9 +8,6 @@
             </div>
             <button type="button" name="addChild" class="btn btn-success" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
         </form>
-    </div>
-    <div class="">
-
     </div>
 </template>
 

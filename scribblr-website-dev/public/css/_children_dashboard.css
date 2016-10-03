@@ -25,6 +25,9 @@
     opacity: 1;
 }
 
+.activeSelectedChild {
+
+}
 
 .modal-mask {
   position: fixed;

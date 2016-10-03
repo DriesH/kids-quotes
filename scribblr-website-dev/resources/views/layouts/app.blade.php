@@ -11,15 +11,34 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lobster|Raleway:300,400,500,700" rel="stylesheet">
+
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/animate.css" media="screen" title="no title">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     @yield('styles')
 
     <style>
+        .navbar-brand {
+            font-family: 'Lobster', cursive;
+        }
+
         body {
-            font-family: 'Lato';
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .navbar {
+            user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+        }
+
+        .login-register-module {
+            margin-top: 70px;
         }
 
         .fa-btn {
@@ -29,7 +48,7 @@
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -41,17 +60,18 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand pull-left" href="{{ url('/') }}">
                     Scribblr
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/children-dashboard') }}">My children</a></li>
-                    <li><a href="{{ url('/quotes-dashboard') }}">My Quotes</a></li>
-                </ul>
+                @if (!Auth::guest())
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url('/dashboard') }}">My children</a></li>
+                    </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -60,15 +80,12 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li class="dropdown">
+                        <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <strong>{{ Auth::user()->name }}</strong>
                             </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
                         </li>
+                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                     @endif
                 </ul>
             </div>
