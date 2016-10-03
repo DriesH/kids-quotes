@@ -37,6 +37,10 @@
             -o-user-select: none;
         }
 
+        .login-register-module {
+            margin-top: 70px;
+        }
+
         .fa-btn {
             margin-right: 6px;
         }
