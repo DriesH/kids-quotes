@@ -21,7 +21,7 @@ Vue.component('addQuote', require('./components/AddQuote.vue'));
 Vue.component('homePage', require('./components/HomePage.vue'));
 
 Vue.transition('slideIn', {
-    enterClass: 'slideInBottom',
+    enterClass: 'slideInLeft',
     leaveClass: 'slideOutLeft'
 });
 

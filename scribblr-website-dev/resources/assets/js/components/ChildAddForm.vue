@@ -5,9 +5,7 @@
                 <div class="modal-body">
                     <div class="alert alert-danger" v-if="$parent.errorMessagesForm.error === true">
                         <strong v-if="$parent.errorMessagesForm.childName">{{ $parent.errorMessagesForm.childName }}</strong>
-                        <br>
                         <strong v-if="$parent.errorMessagesForm.gender">{{ $parent.errorMessagesForm.gender }}</strong>
-                        <br>
                         <strong v-if="$parent.errorMessagesForm.dateOfBirth">{{ $parent.errorMessagesForm.dateOfBirth }}</strong>
                     </div>
                     <slot name="body">

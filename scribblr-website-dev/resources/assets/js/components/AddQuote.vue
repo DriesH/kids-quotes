@@ -8,6 +8,11 @@
             </div>
             <button type="button" name="addChild" class="btn btn-success" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
         </form>
+        <div class="">
+            <ul>
+                <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
+            </ul>
+        </div>
     </div>
 </template>
 
