@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId"></add-quote>
+                <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId" transition="slideIn"></add-quote>
             </div>
         </div>
     </div>
@@ -57,7 +57,9 @@
                 isActive: false,
                 previousQuotes: [
 
-                ]
+                ],
+                animated: false,
+                previousSelectedChildId: null
             }
         },
         computed: {},
@@ -90,7 +92,29 @@
             },
             addQuoteForCurrentChild: function (id) {
 
-                this.showQuoteAddForm = !this.showQuoteAddForm
+                var self = this;
+
+                if (this.previousSelectedChildId === id && this.showQuoteAddForm === true) {
+                    setTimeout(function () {
+                        self.showQuoteAddForm = false;
+                    }, 500);
+                }
+                else if (this.previousSelectedChildId !== null) {
+                    this.showQuoteAddForm = false;
+                    setTimeout(function () {
+                        self.showQuoteAddForm = true;
+                    }, 500);
+                }
+                else if ( this.previousSelectedChildId === null || this.showQuoteAddForm === false ) {
+                    setTimeout(function () {
+                        self.showQuoteAddForm = true;
+                    }, 100);
+                }
+
+                this.previousSelectedChildId = id
+
+                // this.showQuoteAddForm = !this.showQuoteAddForm
+
 
                 if( this.currentSelectedChildId !== null ){
                     this.currentSelectedChildId = ''
