@@ -35,6 +35,11 @@
                 </div>
                 <child-modify v-if="showChildModifySettings" transition="slideIn"></child-modify>
                 <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId" transition="slideIn"></add-quote>
+                <div class="imgs">
+                    <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                    <img src="/backgr_imgs/wood.jpg" alt="wood" />
+                    <img src="/backgr_imgs/paper.jpg" alt="paper" />
+                </div>
             </div>
         </div>
     </div>
