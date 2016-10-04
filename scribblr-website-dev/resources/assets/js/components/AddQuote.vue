@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="panel panel-default animated">
         <div class="panel-heading">
-            <h1>{{ $parent.currentSelectedChild }}</h1>
+            <h1>{{ $parent.currentSelectedChildName }}</h1>
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-md-6">
