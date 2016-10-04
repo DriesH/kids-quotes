@@ -35,11 +35,24 @@
                 </div>
                 <child-modify v-if="showChildModifySettings" transition="slideIn"></child-modify>
                 <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId" transition="slideIn"></add-quote>
-                <div class="imgs">
-                    <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
-                    <img src="/backgr_imgs/wood.jpg" alt="wood" />
-                    <img src="/backgr_imgs/paper.jpg" alt="paper" />
+
+                <!--ADDEN IN ADDQUOTE -->
+                <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
+                    <div class="quote grid-item">
+                        <span class="quote_text">Test</span>
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                    </div>
+                    <div class="quote grid-item">
+                        <span class="quote_text">Test</span>
+                        <img src="/backgr_imgs/wood.jpg" alt="wood" />
+                    </div>
+                    <div class="quote grid-item">
+                        <span class="quote_text">Test</span>
+                        <img src="/backgr_imgs/paper.jpg" alt="paper" />
+                    </div>
                 </div>
+                <!-- -->
+
             </div>
         </div>
     </div>
@@ -81,6 +94,10 @@
             });
 
 
+
+        },
+        nextTick () {
+
         },
         attached () {},
         methods: {
@@ -114,13 +131,13 @@
                 if (this.previousSelectedChildId === id && this.showQuoteAddForm === true) {
                     setTimeout(function () {
                         self.showQuoteAddForm = false;
-                    }, 500);
+                    }, 300);
                 }
                 else if (this.previousSelectedChildId !== null) {
                     this.showQuoteAddForm = false;
                     setTimeout(function () {
                         self.showQuoteAddForm = true;
-                    }, 500);
+                    }, 300);
                 }
                 else if ( this.previousSelectedChildId === null || this.showQuoteAddForm === false ) {
                     setTimeout(function () {
@@ -151,13 +168,13 @@
                 if (this.previousSelectedChildId === id && this.showChildModifySettings === true) {
                     setTimeout(function () {
                         self.showChildModifySettings = false;
-                    }, 500);
+                    }, 300);
                 }
                 else if (this.previousSelectedChildId !== null) {
                     this.showChildModifySettings = false;
                     setTimeout(function () {
                         self.showChildModifySettings = true;
-                    }, 500);
+                    }, 300);
                 }
                 else if ( this.previousSelectedChildId === null || this.showChildModifySettings === false ) {
                     setTimeout(function () {
@@ -177,6 +194,3 @@
         components: {},
     }
 </script>
-
-<style lang="css">
-</style>
