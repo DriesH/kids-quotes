@@ -1,17 +1,27 @@
 <template lang="html">
-    <div class="col-xs-4 col-sm-2 animated">
-        {{ $parent.currentSelectedChildId }}
-        <form>
-            <div class="form-group">
-                <label for="quote">Quote: </label>
-                <input type="text" class="form-control" id="quote" placeholder="Quote" v-model="newQuote">
+    <div class="panel panel-default animated">
+        <div class="panel-heading">
+            <h1>{{ $parent.currentSelectedChild }}</h1>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-md-6">
+
+                <div class="thumbnail">
+                    <form>
+                        <div class="form-group">
+                            <label for="quote">Quote: </label>
+                            <input type="text" class="form-control" id="quote" placeholder="Quote..." v-model="newQuote">
+                        </div>
+                        <button type="button" name="addChild" class="btn btn-success center-block" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
+                    </form>
+                </div>
+
+                <div class="">
+                    <ul>
+                        <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
+                    </ul>
+                </div>
             </div>
-            <button type="button" name="addChild" class="btn btn-success" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
-        </form>
-        <div class="">
-            <ul>
-                <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
-            </ul>
         </div>
     </div>
 </template>
