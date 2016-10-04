@@ -16,6 +16,28 @@
     cursor: pointer;
 }
 
+.quote {
+    position: relative;
+    float: left;
+}
+
+.quote img {
+    border-radius: 10px;
+}
+
+.quote_text {
+    color: white;
+    font-size: 50px;
+    font-family: amatic;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+
+.grid-item {
+  margin-bottom: 10px;
+}
+
 .childListItem a .fa.fa-cog{
     opacity: 0;
     vertical-align: -5px;
