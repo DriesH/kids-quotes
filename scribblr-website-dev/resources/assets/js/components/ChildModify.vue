@@ -1,6 +1,7 @@
 <template lang="html">
-    <div class="">
-
+    <div class="col-xs-4 col-sm-2 animated">
+        {{ $parent.currentSelectedChildId }}
+        test
     </div>
 </template>
 
