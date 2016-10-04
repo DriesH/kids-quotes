@@ -4,7 +4,7 @@
             <h1>{{ $parent.currentSelectedChildName }}</h1>
         </div>
         <div class="panel-body">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-6 pull-left">
 
                 <div class="thumbnail">
                     <form>
@@ -15,12 +15,11 @@
                         <button type="button" name="addChild" class="btn btn-success center-block" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
                     </form>
                 </div>
-
-                <div class="">
-                    <ul>
-                        <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
-                    </ul>
-                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 pull-right">
+                <ul>
+                    <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
+                </ul>
             </div>
         </div>
     </div>
