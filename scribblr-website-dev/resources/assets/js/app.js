@@ -19,13 +19,12 @@ Vue.component('childOverview', require('./components/ChildOverview.vue'));
 Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
 Vue.component('addQuote', require('./components/AddQuote.vue'));
 Vue.component('homePage', require('./components/HomePage.vue'));
+Vue.component('childModify', require('./components/childModify.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
     leaveClass: 'slideOutLeft'
 });
-
-
 
 
 const app = new Vue({

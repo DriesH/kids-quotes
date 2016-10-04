@@ -8,7 +8,11 @@
                     <li>No children yet!</li>
                 </ul>
                 <ul class="nav nav-sidebar" id="childrenList" v-else>
-                    <li v-for="child in currentChildren" @click="addQuoteForCurrentChild(child.id, child.name)" class="childListItem"><a>{{child.name}}<i class="fa fa-cog pull-right"></i></a></li>
+                    <li v-for="child in currentChildren"  class="childListItem">
+                        <a v-on:click.self="showChildQuotes(child.id, child.name)">
+                            {{child.name}}<i id="cogwheel" class="fa fa-cog pull-right" v-on:click.self="showModifySettings(child.id)">{{child.id}}</i>
+                        </a>
+                    </li>
                     <li><button type="button" name="button" class="btn btn-default" @click="showHideForm">add child</button></li>
                 </ul>
             </div>
@@ -21,12 +25,15 @@
                             <div class="center-text">
                                 <h3>Add a new child!</h3>
                                 <div class="caption">
-                                    <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="showHideForm"><i class="fa fa-plus"></i></button>
+                                    <button type="button" name="showForm" id="showFormButton" class="btn btn-default" @click="showHideForm">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <child-modify v-if="showChildModifySettings" transition="slideIn"></child-modify>
                 <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId" transition="slideIn"></add-quote>
             </div>
         </div>
@@ -55,7 +62,8 @@
 
                 ],
                 animated: false,
-                previousSelectedChildId: null
+                previousSelectedChildId: null,
+                showChildModifySettings: false
             }
         },
         computed: {},
@@ -90,12 +98,13 @@
                     childName: '',
                     gender: '',
                     dateOfBirth: ''
-                }
-                this.addingNewChild = !this.addingNewChild
+                };
+                this.addingNewChild = !this.addingNewChild;
             },
-            addQuoteForCurrentChild: function (id, name) {
-
+            showChildQuotes: function (id, name) {
                 var self = this;
+
+                this.showChildModifySettings = false;
 
                 if (this.previousSelectedChildId === id && this.showQuoteAddForm === true) {
                     setTimeout(function () {
@@ -116,9 +125,6 @@
 
                 this.previousSelectedChildId = id
 
-                // this.showQuoteAddForm = !this.showQuoteAddForm
-
-
                 if( this.currentSelectedChildId !== null ){
                     this.currentSelectedChildId = ''
                 }
@@ -132,7 +138,35 @@
                 (error_response) => {
                     alert('error');
                 });
+            },
+            showModifySettings: function (id) {
+                var self = this;
+                this.showQuoteAddForm = false;
 
+                if (this.previousSelectedChildId === id && this.showChildModifySettings === true) {
+                    setTimeout(function () {
+                        self.showChildModifySettings = false;
+                    }, 500);
+                }
+                else if (this.previousSelectedChildId !== null) {
+                    this.showChildModifySettings = false;
+                    setTimeout(function () {
+                        self.showChildModifySettings = true;
+                    }, 500);
+                }
+                else if ( this.previousSelectedChildId === null || this.showChildModifySettings === false ) {
+                    setTimeout(function () {
+                        self.showChildModifySettings = true;
+                    }, 100);
+                }
+
+                this.previousSelectedChildId = id
+
+                if( this.currentSelectedChildId !== null ){
+                    this.currentSelectedChildId = ''
+                }
+
+                this.currentSelectedChildId = id
             }
         },
         components: {},
