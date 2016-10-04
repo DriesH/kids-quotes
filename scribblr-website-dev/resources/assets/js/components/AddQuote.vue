@@ -17,9 +17,16 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6 pull-right">
-                <ul>
-                    <li v-for="quote in $parent.previousQuotes">{{ quote.quote }}</li>
-                </ul>
+                <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
+                    <div class="quote grid-item">
+                        <span class="quote_text">{{ newQuote }}</span>
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                    </div>
+                    <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
+                        <span class="quote_text">{{ quote.quote }}</span>
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

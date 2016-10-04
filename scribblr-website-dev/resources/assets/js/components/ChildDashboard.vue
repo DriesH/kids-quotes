@@ -35,24 +35,6 @@
                 </div>
                 <child-modify v-if="showChildModifySettings" transition="slideIn"></child-modify>
                 <add-quote v-if="showQuoteAddForm" v-bind:current-selected-child-id="currentSelectedChildId" transition="slideIn"></add-quote>
-
-                <!--ADDEN IN ADDQUOTE -->
-                <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
-                    <div class="quote grid-item">
-                        <span class="quote_text">Test</span>
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
-                    </div>
-                    <div class="quote grid-item">
-                        <span class="quote_text">Test</span>
-                        <img src="/backgr_imgs/wood.jpg" alt="wood" />
-                    </div>
-                    <div class="quote grid-item">
-                        <span class="quote_text">Test</span>
-                        <img src="/backgr_imgs/paper.jpg" alt="paper" />
-                    </div>
-                </div>
-                <!-- -->
-
             </div>
         </div>
     </div>
