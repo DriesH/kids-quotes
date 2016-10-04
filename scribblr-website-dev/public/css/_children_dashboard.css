@@ -14,11 +14,19 @@
 }
 #childrenList li{
     cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    cursor: default;
+
 }
 
 .quote {
     position: relative;
     float: left;
+    overflow: hidden;
 }
 
 .quote img {
@@ -32,10 +40,17 @@
     position: absolute;
     top: 20px;
     left: 10px;
+    word-break: break-all;
 }
 
 .grid-item {
   margin-bottom: 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  cursor: default;
 }
 
 .childListItem a .fa.fa-cog{

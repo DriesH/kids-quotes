@@ -1,6 +1,6 @@
 <template lang="html">
-    <div class="container container-table hero-img">
-        <div class="row vertical-center-row">
+    <div class="container hero-img">
+        <div id="cloud-intro">
             <h1 class="text-center col-md-4 col-md-offset-4">Welcome to Scribblr!</h1>
         </div>
     </div>
