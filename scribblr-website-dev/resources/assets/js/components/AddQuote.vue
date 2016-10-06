@@ -10,7 +10,8 @@
                     <form>
                         <div class="form-group">
                             <label for="quote">Quote: </label>
-                            <input type="text" class="form-control" id="quote" placeholder="Quote..." v-model="newQuote">
+                            <input type="text" class="form-control" id="quote" placeholder="Quote...">
+                            <textarea name="name" rows="8" cols="40" v-model="newQuote"></textarea>
                         </div>
                         <div id="upload_file">
                           <div v-if="!image">
@@ -32,11 +33,11 @@
             <div class="col-xs-12 col-md-6 pull-right">
                 <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
                     <div class="quote grid-item">
-                        <span class="quote_text">{{ newQuote }}</span>
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" v-crop:start="cropStart" />
+                        <span class="quote_text"><p style="white-space: pre">{{{ newQuote }}}</p></span>
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" id="target" />
                     </div>
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
-                        <span class="quote_text">{{ quote.quote }}</span>
+                        <span class="quote_text"><p style="white-space: pre">{{ quote.quote }}</p></span>
                         <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
                     </div>
                 </div>
