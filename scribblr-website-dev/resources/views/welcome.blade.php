@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <home-page transition="slideIn" appear></home-page>
+    <home-page></home-page>
 @endsection
