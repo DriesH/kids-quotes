@@ -33,7 +33,7 @@
                 <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
                     <div class="quote grid-item">
                         <span class="quote_text">{{ newQuote }}</span>
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" v-crop:start="cropStart" />
                     </div>
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
                         <span class="quote_text">{{ quote.quote }}</span>
