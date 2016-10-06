@@ -62,4 +62,17 @@ export default {
 </script>
 
 <style lang="css">
+#upload_file {
+  text-align: center;
+}
+
+.uploaded_img {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+  border: 1px black solid;
+}
+
 </style>
