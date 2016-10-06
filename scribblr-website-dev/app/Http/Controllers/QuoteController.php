@@ -24,7 +24,6 @@ class QuoteController extends Controller
     public function getOldQuotes($childId)
     {
         $oldQuotes = Child::find($childId)->quotes()->get();
-
         return json_encode($oldQuotes);
     }
 
