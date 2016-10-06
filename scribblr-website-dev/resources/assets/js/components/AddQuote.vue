@@ -12,6 +12,19 @@
                             <label for="quote">Quote: </label>
                             <input type="text" class="form-control" id="quote" placeholder="Quote..." v-model="newQuote">
                         </div>
+                        <div id="upload_file">
+                          <div v-if="!image">
+                            <h2>Select an image</h2>
+                            <input type="file" @change="onFileChange">
+                          </div>
+                          <div v-else>
+                              <div class="quote">
+                                  <span class="quote_text">{{ newQuote }}</span>
+                                  <img :src="image" class="uploaded_img" />
+                              </div>
+                            <button @click="removeImage">Remove image</button>
+                          </div>
+                        </div>
                         <button type="button" name="addChild" class="btn btn-success center-block" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
                     </form>
                 </div>
@@ -37,7 +50,8 @@
         props: ['currentSelectedChildId'],
         data () {
             return {
-                newQuote: ''
+                newQuote: '',
+                image: ''
             }
         },
         computed: {},
@@ -52,6 +66,25 @@
                 (error_response) => {
                     console.log('error')
                 });
+            },
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImage: function (e) {
+                this.image = '';
             }
         }
     }
