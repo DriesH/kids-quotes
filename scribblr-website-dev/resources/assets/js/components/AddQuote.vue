@@ -5,7 +5,6 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-md-6 pull-left">
-
                 <div class="thumbnail">
                     <form>
                         <div class="form-group">
