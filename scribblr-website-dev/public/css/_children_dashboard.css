@@ -12,6 +12,7 @@
     height: 70px;
     margin-top: 50px;
 }
+
 #childrenList li{
     cursor: pointer;
     user-select: none;
@@ -20,7 +21,6 @@
     -webkit-user-select: none;
     -o-user-select: none;
     cursor: default;
-
 }
 
 .quote {
