@@ -30,12 +30,31 @@ class QuoteController extends Controller
     public function newQuote (Request $request) {
         $quote        = $request->json('quote');
         $child_id     = $request->json('child_id');
+        $backgr_img   = $request->file("userfile");
+        if($backgr_img){
+              /**
+              *de extensie van afbeelding
+              *
+              *@var string
+              */
+              $ext = $backgr_img->getClientOriginalExtension();
+
+              /**
+              *nieuwe unieke naam van de afbeelding
+              *
+              *@var string
+              */
+              $nieuwe_naam = uniqid() . "." . $ext;
+              $backgr_img->move('pictures', $nieuwe_naam);
+      }
 
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
             'backgr_img' => 'test',
         ]);
+
+        //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
         return $newQuote;
