@@ -20,6 +20,8 @@ Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
 Vue.component('addQuote', require('./components/AddQuote.vue'));
 Vue.component('homePage', require('./components/HomePage.vue'));
 Vue.component('childModify', require('./components/childModify.vue'));
+Vue.component('devNavBar', require('./components/devNavBar.vue'));
+Vue.component('devBanner', require('./components/devBanner.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
