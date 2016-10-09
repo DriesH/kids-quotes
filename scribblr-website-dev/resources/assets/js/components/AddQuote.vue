@@ -5,12 +5,25 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-md-6 pull-left">
-
                 <div class="thumbnail">
                     <form>
                         <div class="form-group">
                             <label for="quote">Quote: </label>
-                            <input type="text" class="form-control" id="quote" placeholder="Quote..." v-model="newQuote">
+                            <input type="text" class="form-control" id="quote" placeholder="Quote...">
+                            <textarea name="name" rows="8" cols="40" v-model="newQuote"></textarea>
+                        </div>
+                        <div id="upload_file">
+                          <div v-if="!image">
+                            <h2>Select an image</h2>
+                            <input type="file" @change="onFileChange">
+                          </div>
+                          <div v-else>
+                              <div class="quote">
+                                  <span class="quote_text">{{ newQuote }}</span>
+                                  <img :src="image" class="uploaded_img" />
+                              </div>
+                            <button @click="removeImage">Remove image</button>
+                          </div>
                         </div>
                         <button type="button" name="addChild" class="btn btn-success center-block" @click="addNewQuote"><i class="fa fa-plus"></i> add</button>
                     </form>
@@ -19,11 +32,11 @@
             <div class="col-xs-12 col-md-6 pull-right">
                 <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
                     <div class="quote grid-item">
-                        <span class="quote_text">{{ newQuote }}</span>
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                        <span class="quote_text"><p style="white-space: pre">{{{ newQuote }}}</p></span>
+                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" id="target" />
                     </div>
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
-                        <span class="quote_text">{{ quote.quote }}</span>
+                        <span class="quote_text"><p style="white-space: pre">{{ quote.quote }}</p></span>
                         <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
                     </div>
                 </div>
@@ -37,7 +50,8 @@
         props: ['currentSelectedChildId'],
         data () {
             return {
-                newQuote: ''
+                newQuote: '',
+                image: ''
             }
         },
         computed: {},
@@ -52,6 +66,25 @@
                 (error_response) => {
                     console.log('error')
                 });
+            },
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImage: function (e) {
+                this.image = '';
             }
         }
     }
