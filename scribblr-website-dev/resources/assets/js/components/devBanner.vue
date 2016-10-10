@@ -3,11 +3,14 @@
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
-                    <h1><span>Memories for later.</span></h1>
-                    <button type="button" name="button" class="signup-btn">Sign up now.</button>
-                    <p>
-                        <span>It's free.</span>
-                    </p>
+                    <h1 v-if="showBannerText" transition="fadeDown"><span>Memories for later.</span></h1>
+                    <div id="button-undertext" v-if="showButton" transition="fadeDown">
+                        <button type="button" name="button" class="signup-btn" >Sign up now.</button>
+                        <p>
+                            <span>It's free.</span>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -17,10 +20,16 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                showBannerText: false,
+                showButton: false
+            }
         },
         computed: {},
-        ready () {},
+        ready () {
+            this.showBannerText = true;
+            this.showButton = true;
+        },
         attached () {},
         methods: {},
         components: {}

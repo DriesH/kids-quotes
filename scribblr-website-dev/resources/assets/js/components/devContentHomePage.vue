@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="content">
+    <div class="content animated" transition="fade" v-if="show">
         <div class="container">
             <div class="row">
 
@@ -36,10 +36,14 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                show: false,
+            }
         },
         computed: {},
-        ready () {},
+        ready () {
+            this.show = true;
+        },
         attached () {},
         methods: {},
         components: {}
