@@ -1,7 +1,7 @@
 <template lang="html">
-    <div class="content animated" transition="fade" v-if="show">
+    <div class="content">
         <div class="container">
-            <div class="row">
+            <div class="row animated" transition="fadeLeft" v-show="showContentText">
 
                 <div class="col-sm-5 col-md-6">
                     <div class="titles">
@@ -37,15 +37,24 @@
     export default {
         data () {
             return {
-                show: false,
+                showContentText: false,
             }
         },
         computed: {},
         ready () {
-            this.show = true;
+            window.addEventListener('scroll', this.showText);
         },
         attached () {},
-        methods: {},
+        methods: {
+            showText: function () {
+                if(window.scrollY >= 200){
+                    this.showContentText = true;
+                }
+                else{
+                    this.showContentText = false;
+                }
+            }
+        },
         components: {}
     }
 </script>
