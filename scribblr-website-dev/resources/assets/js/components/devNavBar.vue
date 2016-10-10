@@ -47,11 +47,7 @@
     .logo {
         font-size: 30px;
         padding: 27px 15px !important;
-    }
-
-    .logo:hover, .logo:hover>.sub-logo {
-        color: rgb(190, 11, 62);
-        background: none;
+        transition: 0.3s color;
     }
 
     .sub-logo {
@@ -61,6 +57,12 @@
         color: white;
         display: block;
         margin-left: 30px;
+        transition: 0.3s color;
+    }
+
+    .logo:hover, .logo:hover>.sub-logo {
+        color: rgb(190, 11, 62);
+        background: none;
     }
 
     .login-reg>li>a {
@@ -69,6 +71,7 @@
         font-weight: bold;
         padding-top: 30px;
         padding-bottom: 30px;
+        transition: 0.3s color;
     }
 
     .login-reg>li>a:hover {
