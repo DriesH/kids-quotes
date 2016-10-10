@@ -1,20 +1,20 @@
 <template lang="html">
     <div class="banner">
-        dif
+        <span></span>
     </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {}
-  },
-  computed: {},
-  ready () {},
-  attached () {},
-  methods: {},
-  components: {}
-}
+    export default {
+        data () {
+            return {}
+        },
+        computed: {},
+        ready () {},
+        attached () {},
+        methods: {},
+        components: {}
+    }
 </script>
 
 <style lang="css" scoped>

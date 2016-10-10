@@ -1,5 +1,5 @@
 <template lang="html">
-    <nav>
+    <nav class="navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -37,7 +37,6 @@
         width: 100%;
         height: 80px;
         background-color: rgba(0, 0, 0, 0.7);
-        position: fixed;
     }
 
     .lobster {
@@ -51,7 +50,7 @@
     }
 
     .logo:hover, .logo:hover>.sub-logo {
-        color: rgb(255, 135, 153);
+        color: rgb(190, 11, 62);
         background: none;
     }
 
@@ -73,7 +72,7 @@
     }
 
     .login-reg>li>a:hover {
-        color: rgb(255, 135, 153);
+        color: rgb(190, 11, 62);
         background: none;
     }
 
