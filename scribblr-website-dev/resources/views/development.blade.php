@@ -7,4 +7,9 @@
 @section('content')
     <dev-nav-bar></dev-nav-bar>
     <dev-banner></dev-banner>
+    <dev-content-home-page></dev-content-home-page>
+@endsection
+
+@section('script')
+    <script src="js/app.js" charset="utf-8"></script>
 @endsection
