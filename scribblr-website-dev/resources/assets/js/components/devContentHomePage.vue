@@ -1,23 +1,32 @@
 <template lang="html">
     <div class="content">
         <div class="container">
-            <div class="titles">
-                <h1>What is Scribblr?</h1>
-                <h2>A platform for remembering quotes.</h2>
-            </div>
-            <div class="content-text">
-                <p>
-                    On Scribblr you can add your children’s best quotes. You can put them
-                    over all kinds of preset backgrounds, or upload your own background.
-                    And ofcourse our best feature, printing a book of all your quotes!
-                </p>
-            </div>
-            <!-- COMING SOON!
-            <div class="pictures">
-                <div class="picture">
-                    <img src="" alt="" />
+            <div class="row">
+
+                <div class="col-sm-5 col-md-6">
+                    <div class="titles">
+                        <h1>What is Scribblr?</h1>
+                        <h2>A platform for remembering quotes.</h2>
+                    </div>
+                    <div class="content-text">
+                        <p>
+                            On Scribblr you can add your children’s best quotes. You can put them
+                            over all kinds of preset backgrounds, or upload your own background.
+                            And ofcourse our best feature, printing a book of all your quotes!
+                        </p>
+                    </div>
                 </div>
-            </div>-->
+
+                <div class="col-sm-7 col-md-5">
+                    <!-- COMING SOON!
+                    <div class="pictures">
+                        <div class="picture">
+                            <img src="" alt="" />
+                        </div>
+                    </div>-->
+                </div>
+
+            </div>
 
         </div>
     </div>
