@@ -48,7 +48,7 @@ class QuoteController extends Controller
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
-            'backgr_img' => $path->getPathName(),
+            'backgr_img' => $path->getRealPath(),
         ]);
 
         //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!
