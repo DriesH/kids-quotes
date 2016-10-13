@@ -22,6 +22,7 @@ Vue.component('homePage', require('./components/HomePage.vue'));
 Vue.component('childModify', require('./components/childModify.vue'));
 Vue.component('devNavBar', require('./components/devNavBar.vue'));
 Vue.component('devBanner', require('./components/devBanner.vue'));
+Vue.component('devContentHomePage', require('./components/devContentHomePage.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
