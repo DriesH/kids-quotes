@@ -38,15 +38,16 @@ class QuoteController extends Controller
         $newName      = '';                         //name with hash img
         $currentUser  = Auth::user()->id;           //current user logged in
         $path         = '';                         //save path to img
-        $uniqueImgID = uniqid();                    //hash for img name
+        $uniqueImgID = uniqid() . time();           //hash for img name
 
 
-
+        //base64 converting
         $img = str_replace('data:image/png;base64,', '', $imgWithQuote); //data:image/png;base64 replace with nothing
         $img = str_replace(' ', '+', $img);                              //all spaces replace with +
 
-        //$fileData = base64_decode($img);
-        //file_put_contents('pictures/uploadedbackground/user_id_1/withquotes/test.png', $fileData);
+        $fileData = base64_decode($img); //decode base64 img
+
+        file_put_contents('pictures/uploadedbackground/withquote/' . $uniqueImgID . '.png', $fileData); //save decoded png
 
         //Image::make($imgWithQuote)->save('pictures/uploadedbackground/user_id_1/withquovfftes/test.png');
 
@@ -63,8 +64,8 @@ class QuoteController extends Controller
             $newName = $uniqueImgID . "." . $ext;
             $path    = 'pictures/uploadedbackground/withoutquotes';
 
-            //$image = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
-            //$path = $image->getPath() . "/" . $image->getFileName();
+            //$image = $bckgrimg->move('pictures/uploadedbackground/', $newName);
+            $path = $image->getPath() . "/" . $image->getFileName();
 
             Image::make($bckgrimg->getRealPath())->resize(500,500)->save($path);
         }
