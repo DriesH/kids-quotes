@@ -4,13 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "6bb12e2fdbc6ab492195b81e89007bef",
-    "content-hash": "205d3bac84374f9c6c594422171fdb10",
-=======
-    "hash": "0cc56b0d0e805677b4de7edcccc4f8fe",
-    "content-hash": "dc9e2f875ab09ce35cfab8df4953e4fe",
->>>>>>> refs/remotes/origin/master
+    "hash": "820732a313a1ee6e8098e9180559cc2a",
+    "content-hash": "fee5cd2dcd9e9baf77ed4b08a14daae0",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -167,7 +162,6 @@
             "time": "2015-11-06 14:35:42"
         },
         {
-<<<<<<< HEAD
             "name": "guzzlehttp/guzzle",
             "version": "6.2.2",
             "source": {
@@ -245,27 +239,6 @@
             },
             "require": {
                 "php": ">=5.5.0"
-=======
-            "name": "guzzlehttp/psr7",
-            "version": "1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-                "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "psr/http-message": "~1.0"
-            },
-            "provide": {
-                "psr/http-message-implementation": "1.0"
->>>>>>> refs/remotes/origin/master
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -273,20 +246,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
                     "dev-master": "1.0-dev"
-=======
-                    "dev-master": "1.4-dev"
->>>>>>> refs/remotes/origin/master
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
                     "GuzzleHttp\\Promise\\": "src/"
-=======
-                    "GuzzleHttp\\Psr7\\": "src/"
->>>>>>> refs/remotes/origin/master
                 },
                 "files": [
                     "src/functions_include.php"
@@ -303,7 +268,6 @@
                     "homepage": "https://github.com/mtdowling"
                 }
             ],
-<<<<<<< HEAD
             "description": "Guzzle promises library",
             "keywords": [
                 "promise"
@@ -333,7 +297,32 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
-=======
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
             "description": "PSR-7 message implementation",
             "keywords": [
                 "http",
@@ -370,30 +359,17 @@
                 "ext-gd": "to use GD library based image processing.",
                 "ext-imagick": "to use Imagick based image processing.",
                 "intervention/imagecache": "Caching extension for the Intervention Image library"
->>>>>>> refs/remotes/origin/master
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "1.4-dev"
-=======
                     "dev-master": "2.3-dev"
->>>>>>> refs/remotes/origin/master
                 }
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< HEAD
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-=======
                     "Intervention\\Image\\": "src/Intervention/Image"
                 }
->>>>>>> refs/remotes/origin/master
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -401,21 +377,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "PSR-7 message implementation",
-            "keywords": [
-                "http",
-                "message",
-                "stream",
-                "uri"
-            ],
-            "time": "2016-06-24 23:00:38"
-=======
                     "name": "Oliver Vogel",
                     "email": "oliver@olivervogel.net",
                     "homepage": "http://olivervogel.net/"
@@ -432,7 +393,6 @@
                 "watermark"
             ],
             "time": "2016-09-01 17:04:03"
->>>>>>> refs/remotes/origin/master
         },
         {
             "name": "jakub-onderka/php-console-color",
