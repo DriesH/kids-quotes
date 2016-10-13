@@ -42,7 +42,7 @@
                     <div id="img-out"></div>
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
                         <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" />
+                        <img src="{{quote.backgr_img}}" alt="chalkboard" />
                     </div>
                 </div>
             </div>

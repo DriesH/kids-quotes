@@ -44,6 +44,9 @@ class QuoteController extends Controller
             $newName = uniqid() . "." . $ext;
             $path = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
         }
+        else {
+            $path = "pictures/uploadedbackground/wood.jpg";
+        }
 
         $newQuote = Quote::create([
             'quote' => $quote,
