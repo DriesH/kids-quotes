@@ -1,6 +1,7 @@
-$(function() {
+/*$(function() {
 
-    $(document).on("click", "#btnSave", function() {
+    $(document).on("click", "#addQuote", function() {
+        console.log('canvas uitvoering');
         html2canvas($("#widget"), {
             onrendered: function(canvas) {
                 theCanvas = canvas;
@@ -16,6 +17,6 @@ $(function() {
 
     });
 
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
 
-});
+});*/
