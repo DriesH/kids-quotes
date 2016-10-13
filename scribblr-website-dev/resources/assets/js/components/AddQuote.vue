@@ -27,21 +27,35 @@
                             <button @click="removeImage">Remove image</button>
                           </div>
                         </div>
-                        <button type="submit" name="addChild" class="btn btn-success center-block" ><i class="fa fa-plus"></i> add</button>
+                        <button id="addQuote" type="submit" name="addQuote" class="btn btn-success center-block" ><i class="fa fa-plus"></i> add</button>
                     </form>
                 </div>
+
+                <div class="cc-selector-2">
+                    <div v-for="defaultImg in defaultImgs">
+                        <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImg}}" v-model="backgroundChosen"/>
+                        <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
+                    </div>
+                </div>
+
+
+
             </div>
             <div class="col-xs-12 col-md-6 pull-right">
                 <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
+
+                    <!-- PREVIEW -->
                     <div class="quote grid-item" id="widget">
-                        <img src="/backgr_imgs/chalkboard.jpg" alt="chalkboard" id="target" />
+                        <img v-bind:src="prefixDefault + backgroundChosen" id="target" />
                         <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
                     </div>
-                    <input type="button" id="btnSave" value="Save PNG"/>
+
                     <div id="img-out"></div>
+
+                    <!-- OLD QUOTES -->
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
                         <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        <img src="{{quote.backgr_img}}" alt="chalkboard" />
+                        <img v-bind:src="quote.backgr_img" />
                     </div>
                 </div>
             </div>
@@ -57,6 +71,9 @@
                 newQuote: '',
                 backgr_img: null,
                 formData: new FormData(),
+                defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
+                backgroundChosen: 'wood.jpg',
+                prefixDefault: '/pictures/'
             }
         },
         computed: {},
@@ -67,17 +84,35 @@
             addNewQuote: function (e) {
                 e.preventDefault();
                 var fileInputEl = $("#testimage");
-                //console.log(fileInputEl[0].files[0]);
-                this.formData.append("userfile", fileInputEl[0].files[0]);
-                this.formData.append("quote", this.newQuote);
-                this.formData.append("child_id", this.currentSelectedChildId);
+                var self = this;
+                html2canvas($("#widget"), {
+                    onrendered: function(canvas) {
+                        var theCanvas = canvas;
+                        document.body.appendChild(canvas);
 
-                this.$http.post('api/quote', this.formData).then((success_response) => {
-                    //console.log(success_response.body)
-                },
-                (error_response) => {
-                    //console.log('error')
+                        // Convert and download as image
+                        //Canvas2Image.saveAsPNG(canvas);
+                        $("#img-out").append(canvas);
+                        // Clean up
+                        //document.body.removeChild(canvas);
+                        self.canvas = document.getElementsByTagName('canvas')[0].toDataURL();
+                        self.formData.append("userfile", fileInputEl[0].files[0]);
+                        self.formData.append("imgWithQuote", self.canvas);
+                        self.formData.append("quote", self.newQuote);
+                        self.formData.append("child_id", self.currentSelectedChildId);
+                        self.formData.append("backgroundChosen", self.backgroundChosen);
+
+
+                        self.$http.post('api/quote', self.formData).then((success_response) => {
+                            console.log(success_response.body)
+                        },
+                        (error_response) => {
+                            console.log('error')
+                        });
+                    }
                 });
+
+
             },
             bindFile: function(e){
                 this.fileUploadFormData.append('file', e.target.files[0]);
@@ -86,5 +121,33 @@
     }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+    .cc-selector-2 input{
+        position:absolute;
+        z-index:999;
+    }
+    .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+    .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+        -webkit-filter: none;
+           -moz-filter: none;
+                filter: none;
+    }
+    .drinkcard-cc{
+        cursor:pointer;
+        background-size:contain;
+        background-repeat:no-repeat;
+        display:inline-block;
+        width:100px;height:70px;
+        -webkit-transition: all 100ms ease-in;
+           -moz-transition: all 100ms ease-in;
+                transition: all 100ms ease-in;
+        -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+           -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+                filter: brightness(1.8) grayscale(1) opacity(.7);
+    }
+    .drinkcard-cc:hover{
+        -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+           -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+                filter: brightness(1.2) grayscale(.5) opacity(.9);
+    }
 </style>

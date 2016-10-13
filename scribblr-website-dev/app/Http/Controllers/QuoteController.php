@@ -10,6 +10,7 @@ use App\Child;
 use App\User;
 use App\Quote;
 use File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use Auth;
 
@@ -28,12 +29,27 @@ class QuoteController extends Controller
     }
 
     public function newQuote (Request $request) {
-        $quote        = $request->quote;
-        $child_id     = $request->child_id;
-        $bckgrimg     = $request->file("userfile");
-        $newName      = '';
-        $currentUser  = Auth::user()->id;
-        $path         = '';
+        $quote        = $request->quote;            //get quote from ajax call
+        $child_id     = $request->child_id;         //get child_id from ajax call
+        $bckgrimg     = $request->file("userfile"); //get file from ajax call
+        $imgWithQuote = $request->imgWithQuote;     //get base64 png img wirh quote
+
+
+        $newName      = '';                         //name with hash img
+        $currentUser  = Auth::user()->id;           //current user logged in
+        $path         = '';                         //save path to img
+        $uniqueImgID = uniqid();                    //hash for img name
+
+
+
+        $img = str_replace('data:image/png;base64,', '', $imgWithQuote); //data:image/png;base64 replace with nothing
+        $img = str_replace(' ', '+', $img);                              //all spaces replace with +
+
+        //$fileData = base64_decode($img);
+        //file_put_contents('pictures/uploadedbackground/user_id_1/withquotes/test.png', $fileData);
+
+        //Image::make($imgWithQuote)->save('pictures/uploadedbackground/user_id_1/withquovfftes/test.png');
+
 
 
 
@@ -41,13 +57,19 @@ class QuoteController extends Controller
             //get extension
             $ext = $bckgrimg->getClientOriginalExtension();
 
+            //$manager = new ImageManager(array('driver' => 'imgick'));
+
             //rename file and save
-            $newName = uniqid() . "." . $ext;
-            $image = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
-            $path = $image->getPath() . "/" . $image->getFileName();
+            $newName = $uniqueImgID . "." . $ext;
+            $path    = 'pictures/uploadedbackground/withoutquotes';
+
+            //$image = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
+            //$path = $image->getPath() . "/" . $image->getFileName();
+
+            Image::make($bckgrimg->getRealPath())->resize(500,500)->save($path);
         }
         else {
-            $path = "pictures/uploadedbackground/wood.jpg";
+            $path = 'pictures/' . $uniqueImgID . '.jpg';
         }
 
         $newQuote = Quote::create([
