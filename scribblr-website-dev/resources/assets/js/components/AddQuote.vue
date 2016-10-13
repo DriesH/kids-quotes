@@ -9,8 +9,7 @@
                     <form enctype="multipart/form-data" id="quoteForm" @submit="addNewQuote">
                         <div class="form-group">
                             <label for="quote">Quote: </label>
-                            <input type="text" class="form-control" id="quote" placeholder="Quote...">
-                            <textarea id="quoteTextArea" name="name" rows="4" cols="16" v-model="newQuote"></textarea>
+                            <textarea id="quoteTextArea" name="name" rows="4" cols="16" v-model="newQuote" placeholder="Quote..."></textarea>
                         </div>
                         <div id="upload_file">
                           <div v-if="!image">
