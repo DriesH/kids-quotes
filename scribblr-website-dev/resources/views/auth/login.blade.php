@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="/css/login.css" media="screen" title="no title">
+@endsection
+
 @section('content')
 <div class="container login-register-module">
     <div class="row">
@@ -9,6 +13,9 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
+
+                        <a href="redirect" class="fb-login">Login with Facebook</a>
+                        <p class="or-divider"><span>OR</span></p>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>

@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::auth();
+//fb login
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
 
 //handles homepage loading + all child loading to homepage
 Route::get('dashboard', 'ChildController@childrenDashboard');
