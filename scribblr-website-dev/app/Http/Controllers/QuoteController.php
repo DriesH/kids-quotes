@@ -28,30 +28,27 @@ class QuoteController extends Controller
     }
 
     public function newQuote (Request $request) {
-        $quote        = $request->json('quote');
-        $child_id     = $request->json('child_id');
-        $backgr_img   = $request->file("userfile");
-        if($backgr_img){
-              /**
-              *de extensie van afbeelding
-              *
-              *@var string
-              */
-              $ext = $backgr_img->getClientOriginalExtension();
+        $quote        = $request->quote;
+        $child_id     = $request->child_id;
+        $bckgrimg     = $request->file("userfile");
+        $newName      = '';
+        $currentUser  = Auth::user()->id;
+        $path         = '';
 
-              /**
-              *nieuwe unieke naam van de afbeelding
-              *
-              *@var string
-              */
-              $nieuwe_naam = uniqid() . "." . $ext;
-              $backgr_img->move('pictures', $nieuwe_naam);
-      }
+
+        if($bckgrimg){
+            //get extension
+            $ext = $bckgrimg->getClientOriginalExtension();
+
+            //rename file and save
+            $newName = uniqid() . "." . $ext;
+            $path = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
+        }
 
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
-            'backgr_img' => 'test',
+            'backgr_img' => $path->getPathName(),
         ]);
 
         //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!
