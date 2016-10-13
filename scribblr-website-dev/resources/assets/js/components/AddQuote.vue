@@ -68,16 +68,16 @@
             addNewQuote: function (e) {
                 e.preventDefault();
                 var fileInputEl = $("#testimage");
-                console.log(fileInputEl[0].files[0]);
+                //console.log(fileInputEl[0].files[0]);
                 this.formData.append("userfile", fileInputEl[0].files[0]);
                 this.formData.append("quote", this.newQuote);
                 this.formData.append("child_id", this.currentSelectedChildId);
 
                 this.$http.post('api/quote', this.formData).then((success_response) => {
-                    console.log(success_response.body)
+                    //console.log(success_response.body)
                 },
                 (error_response) => {
-                    console.log('error')
+                    //console.log('error')
                 });
             },
             bindFile: function(e){
