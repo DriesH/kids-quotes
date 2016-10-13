@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="banner">
+    <div class="banner" v-bind:style="{backgroundImage: 'url(../img/banner-background-personal.jpg)'}">
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
@@ -10,7 +10,6 @@
                             <span>It's free.</span>
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -42,6 +41,14 @@
         font-weight: bold;
         color: white;
         font-size: 85px;
+    }
+
+    .banner {
+
+        background-position: center;
+        background-size: cover;
+        height: 928px;
+        width: 100%;
     }
 
     .banner-text-area {
