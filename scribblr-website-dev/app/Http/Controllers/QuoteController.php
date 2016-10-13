@@ -36,13 +36,15 @@ class QuoteController extends Controller
         $path         = '';
 
 
-        if($bckgrimg){
+
+        if($bckgrimg != null){
             //get extension
             $ext = $bckgrimg->getClientOriginalExtension();
 
             //rename file and save
             $newName = uniqid() . "." . $ext;
-            $path = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
+            $image = $bckgrimg->move('pictures/uploadedbackground/user_id_' . $currentUser . '/', $newName);
+            $path = $image->getPath() . "/" . $image->getFileName();
         }
         else {
             $path = "pictures/uploadedbackground/wood.jpg";
@@ -51,7 +53,7 @@ class QuoteController extends Controller
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
-            'backgr_img' => $path->getRealPath(),
+            'backgr_img' => $path,
         ]);
 
         //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!
