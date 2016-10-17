@@ -14,7 +14,7 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('backgr_without_quote')->default(null);
+            $table->string('backgr_with_quote');
             $table->mediumText('quote');
             $table->integer('child_id');
             $table->integer('preset_background_id');

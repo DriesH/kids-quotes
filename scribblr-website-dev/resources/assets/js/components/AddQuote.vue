@@ -66,7 +66,7 @@
                     <!-- OLD QUOTES -->
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
                         <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        <img v-bind:src="path + quote.backgr_img" />
+                        <img v-bind:src="path + quote.backgr_with_quote" />
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                 formData: new FormData(),
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
                 backgroundChosen: 0,
-                path: '/pictures/uploadedbackground/withoutquote/',
+                path: '/pictures/uploadedbackground/withquote/',
                 prefixDefault: '/pictures/',
                 previewBackgroundIMG: ''
             }
@@ -95,6 +95,7 @@
         },
         attached () {},
         methods: {
+            //add quote to db with ajax call
             addNewQuote: function (e) {
                 e.preventDefault();
                 var fileInputEl = $("#testimage");
@@ -131,6 +132,7 @@
             bindFile: function(e) {
                 this.fileUploadFormData.append('file', e.target.files[0]);
             },
+            //preview the backgroun that was uploaded by the user
             previewBackground: function(event) {
                 console.log('hey i got called!');
                 var input = event.target;

@@ -74,9 +74,6 @@
             (error_response) => {
                 alert('error');
             });
-
-
-
         },
         nextTick () {
 
@@ -136,8 +133,9 @@
                 this.currentSelectedChildId = id
                 this.currentSelectedChildName = name
 
+                //get previous quotes from current child
                 this.$http.get('/api/quote/' + id).then((success_response) => {
-                    this.previousQuotes = JSON.parse(success_response.body)
+                    this.previousQuotes = JSON.parse(success_response.body);
                 },
                 (error_response) => {
                     alert('error');
