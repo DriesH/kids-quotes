@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuotesTable extends Migration
+class CreatePresetBackgroundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotes', function (Blueprint $table) {
+        Schema::create('preset_backgrounds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('backgr_without_quote')->default(null);
-            $table->mediumText('quote');
-            $table->integer('child_id');
-            $table->integer('preset_background_id');
+            $table->string('background_name');
+            $table->string('background_filename');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quotes');
+        Schema::drop('preset_backgrounds');
     }
 }
