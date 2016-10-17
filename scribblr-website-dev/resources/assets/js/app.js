@@ -13,16 +13,20 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-
+//live vues
 Vue.component('childDashboard', require('./components/ChildDashboard.vue'));
-Vue.component('childOverview', require('./components/ChildOverview.vue'));
 Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
 Vue.component('addQuote', require('./components/AddQuote.vue'));
 Vue.component('homePage', require('./components/HomePage.vue'));
 Vue.component('childModify', require('./components/childModify.vue'));
-Vue.component('devNavBar', require('./components/devNavBar.vue'));
-Vue.component('devBanner', require('./components/devBanner.vue'));
-Vue.component('devContentHomePage', require('./components/devContentHomePage.vue'));
+Vue.component('businessContentHomePage', require('./components/businessContentHomePage.vue'));
+Vue.component('parentWrap', require('./components/ParentWrap.vue'));
+
+
+//development vues
+Vue.component('devNavBar', require('./components/development/devNavBar.vue'));
+Vue.component('devBanner', require('./components/development/devBanner.vue'));
+Vue.component('devContentHomePage', require('./components/development/devContentHomePage.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',

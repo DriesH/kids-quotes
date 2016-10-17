@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Child;
 use App\User;
 use App\Quote;
+use App\PresetBackground;
 use File;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -36,7 +37,7 @@ class QuoteController extends Controller
             $bckgrimg = $request->file("backgroundImage"); //get the raw jpeg file from ajax call
         }
         else{
-            $bckgrimg = $request->backgroundImage;
+            $bckgrimg = $request->backgroundImage; //get default name from ajax call
         }
 
         $imgWithQuote = $request->imgWithQuote;     //get the quote + background base64 png img with quote (baked quote into img)
@@ -47,16 +48,13 @@ class QuoteController extends Controller
         $pathWithout  = 'pictures/uploadedbackground/withoutquote/'; //save path to img
         $uniqueImgID  = uniqid() . time();                           //hash for img name
 
-
         //base64 converting
         $img          = str_replace('data:image/png;base64,', '', $imgWithQuote); //data:image/png;base64 replace with nothing
         $img          = str_replace(' ', '+', $img);                              //all spaces replace with +
-        $fileData     = base64_decode($img); //decode base64 img
+        $fileData     = base64_decode($img);                                      //decode base64 img
 
         //save png with quote baked in to destination path
-        file_put_contents($pathWith . $uniqueImgID . '.png', $fileData);  //save decoded png
-
-        //Image::make($imgWithQuote)->save('pictures/uploadedbackground/user_id_1/withquovfftes/test.png');
+        file_put_contents($pathWith . $uniqueImgID . '.png', $fileData);  //save decoded png with quote
 
         if(!is_string($bckgrimg)){
             //get extension
@@ -65,23 +63,31 @@ class QuoteController extends Controller
             //rename file and save
             $newName = $uniqueImgID . "." . $ext;
 
-            //$image = $bckgrimg->move('pictures/uploadedbackground/', $newName);
-            //$path = $image->getPath() . "/" . $image->getFileName();
-
+            //resize + save image without quote to path
             Image::make($bckgrimg->getRealPath())->resize(500,500)->save($pathWithout . $newName);
+
+            //make quote with custom background
+            $newQuote = Quote::create([
+                'quote' => $quote,
+                'child_id' => $child_id,
+                'backgr_with_quote' => $newName,
+            ]);
         }
         else {
-            $newName = $bckgrimg;
+            //get preset background from the table where name is equal with bckgrimg: 'wood' = 'wood'
+            $presetBackgroundID = PresetBackground::where('background_filename', $bckgrimg)->first();
+
+            //save the preset background with quote with the unique id in the database
+            $newName = $uniqueImgID . '.png';
+
+            //make quote with preset background
+            $newQuote = Quote::create([
+                'quote' => $quote,
+                'child_id' => $child_id,
+                'backgr_with_quote' => $newName,
+                'preset_background_id' => $presetBackgroundID->id,
+            ]);
         }
-
-        $newQuote = Quote::create([
-            'quote' => $quote,
-            'child_id' => $child_id,
-            'backgr_img' => $newName
-        ]);
-
-        //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
         return $newQuote;
     }

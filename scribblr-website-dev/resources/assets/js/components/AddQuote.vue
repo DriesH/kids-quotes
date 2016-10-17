@@ -1,73 +1,82 @@
 <template lang="html">
-    <div class="panel panel-default animated">
-        <div class="panel-heading">
-            <h1>{{ $parent.currentSelectedChildName }}</h1>
-        </div>
-        <div class="panel-body">
-            <div class="col-xs-12 col-md-6 pull-left">
-                <div class="thumbnail">
-                    <form enctype="multipart/form-data" id="quoteForm" @submit="addNewQuote">
+    <div class="animated">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>{{ $parent.currentSelectedChildName }}</h1>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-12 col-md-6 pull-left">
+                    <div class="thumbnail">
+                        <form enctype="multipart/form-data" id="quoteForm" @submit="addNewQuote">
 
-                        <div class="form-group">
-                            <label for="quote">Quote: </label>
-                            <textarea id="quoteTextArea" name="name" rows="4" cols="16" v-model="newQuote" placeholder="Quote..."></textarea>
+                            <div class="form-group">
+                                <label for="quote">Quote: </label>
+                                <textarea id="quoteTextArea" name="name" rows="4" cols="16" maxlength="100" v-model="newQuote" placeholder="Quote..."></textarea>
+                            </div>
+
+                            <div id="upload_file">
+                                <div v-if="backgroundChosen === 'custom'">
+                                    <h2>Select an image</h2>
+                                    <input @change="previewBackground" name="backgr_img" type="file" v-model="backgr_img" id="testimage">
+                                    <div class="alert alert-info" role="alert">
+                                        <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="addQuote" type="submit" name="addQuote" class="btn btn-success center-block" ><i class="fa fa-plus"></i> add</button>
+
+                        </form>
+                    </div>
+
+                    <div class="cc-selector-2">
+
+                        <div v-for="defaultImg in defaultImgs">
+
+                            <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
+
+                            <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
+
                         </div>
 
-                        <div id="upload_file">
-                            <div v-if="backgroundChosen === 'custom'">
-                                <h2>Select an image</h2>
-                                <input @change="previewBackground" name="backgr_img" type="file" v-model="backgr_img" id="testimage">
-                                <div class="alert alert-info" role="alert">
-                                    <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
-                                </div>
+                        <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-xs-12 col-md-6 pull-right">
+                    <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
+
+                        <!-- PREVIEW -->
+                        <div class="quote grid-item" id="widget" v-if="backgroundChosen !== 'custom'">
+                            <img v-bind:src="prefixDefault + defaultImgs[backgroundChosen]" id="target" />
+                            <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
+                            <span class="quote_text"><p class="quoteBox">Test</p></span>
+                        </div>
+
+                        <div v-else>
+                            <div class="quote grid-item" id="widget">
+                                <img :src="previewBackgroundIMG" class="uploaded_img" />
+                                <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
                             </div>
                         </div>
 
-                        <button id="addQuote" type="submit" name="addQuote" class="btn btn-success center-block" ><i class="fa fa-plus"></i> add</button>
+                        <div id="img-out" style="dislay:none"></div>
 
-                    </form>
-                </div>
-
-                <div class="cc-selector-2">
-
-                    <div v-for="defaultImg in defaultImgs">
-
-                        <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
-
-                        <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
 
                     </div>
-
-                    <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
-
                 </div>
-
-
-
             </div>
-            <div class="col-xs-12 col-md-6 pull-right">
-                <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
+        </div>
 
-                    <!-- PREVIEW -->
-                    <div class="quote grid-item" id="widget" v-if="backgroundChosen !== 'custom'">
-                        <img v-bind:src="prefixDefault + defaultImgs[backgroundChosen]" id="target" />
-                        <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
-                    </div>
-
-                    <div v-else>
-                        <div class="quote grid-item" id="widget">
-                            <img :src="previewBackgroundIMG" class="uploaded_img" />
-                            <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
-                        </div>
-                    </div>
-
-                    <div id="img-out" style="dislay:none"></div>
-
-                    <!-- OLD QUOTES -->
-                    <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
-                        <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        <img v-bind:src="path + quote.backgr_img" />
-                    </div>
+        <!-- OLD QUOTES -->
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
+                    <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
+                    <img v-bind:src="path + quote.backgr_with_quote" />
                 </div>
             </div>
         </div>
@@ -84,7 +93,7 @@
                 formData: new FormData(),
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
                 backgroundChosen: 0,
-                path: '/pictures/uploadedbackground/withoutquote/',
+                path: '/pictures/uploadedbackground/withquote/',
                 prefixDefault: '/pictures/',
                 previewBackgroundIMG: ''
             }
@@ -95,6 +104,7 @@
         },
         attached () {},
         methods: {
+            //add quote to db with ajax call
             addNewQuote: function (e) {
                 e.preventDefault();
                 var fileInputEl = $("#testimage");
@@ -131,6 +141,7 @@
             bindFile: function(e) {
                 this.fileUploadFormData.append('file', e.target.files[0]);
             },
+            //preview the backgroun that was uploaded by the user
             previewBackground: function(event) {
                 console.log('hey i got called!');
                 var input = event.target;
