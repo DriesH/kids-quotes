@@ -76,7 +76,7 @@ class QuoteController extends Controller
         else {
             //get preset background from the table where name is equal with bckgrimg: 'wood' = 'wood'
             $presetBackgroundID = PresetBackground::where('background_filename', $bckgrimg)->first();
-            //dd($presetBackgroundID->id);
+
             //save the preset background with quote with the unique id in the database
             $newName = $uniqueImgID . '.png';
 
