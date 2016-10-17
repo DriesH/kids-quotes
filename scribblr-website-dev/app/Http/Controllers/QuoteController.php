@@ -31,52 +31,53 @@ class QuoteController extends Controller
     public function newQuote (Request $request) {
         $quote        = $request->quote;            //get quote from ajax call
         $child_id     = $request->child_id;         //get child_id from ajax call
-        $bckgrimg     = $request->file("userfile"); //get file from ajax call
-        $imgWithQuote = $request->imgWithQuote;     //get base64 png img wirh quote
 
+        if ($request->file("backgroundImage")) {
+            $bckgrimg = $request->file("backgroundImage"); //get the raw jpeg file from ajax call
+        }
+        else{
+            $bckgrimg = $request->backgroundImage;
+        }
 
-        $newName      = '';                         //name with hash img
-        $currentUser  = Auth::user()->id;           //current user logged in
-        $path         = '';                         //save path to img
-        $uniqueImgID = uniqid() . time();           //hash for img name
+        $imgWithQuote = $request->imgWithQuote;     //get the quote + background base64 png img with quote (baked quote into img)
+
+        $newName      = '';                                          //name with hash img
+        $currentUser  = Auth::user()->id;                            //current user logged in
+        $pathWith     = 'pictures/uploadedbackground/withquote/';    //save path to img
+        $pathWithout  = 'pictures/uploadedbackground/withoutquote/'; //save path to img
+        $uniqueImgID  = uniqid() . time();                           //hash for img name
 
 
         //base64 converting
-        $img = str_replace('data:image/png;base64,', '', $imgWithQuote); //data:image/png;base64 replace with nothing
-        $img = str_replace(' ', '+', $img);                              //all spaces replace with +
+        $img          = str_replace('data:image/png;base64,', '', $imgWithQuote); //data:image/png;base64 replace with nothing
+        $img          = str_replace(' ', '+', $img);                              //all spaces replace with +
+        $fileData     = base64_decode($img); //decode base64 img
 
-        $fileData = base64_decode($img); //decode base64 img
-
-        file_put_contents('pictures/uploadedbackground/withquote/' . $uniqueImgID . '.png', $fileData); //save decoded png
+        //save png with quote baked in to destination path
+        file_put_contents($pathWith . $uniqueImgID . '.png', $fileData);  //save decoded png
 
         //Image::make($imgWithQuote)->save('pictures/uploadedbackground/user_id_1/withquovfftes/test.png');
 
-
-
-
-        if($bckgrimg != null){
+        if(!is_string($bckgrimg)){
             //get extension
             $ext = $bckgrimg->getClientOriginalExtension();
 
-            //$manager = new ImageManager(array('driver' => 'imgick'));
-
             //rename file and save
             $newName = $uniqueImgID . "." . $ext;
-            $path    = 'pictures/uploadedbackground/withoutquotes';
 
             //$image = $bckgrimg->move('pictures/uploadedbackground/', $newName);
-            $path = $image->getPath() . "/" . $image->getFileName();
+            //$path = $image->getPath() . "/" . $image->getFileName();
 
-            Image::make($bckgrimg->getRealPath())->resize(500,500)->save($path);
+            Image::make($bckgrimg->getRealPath())->resize(500,500)->save($pathWithout . $newName);
         }
         else {
-            $path = 'pictures/' . $uniqueImgID . '.jpg';
+            $newName = $bckgrimg;
         }
 
         $newQuote = Quote::create([
             'quote' => $quote,
             'child_id' => $child_id,
-            'backgr_img' => $path,
+            'backgr_img' => $newName
         ]);
 
         //aanpassen!!!!!!!!!!!!!!!!!!!!!!!!!!!!

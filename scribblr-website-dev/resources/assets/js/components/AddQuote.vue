@@ -7,35 +7,39 @@
             <div class="col-xs-12 col-md-6 pull-left">
                 <div class="thumbnail">
                     <form enctype="multipart/form-data" id="quoteForm" @submit="addNewQuote">
+
                         <div class="form-group">
                             <label for="quote">Quote: </label>
                             <textarea id="quoteTextArea" name="name" rows="4" cols="16" v-model="newQuote" placeholder="Quote..."></textarea>
                         </div>
+
                         <div id="upload_file">
-                          <div v-if="!image">
-                            <h2>Select an image</h2>
-                            <input name="backgr_img" type="file" v-model="backgr_img" id="testimage">
-                            <div class="alert alert-info" role="alert">
-                              <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
+                            <div v-if="backgroundChosen === 'custom'">
+                                <h2>Select an image</h2>
+                                <input @change="previewBackground" name="backgr_img" type="file" v-model="backgr_img" id="testimage">
+                                <div class="alert alert-info" role="alert">
+                                    <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
+                                </div>
                             </div>
-                          </div>
-                          <div v-else>
-                              <div class="quote">
-                                  <span class="quote_text">{{ newQuote }}</span>
-                                  <img :src="image" class="uploaded_img" />
-                              </div>
-                            <button @click="removeImage">Remove image</button>
-                          </div>
                         </div>
+
                         <button id="addQuote" type="submit" name="addQuote" class="btn btn-success center-block" ><i class="fa fa-plus"></i> add</button>
+
                     </form>
                 </div>
 
                 <div class="cc-selector-2">
+
                     <div v-for="defaultImg in defaultImgs">
-                        <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImg}}" v-model="backgroundChosen"/>
+
+                        <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
+
                         <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
+
                     </div>
+
+                    <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
+
                 </div>
 
 
@@ -45,17 +49,24 @@
                 <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 300, "gutter": 10 }'>
 
                     <!-- PREVIEW -->
-                    <div class="quote grid-item" id="widget">
-                        <img v-bind:src="prefixDefault + backgroundChosen" id="target" />
+                    <div class="quote grid-item" id="widget" v-if="backgroundChosen !== 'custom'">
+                        <img v-bind:src="prefixDefault + defaultImgs[backgroundChosen]" id="target" />
                         <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
                     </div>
 
-                    <div id="img-out"></div>
+                    <div v-else>
+                        <div class="quote grid-item" id="widget">
+                            <img :src="previewBackgroundIMG" class="uploaded_img" />
+                            <span class="quote_text"><p class="quoteBox">{{ newQuote }}</p></span>
+                        </div>
+                    </div>
+
+                    <div id="img-out" style="dislay:none"></div>
 
                     <!-- OLD QUOTES -->
                     <div class="quote grid-item" v-for="quote in $parent.previousQuotes">
                         <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        <img v-bind:src="quote.backgr_img" />
+                        <img v-bind:src="path + quote.backgr_img" />
                     </div>
                 </div>
             </div>
@@ -72,12 +83,15 @@
                 backgr_img: null,
                 formData: new FormData(),
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
-                backgroundChosen: 'wood.jpg',
-                prefixDefault: '/pictures/'
+                backgroundChosen: 0,
+                path: '/pictures/uploadedbackground/withoutquote/',
+                prefixDefault: '/pictures/',
+                previewBackgroundIMG: ''
             }
         },
         computed: {},
         ready () {
+            this.backgroundChosen = 0;
         },
         attached () {},
         methods: {
@@ -91,17 +105,19 @@
                         document.body.appendChild(canvas);
 
                         // Convert and download as image
-                        //Canvas2Image.saveAsPNG(canvas);
                         $("#img-out").append(canvas);
+                        self.canvas = document.getElementsByTagName('canvas')[0].toDataURL();
                         // Clean up
                         //document.body.removeChild(canvas);
-                        self.canvas = document.getElementsByTagName('canvas')[0].toDataURL();
-                        self.formData.append("userfile", fileInputEl[0].files[0]);
-                        self.formData.append("imgWithQuote", self.canvas);
-                        self.formData.append("quote", self.newQuote);
-                        self.formData.append("child_id", self.currentSelectedChildId);
-                        self.formData.append("backgroundChosen", self.backgroundChosen);
-
+                        if(self.backgroundChosen === 'custom') {
+                            self.formData.append("backgroundImage", fileInputEl[0].files[0]);  // custom image
+                        }
+                        else{
+                            self.formData.append("backgroundImage", self.defaultImgs[self.backgroundChosen]);
+                        }
+                        self.formData.append("imgWithQuote", self.canvas);                    // quote + image base64
+                        self.formData.append("quote", self.newQuote);                         // quote raw text
+                        self.formData.append("child_id", self.currentSelectedChildId);        // child_id of current child you're adding quote
 
                         self.$http.post('api/quote', self.formData).then((success_response) => {
                             console.log(success_response.body)
@@ -111,11 +127,25 @@
                         });
                     }
                 });
-
-
             },
-            bindFile: function(e){
+            bindFile: function(e) {
                 this.fileUploadFormData.append('file', e.target.files[0]);
+            },
+            previewBackground: function(event) {
+                console.log('hey i got called!');
+                var input = event.target;
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    var vm = this;
+
+                    reader.onload = function(e) {
+                        vm.previewBackgroundIMG = e.target.result;
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
             }
         }
     }
