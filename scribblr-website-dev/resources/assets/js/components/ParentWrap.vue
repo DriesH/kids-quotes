@@ -10,7 +10,10 @@
     export default {
         data () {
             return {
-                currentLink: ''
+                currentLink: '',
+                data: [
+
+                ],
             }
         },
         computed: {},
@@ -19,18 +22,18 @@
             switch (this.currentLink) {
                 case '/personal':
                     this.$http.get('/api/personal/data').then((succes_response) => {
-                        console.log(succes_response.body);
+                        this.data = JSON.parse(succes_response.body);
                     },
                     (error_callback) => {
-                        console.log(error_callback.body);
+                        this.data = JSON.parse(error_callback.body);
                     });
                     break;
                 case '/business':
                     this.$http.get('/api/business/data').then((succes_response) => {
-                        console.log(succes_response.body);
+                        this.data = JSON.parse(succes_response.body);
                     },
                     (error_callback) => {
-                        console.log(error_callback.body);
+                        this.data = JSON.parse(error_callback.body);
                     });
                     break;
             }

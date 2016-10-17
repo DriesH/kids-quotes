@@ -15,9 +15,11 @@ class CreateDataWebsitesTable extends Migration
         Schema::create('data_websites', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('BannerBg');
+            $table->string('bannerBg');
             $table->string('subTextBtn');
-            $table->string('BannerMsg');
+            $table->string('bannerMsg');
+            $table->string('switchHrefText');
+            $table->string('switchHref');
             $table->timestamps();
         });
     }

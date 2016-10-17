@@ -1,13 +1,13 @@
 <template lang="html">
-    <div class="banner" :style="{backgroundImage: 'url(../img/' + bannerBackground + ')'}">
+    <div class="banner" :style="{backgroundImage: 'url(../img/' + $parent.data[0].bannerBg + ')'}">
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
-                    <h1 v-if="showBannerText" transition="fadeDown"><span>Memories for later.</span></h1>
+                    <h1 v-if="showBannerText" transition="fadeDown"><span>{{ $parent.data[0].bannerMsg }}</span></h1>
                     <div id="button-undertext" v-if="showButton" transition="fadeDown">
                         <button type="button" name="button" class="signup-btn" >Sign up now.</button>
                         <p>
-                            <span>It's free.</span>
+                            <span>{{ $parent.data[0].subTextBtn  }}</span>
                         </p>
                     </div>
                 </div>
@@ -21,26 +21,7 @@
         data () {
             return {
                 showBannerText: false,
-                showButton: false,
-
-                personal: '/personal',
-                business: '/business',
-
-                personalBG: 'banner-background-personal.jpg',
-                businessBG: 'banner-background-business.jpg',
-
-                bannerBackground: this.personalBG,
-
-                subTextBtnPersonal: "It's free.",
-                subTextBtnBusiness: "For as low as 9.99$&#47;month.",
-
-                subTextBtn: this.subTextBtnPersonal,
-
-                bannerMessagePersonal: 'Memories for later.',
-                bannerMessageBusiness: 'The best ideas are born in the mind of a child.',
-
-                bannerMessage: this.bannerMessagePersonal
-
+                showButton: false
             }
         },
         computed: {},
@@ -48,14 +29,7 @@
             this.showBannerText = true;
             this.showButton = true;
 
-            switch ( window.location.pathname ) {
-                case this.personal:
-                    this.bannerBackground = 'banner-background-personal.jpg';
-                    break;
-                case this.business:
-                    this.bannerBackground = 'banner-background-business.jpg';
-                    break;
-            }
+
         },
         attached () {},
         methods: {},

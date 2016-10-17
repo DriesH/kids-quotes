@@ -16,13 +16,17 @@ class DataWebsiteSeeder extends Seeder
             'BannerBg' => 'banner-background-personal.jpg',
             'subTextBtn' => "It's free.",
             'BannerMsg' => 'Memories for later.',
+            'switchHrefText' => 'For Your Business',
+            'switchHref' => '/business',
         ]);
 
         DB::table('data_websites')->insert([
             'name' => 'Business',
             'BannerBg' => 'banner-background-business.jpg',
-            'subTextBtn' => "For as low as 9.99$&#47;month.",
+            'subTextBtn' => "For as low as 9.99$/month.",
             'BannerMsg' => 'The best ideas are born in the mind of a child.',
+            'switchHrefText' => 'For Yourself',
+            'switchHref' => '/personal',
         ]);
     }
 }

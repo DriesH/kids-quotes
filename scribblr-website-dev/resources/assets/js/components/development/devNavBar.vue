@@ -4,12 +4,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand pull-left lobster logo" :href="current">
                     Scribblr
-                    <span class="sub-logo">{{ title }}</span>
+                    <span class="sub-logo">{{ $parent.data[0].name }}</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right login-reg">
-                    <li><a :href="switchHrefFunc">{{ switchBtn }}</a></li>
+                    <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
                     <li><a href="/register">Sign up</a></li>
                     <li><a href="/login">Log In</a></li>
@@ -23,39 +23,14 @@
     export default {
         data () {
             return {
-                personal: '/personal',
-                business: '/business',
-                switchBtn: 'For Your Business',
-                title: 'Personal',
-                current: this.personal,
-                switchHref: '/business'
+                current: window.location.pathname //fix later slechte oplossing!!
             }
         },
         computed: {
-            switchHrefFunc: function () {
-                switch ( this.current ) {
-                    case this.personal:
-                        return this.business;
-                        break;
-                    case this.business:
-                        return this.personal;
-                        break;
-                }
-            }
+
         },
         ready () {
-            switch ( window.location.pathname ) {
-                case this.personal:
-                    this.switchBtn = 'For Your Business';
-                    this.title     = 'Personal';
-                    this.current   = this.personal;
-                    break;
-                case this.business:
-                    this.switchBtn = 'For Yourself';
-                    this.title     = 'Business';
-                    this.current   = this.business;
-                    break;
-            }
+
         },
         attached () {},
         methods: {},
