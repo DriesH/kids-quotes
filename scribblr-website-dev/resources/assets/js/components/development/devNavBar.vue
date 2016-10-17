@@ -2,14 +2,14 @@
     <nav class="navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand pull-left lobster logo" href="/">
+                <a class="navbar-brand pull-left lobster logo" :href="current">
                     Scribblr
-                    <span class="sub-logo">Personal</span>
+                    <span class="sub-logo">{{ title }}</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right login-reg">
-                    <li><a href="">For Your Business</a></li>
+                    <li><a :href="switchHrefFunc">{{ switchBtn }}</a></li>
                     <li class="devider">|</li>
                     <li><a href="/register">Sign up</a></li>
                     <li><a href="/login">Log In</a></li>
@@ -22,10 +22,41 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                personal: '/personal',
+                business: '/business',
+                switchBtn: 'For Your Business',
+                title: 'Personal',
+                current: this.personal,
+                switchHref: '/business'
+            }
         },
-        computed: {},
-        ready () {},
+        computed: {
+            switchHrefFunc: function () {
+                switch ( this.current ) {
+                    case this.personal:
+                        return this.business;
+                        break;
+                    case this.business:
+                        return this.personal;
+                        break;
+                }
+            }
+        },
+        ready () {
+            switch ( window.location.pathname ) {
+                case this.personal:
+                    this.switchBtn = 'For Your Business';
+                    this.title     = 'Personal';
+                    this.current   = this.personal;
+                    break;
+                case this.business:
+                    this.switchBtn = 'For Yourself';
+                    this.title     = 'Business';
+                    this.current   = this.business;
+                    break;
+            }
+        },
         attached () {},
         methods: {},
         components: {}

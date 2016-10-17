@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="banner" v-bind:style="{backgroundImage: 'url(../img/banner-background-personal.jpg)'}">
+    <div class="banner" :style="{backgroundImage: 'url(../img/' + bannerBackground + ')'}">
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
@@ -21,13 +21,41 @@
         data () {
             return {
                 showBannerText: false,
-                showButton: false
+                showButton: false,
+
+                personal: '/personal',
+                business: '/business',
+
+                personalBG: 'banner-background-personal.jpg',
+                businessBG: 'banner-background-business.jpg',
+
+                bannerBackground: this.personalBG,
+
+                subTextBtnPersonal: "It's free.",
+                subTextBtnBusiness: "For as low as 9.99$&#47;month.",
+
+                subTextBtn: this.subTextBtnPersonal,
+
+                bannerMessagePersonal: 'Memories for later.',
+                bannerMessageBusiness: 'The best ideas are born in the mind of a child.',
+
+                bannerMessage: this.bannerMessagePersonal
+
             }
         },
         computed: {},
         ready () {
             this.showBannerText = true;
             this.showButton = true;
+
+            switch ( window.location.pathname ) {
+                case this.personal:
+                    this.bannerBackground = 'banner-background-personal.jpg';
+                    break;
+                case this.business:
+                    this.bannerBackground = 'banner-background-business.jpg';
+                    break;
+            }
         },
         attached () {},
         methods: {},

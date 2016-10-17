@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/personal');
 });
 
 Route::auth();
@@ -30,4 +30,16 @@ Route::get('api/child', 'ChildController@getChildren');
 Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 
-Route::get('development', 'DevelopmentController@index');
+
+
+
+
+//business edition
+Route::get('business', 'BusinessVersionController@index');
+
+Route::get('api/business/data', 'BusinessVersionController@getData');
+
+//personal edition
+Route::get('personal', 'PersonalController@index');
+
+Route::get('api/personal/data', 'PersonalController@getData');
