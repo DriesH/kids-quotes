@@ -12,11 +12,11 @@
                     <li><a :href="ajaxData[0].switchHref">{{ ajaxData[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
 
-                    <li v-if="data.user === null"><a href="/login">Log In</a></li>
-                    <li v-if="data.user === null"><a href="/register">Sign up</a></li>
+                    <li v-if="!data.user.isLoggedIn"><a href="/login">Log In</a></li>
+                    <li v-if="!data.user.isLoggedIn"><a href="/register">Sign up</a></li>
 
-                    <li v-if="data.user !== null"><a href="/dashboard">{{ data.user.name }}</a></li>
-                    <li v-if="data.user !== null"><a href="/logout">Logout</a></li>
+                    <li v-if="data.user.isLoggedIn"><a href="/dashboard">{{ data.user.name }}</a></li>
+                    <li v-if="data.user.isLoggedIn"><a href="/logout">Logout</a></li>
 
                 </ul>
             </div>
@@ -30,7 +30,10 @@
             return {
                 data: {
                     current: currentVersion,
-                    user: isLoggedIn
+                    user: {
+                        isLoggedIn: isLoggedIn,
+                        name: userName
+                    }
                 },
                 ajaxData: [
 
