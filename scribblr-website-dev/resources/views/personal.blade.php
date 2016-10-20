@@ -6,7 +6,9 @@
 @endsection
 
 @section('content')
+
     <parent-wrap></parent-wrap>
+
 @endsection
 
 @section('script')

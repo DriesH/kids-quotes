@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusinessQuotesTable extends Migration
+class CreateThemesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateBusinessQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_quotes', function (Blueprint $table) {
+        Schema::create('themes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('illustration_name');
-            $table->integer('quote_id')->unique();
-            $table->integer('theme_id');
+            $table->string('theme_name');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateBusinessQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('business_quotes');
+        Schema::drop('themes');
     }
 }

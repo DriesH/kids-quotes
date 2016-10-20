@@ -11,8 +11,12 @@
                 <ul class="nav navbar-nav navbar-right login-reg">
                     <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
+
                     <li><a href="/register">Sign up</a></li>
                     <li><a href="/login">Log In</a></li>
+
+                    <li><a href="/buyBusiness">Pay now!</a></li>
+
                 </ul>
             </div>
         </div>
