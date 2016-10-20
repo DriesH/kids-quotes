@@ -9,8 +9,11 @@
 .main {
     padding: 90px 20px 20px 20px;
     background-color: #95a5a6;
-    min-height: 100%;
+    min-height: 100vh;
+    max-height: 100%;
 }
+
+
 
 /*SALVATTORE SETTINGS*/
 #grid[data-columns]::before { content: "4 .column.size-1of4"; }
