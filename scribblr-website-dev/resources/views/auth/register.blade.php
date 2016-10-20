@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.development-app')
 
 @section('styles')
     <link rel="stylesheet" href="/css/login.css" media="screen" title="no title">
