@@ -16,7 +16,8 @@ class BusinessVersionController extends Controller
 {
     public function index () {
         JavaScript::put([
-            'isLoggedIn' => Auth::user()
+            'isLoggedIn' => Auth::user(),
+            'currentVersion' => 'business'
         ]);
         return view('business');
     }

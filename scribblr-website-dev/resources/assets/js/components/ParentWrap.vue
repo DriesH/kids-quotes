@@ -1,6 +1,5 @@
 <template lang="html">
     <div>
-        <dev-nav-bar></dev-nav-bar>
         <dev-banner></dev-banner>
         <dev-content-home-page></dev-content-home-page>
     </div>
@@ -37,7 +36,6 @@
                     });
                     break;
             }
-
         },
         methods: {},
         components: {}
