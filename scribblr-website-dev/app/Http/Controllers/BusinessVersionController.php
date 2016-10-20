@@ -26,4 +26,14 @@ class BusinessVersionController extends Controller
         $data = DataWebsite::where('name', 'Business')->get();
         return json_encode($data);
     }
+
+    public function getQuotesByTheme ($theme_name) {
+        $data = DataWebsite::where('name', 'Business')->get();
+        return json_encode($data);
+    }
+
+    public function getRandomQuote () {
+        $data = DataWebsite::where('name', 'Business')->get();
+        return json_encode($data);
+    }
 }

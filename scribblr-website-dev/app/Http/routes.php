@@ -36,7 +36,8 @@ Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 
 //business edition
 Route::get('business', 'BusinessVersionController@index');
-
+Route::get('business/theme/{theme_name}', 'BusinessVersionController@getQuotesByTheme');
+Route::get('business/random', 'BusinessVersionController@getRandomQuote');
 Route::get('api/business/data', 'BusinessVersionController@getData');
 
 //personal edition
