@@ -6,9 +6,13 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD
     <parent-wrap>
         
     </parent-wrap>
+=======
+    <parent-wrap></parent-wrap>
+>>>>>>> refs/remotes/origin/master
 @endsection
 
 @section('script')
