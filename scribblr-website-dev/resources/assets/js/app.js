@@ -18,14 +18,18 @@ require('./bootstrap');
 //Vue.component('addQuote', require('./components/AddQuote.vue'));
 //Vue.component('homePage', require('./components/HomePage.vue'));
 //Vue.component('childModify', require('./components/childModify.vue'));
-Vue.component('businessContentHomePage', require('./components/businessContentHomePage.vue'));
-Vue.component('parentWrap', require('./components/ParentWrap.vue'));
+Vue.component('BusinessContentHomePage', require('./components/businessContentHomePage.vue'));
+Vue.component('ParentWrap', require('./components/ParentWrap.vue'));
+
 
 
 //partial vues
 Vue.component('NavBar', require('./components/partial/NavBar.vue'));
 Vue.component('Banner', require('./components/partial/Banner.vue'));
 Vue.component('ContentHomePage', require('./components/partial/ContentHomePage.vue'));
+Vue.component('DashboardPersonal', require('./components/partial/DashboardPersonal.vue'));
+Vue.component('SideBarDashboard', require('./components/partial/SideBarDashboard.vue'));
+Vue.component('BodyDashboardPersonal', require('./components/partial/BodyDashboardPersonal.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',

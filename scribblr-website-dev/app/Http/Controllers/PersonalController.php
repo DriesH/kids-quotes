@@ -15,8 +15,14 @@ use JavaScript;
 class PersonalController extends Controller
 {
     function index () {
-        SendJavascript::sendJavascript('personal');
-        return view('personal');
+        if( !Auth::user() ) {
+            SendJavascript::sendJavascript('personal');
+            return view('personal');
+        }
+        else{
+            SendJavascript::sendJavascript('personal');
+            return view('personal-dashboard');
+        }
     }
 
     function getData () {

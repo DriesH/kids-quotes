@@ -2,9 +2,10 @@
     <nav class="navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand pull-left lobster logo" :href="'/' + current">
+                <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
                     Scribblr
                     <span class="sub-logo">{{ ajaxData[0].name }}</span>
+
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -17,7 +18,6 @@
 
                     <li v-if="data.user.isLoggedIn"><a href="/dashboard">{{ data.user.name }}</a></li>
                     <li v-if="data.user.isLoggedIn"><a href="/logout">Logout</a></li>
-
                 </ul>
             </div>
         </div>
@@ -70,23 +70,6 @@
 </script>
 
 <style lang="css" scoped>
-    nav {
-        width: 100%;
-        height: 80px;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .lobster {
-        font-family: 'Lobster', cursive;
-        color: white;
-    }
-
-    .logo {
-        font-size: 30px;
-        padding: 27px 15px !important;
-        transition: 0.3s color;
-    }
-
     .sub-logo {
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: bold;
