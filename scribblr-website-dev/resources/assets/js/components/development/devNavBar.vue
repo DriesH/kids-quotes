@@ -2,20 +2,20 @@
     <nav class="navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand pull-left lobster logo" :href="current">
+                <a class="navbar-brand pull-left lobster logo" :href="'/' + current">
                     Scribblr
-                    <span class="sub-logo">{{ $parent.data[0].name }}</span>
+                    <span class="sub-logo">{{ ajaxData[0].name }}</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right login-reg">
-                    <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
+                    <li><a :href="ajaxData[0].switchHref">{{ ajaxData[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
 
                     <li v-if="data.user === null"><a href="/login">Log In</a></li>
                     <li v-if="data.user === null"><a href="/register">Sign up</a></li>
 
-                    <li v-if="data.user !== null"><a href="#">{{ data.user.name }}</a></li>
+                    <li v-if="data.user !== null"><a href="/dashboard">{{ data.user.name }}</a></li>
                     <li v-if="data.user !== null"><a href="/logout">Logout</a></li>
 
                 </ul>
@@ -28,16 +28,37 @@
     export default {
         data () {
             return {
-                current: window.location.pathname, //fix later slechte oplossing!!
                 data: {
-                    user: user.isLoggedIn
-                }
+                    current: currentVersion,
+                    user: isLoggedIn
+                },
+                ajaxData: [
+
+                ]
             }
         },
         computed: {
 
         },
         ready () {
+            switch (this.data.current) {
+                case 'personal':
+                    this.$http.get('/api/personal/data').then((succes_response) => {
+                        this.ajaxData = JSON.parse(succes_response.body);
+                    },
+                    (error_callback) => {
+                        this.ajaxData = JSON.parse(error_callback.body);
+                    });
+                    break;
+                case 'business':
+                    this.$http.get('/api/business/data').then((succes_response) => {
+                        this.ajaxData = JSON.parse(succes_response.body);
+                    },
+                    (error_callback) => {
+                        this.ajaxData = JSON.parse(error_callback.body);
+                    });
+                    break;
+            }
         },
         attached () {},
         methods: {},

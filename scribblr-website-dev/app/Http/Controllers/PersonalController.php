@@ -16,7 +16,8 @@ class PersonalController extends Controller
 {
     function index () {
         JavaScript::put([
-            'isLoggedIn' => Auth::user()
+            'isLoggedIn' => Auth::user(),
+            'currentVersion' => 'personal'
         ]);
         return view('personal');
     }
