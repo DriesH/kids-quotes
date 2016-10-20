@@ -1,1 +1,1 @@
-<dev-nav-bar></dev-nav-bar>
+<nav-bar></nav-bar>

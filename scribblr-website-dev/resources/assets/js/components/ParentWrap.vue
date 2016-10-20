@@ -1,7 +1,7 @@
 <template lang="html">
     <div>
-        <dev-banner></dev-banner>
-        <dev-content-home-page></dev-content-home-page>
+        <banner></banner>
+        <content-home-page></content-home-page>
     </div>
 </template>
 

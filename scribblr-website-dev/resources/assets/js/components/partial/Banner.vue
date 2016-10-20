@@ -5,7 +5,7 @@
                 <div class="banner-inner-text">
                     <h1 v-if="showBannerText" transition="fadeDown"><span>{{ $parent.data[0].bannerMsg }}</span></h1>
                     <div id="button-undertext" v-if="showButton" transition="fadeDown">
-                        <button type="button" name="button" class="signup-btn" >Sign up now.</button>
+                        <a class="signup-btn" href="/register">Sign up now.</a>
                         <p>
                             <span>{{ $parent.data[0].subTextBtn  }}</span>
                         </p>
@@ -67,6 +67,7 @@
     }
 
     .signup-btn {
+        padding: 40px !important;
         width: 450px;
         height: 65px;
         background: none;
@@ -78,12 +79,13 @@
         font-size: 35px;
         padding: 0px;
         transition: 0.3s background-color, 0.3s color;
-        margin-top: 120px;
+        margin-top: 80px;
     }
 
     .signup-btn:hover {
         background-color: white;
         color: rgba(0, 0, 0, 1);
+        text-decoration: none;
     }
 
     p span {

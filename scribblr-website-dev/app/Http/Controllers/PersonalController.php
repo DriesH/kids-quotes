@@ -15,10 +15,7 @@ use JavaScript;
 class PersonalController extends Controller
 {
     function index () {
-        JavaScript::put([
-            'isLoggedIn' => Auth::user(),
-            'currentVersion' => 'personal'
-        ]);
+        SendJavascript::sendJavascript('personal');
         return view('personal');
     }
 

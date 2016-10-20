@@ -15,10 +15,7 @@ use JavaScript;
 class BusinessVersionController extends Controller
 {
     public function index () {
-        JavaScript::put([
-            'isLoggedIn' => Auth::user(),
-            'currentVersion' => 'business'
-        ]);
+        SendJavascript::sendJavascript('business');
         return view('business');
     }
 

@@ -13,20 +13,19 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-//live vues
-Vue.component('childDashboard', require('./components/ChildDashboard.vue'));
-Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
-Vue.component('addQuote', require('./components/AddQuote.vue'));
-Vue.component('homePage', require('./components/HomePage.vue'));
-Vue.component('childModify', require('./components/childModify.vue'));
+//Vue.component('childDashboard', require('./components/ChildDashboard.vue'));
+//Vue.component('childAddForm', require('./components/ChildAddForm.vue'));
+//Vue.component('addQuote', require('./components/AddQuote.vue'));
+//Vue.component('homePage', require('./components/HomePage.vue'));
+//Vue.component('childModify', require('./components/childModify.vue'));
 Vue.component('businessContentHomePage', require('./components/businessContentHomePage.vue'));
 Vue.component('parentWrap', require('./components/ParentWrap.vue'));
 
 
-//development vues
-Vue.component('devNavBar', require('./components/development/devNavBar.vue'));
-Vue.component('devBanner', require('./components/development/devBanner.vue'));
-Vue.component('devContentHomePage', require('./components/development/devContentHomePage.vue'));
+//partial vues
+Vue.component('NavBar', require('./components/partial/NavBar.vue'));
+Vue.component('Banner', require('./components/partial/Banner.vue'));
+Vue.component('ContentHomePage', require('./components/partial/ContentHomePage.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
