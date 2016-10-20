@@ -3,6 +3,7 @@
 @section('styles')
     <link rel="stylesheet" href="/css/_simple_sidebar.css" media="screen" title="no title">
     <link rel="stylesheet" href="/css/_personal_dashboard.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/css/_body_dashboard_personal.css" media="screen" title="no title">
     <style>
         nav {
             width: 100%;
@@ -18,6 +19,6 @@
 @endsection
 
 
-@section('script')
-    <script src="js/app.js" charset="utf-8"></script>
+@section('scripts')
+    <script src="js/salvattore.js" charset="utf-8"></script>
 @endsection

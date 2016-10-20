@@ -13,3 +13,12 @@
     font-size: 30px;
     transition: 0.3s color;
 }
+
+#app{
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+}
+
+body, html{
+    min-height: 100%;
+}
