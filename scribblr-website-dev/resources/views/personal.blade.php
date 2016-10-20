@@ -7,9 +7,7 @@
 
 @section('content')
     <parent-wrap>
-        <dev-nav-bar></dev-nav-bar>
-        <dev-banner></dev-banner>
-        <dev-content-home-page></dev-content-home-page>
+        
     </parent-wrap>
 @endsection
 
