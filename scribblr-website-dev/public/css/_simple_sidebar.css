@@ -1,22 +1,24 @@
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
-        top: 51px;
+        top: 80px;
         bottom: 0;
         left: 0;
         z-index: 1000;
         display: block;
-        padding: 20px;
+        padding: 20px 0;
         overflow-x: hidden;
         overflow-y: auto;
-        background-color: #f5f5f5;
+        background-color: #34495e;
         border-right: 1px solid #eee;
     }
 }
-
-.sidebar {
-    /*display: none;*/
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
 }
+
 
 @media (min-width: 768px) {
     .main {
@@ -26,9 +28,22 @@
 }
 
 .main {
-    padding: 20px;
+    padding: 80px 20px 20px 20px;
 }
 
-.active {
-    background-color: blue;
+#childrenList a{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 25px;
+    font-weight: bold;
+    background-color: #c0392b;
+    text-align: center;
+    transition: 0.2s color, 0.2s background-color, 0.2s text-shadow;
+    cursor: pointer;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#childrenList a:hover{
+    background-color: #c42818;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
 }

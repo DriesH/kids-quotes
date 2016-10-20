@@ -1,0 +1,15 @@
+.lobster {
+    font-family: 'Lobster', cursive;
+    color: white;
+}
+
+.logo {
+    font-size: 30px;
+    padding: 27px 15px !important;
+    transition: 0.3s color;
+}
+
+.logo-simple {
+    font-size: 30px;
+    transition: 0.3s color;
+}

@@ -1,4 +1,4 @@
-@extends('layouts.development-app')
+@extends('layouts.layout-app')
 
 @section('styles')
 
