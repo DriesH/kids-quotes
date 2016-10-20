@@ -15,7 +15,6 @@
 @section('content')
     <nav-bar></nav-bar>
     <dashboard-personal></dashboard-personal>
-
 @endsection
 
 
