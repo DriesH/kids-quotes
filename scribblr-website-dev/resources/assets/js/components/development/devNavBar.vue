@@ -11,8 +11,13 @@
                 <ul class="nav navbar-nav navbar-right login-reg">
                     <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
-                    <li><a href="/register">Sign up</a></li>
-                    <li><a href="/login">Log In</a></li>
+
+                    <li v-if="data.user === null"><a href="/login">Log In</a></li>
+                    <li v-if="data.user === null"><a href="/register">Sign up</a></li>
+
+                    <li v-if="data.user !== null"><a href="#">{{ data.user.name }}</a></li>
+                    <li v-if="data.user !== null"><a href="/logout">Logout</a></li>
+
                 </ul>
             </div>
         </div>
@@ -23,14 +28,16 @@
     export default {
         data () {
             return {
-                current: window.location.pathname //fix later slechte oplossing!!
+                current: window.location.pathname, //fix later slechte oplossing!!
+                data: {
+                    user: user.isLoggedIn
+                }
             }
         },
         computed: {
 
         },
         ready () {
-
         },
         attached () {},
         methods: {},

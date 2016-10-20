@@ -164,6 +164,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 
     ],
 
