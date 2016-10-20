@@ -6,9 +6,9 @@
 @endsection
 
 @section('content')
-    <dev-nav-bar></dev-nav-bar>
-    <dev-banner></dev-banner>
-    <dev-content-home-page></dev-content-home-page>
+
+    <parent-wrap></parent-wrap>
+
 @endsection
 
 @section('script')

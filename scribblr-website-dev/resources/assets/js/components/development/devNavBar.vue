@@ -2,19 +2,24 @@
     <nav class="navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-
-                <a class="navbar-brand pull-left lobster logo" href="/">
+                <a class="navbar-brand pull-left lobster logo" :href="current">
                     Scribblr
-                    <span class="sub-logo">Personal</span>
+                    <span class="sub-logo">{{ $parent.data[0].name }}</span>
                 </a>
-
             </div>
-            <ul class="nav navbar-nav navbar-right login-reg">
-                <li><a href="">For Your Business</a></li>
-                <li class="devider">|</li>
-                <li><a href="">Sign up</a></li>
-                <li><a href="">Log In</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right login-reg">
+                    <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
+                    <li class="devider">|</li>
+
+                    <li v-if="data.user === null"><a href="/login">Log In</a></li>
+                    <li v-if="data.user === null"><a href="/register">Sign up</a></li>
+
+                    <li v-if="data.user !== null"><a href="#">{{ data.user.name }}</a></li>
+                    <li v-if="data.user !== null"><a href="/logout">Logout</a></li>
+
+                </ul>
+            </div>
         </div>
     </nav>
 </template>
@@ -22,10 +27,18 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                current: window.location.pathname, //fix later slechte oplossing!!
+                data: {
+                    user: user.isLoggedIn
+                }
+            }
         },
-        computed: {},
-        ready () {},
+        computed: {
+
+        },
+        ready () {
+        },
         attached () {},
         methods: {},
         components: {}

@@ -12,10 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/personal');
 });
 
 Route::auth();
+//fb login
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
 
 //handles homepage loading + all child loading to homepage
 Route::get('dashboard', 'ChildController@childrenDashboard');
@@ -27,4 +30,16 @@ Route::get('api/child', 'ChildController@getChildren');
 Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 
-Route::get('development', 'DevelopmentController@index');
+
+
+
+
+//business edition
+Route::get('business', 'BusinessVersionController@index');
+
+Route::get('api/business/data', 'BusinessVersionController@getData');
+
+//personal edition
+Route::get('personal', 'PersonalController@index');
+
+Route::get('api/personal/data', 'PersonalController@getData');

@@ -1,16 +1,15 @@
 <template lang="html">
-    <div class="banner">
+    <div class="banner" :style="{backgroundImage: 'url(../img/' + $parent.data[0].bannerBg + ')'}">
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
-                    <h1 v-if="showBannerText" transition="fadeDown"><span>Memories for later.</span></h1>
+                    <h1 v-if="showBannerText" transition="fadeDown"><span>{{ $parent.data[0].bannerMsg }}</span></h1>
                     <div id="button-undertext" v-if="showButton" transition="fadeDown">
                         <button type="button" name="button" class="signup-btn" >Sign up now.</button>
                         <p>
-                            <span>It's free.</span>
+                            <span>{{ $parent.data[0].subTextBtn  }}</span>
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -29,6 +28,8 @@
         ready () {
             this.showBannerText = true;
             this.showButton = true;
+
+
         },
         attached () {},
         methods: {},
@@ -42,6 +43,14 @@
         font-weight: bold;
         color: white;
         font-size: 85px;
+    }
+
+    .banner {
+
+        background-position: center;
+        background-size: cover;
+        height: 928px;
+        width: 100%;
     }
 
     .banner-text-area {

@@ -1,0 +1,40 @@
+.fb-login {
+  display: block;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  border-radius: 3px;
+  height: 40px;
+  width: 100%;
+  background-color: #5667af;
+  transition: background-color 0.4s;
+}
+
+.fb-login:hover{
+    color: white;
+    text-decoration: none;
+    background-color: lighten(#5667af, 4%);
+    transition: background-color 0.4s;
+}
+
+
+.or-divider {
+  position: relative;
+  margin: 26px 0px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  height: 0px;
+  border: 1px solid #eeeeee;
+}
+
+.or-divider span {
+  color: #7f7f7f;
+  position: relative;
+  top: -13px;
+  background-color: white;
+  padding: 0 8px;
+  left: 50%;
+  margin-left: -16px;
+}
