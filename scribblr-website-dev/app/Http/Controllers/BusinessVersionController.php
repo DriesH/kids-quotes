@@ -65,7 +65,7 @@ class BusinessVersionController extends Controller
             }
         }
 
-        return view('businessDashboard', [
+        return view('business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
         ]);
