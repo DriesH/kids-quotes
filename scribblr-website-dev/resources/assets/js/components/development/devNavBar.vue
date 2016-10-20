@@ -12,11 +12,18 @@
                     <li><a :href="$parent.data[0].switchHref">{{ $parent.data[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
 
+<<<<<<< HEAD
                     <li v-if="data.user === null"><a href="/login">Log In</a></li>
                     <li v-if="data.user === null"><a href="/register">Sign up</a></li>
 
                     <li v-if="data.user !== null"><a href="#">{{ data.user.name }}</a></li>
                     <li v-if="data.user !== null"><a href="/logout">Logout</a></li>
+=======
+                    <li><a href="/register">Sign up</a></li>
+                    <li><a href="/login">Log In</a></li>
+
+                    <li><a href="/buyBusiness">Pay now!</a></li>
+>>>>>>> origin/master
 
                 </ul>
             </div>
