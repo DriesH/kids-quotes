@@ -62,12 +62,16 @@
         margin-top: 380px;
     }
 
-    button:focus {
+    #button-undertext {
+        margin-top: 80px;
+    }
+
+    a:focus {
         outline: 0;
     }
 
     .signup-btn {
-        padding: 40px !important;
+        padding: 20px 45px !important;
         width: 450px;
         height: 65px;
         background: none;
@@ -96,7 +100,7 @@
     }
 
     p {
-        margin-top: 14px;
+        margin-top: 35px;
     }
 
 
