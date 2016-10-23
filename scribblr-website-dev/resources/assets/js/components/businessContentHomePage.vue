@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="">
-        
+	        
     </div>
 </template>
 
@@ -10,7 +10,7 @@
             return {}
         },
         ready () {
-
+		
         },
         computed: {},
         mounted () {},
@@ -20,5 +20,6 @@
 </script>
 
 <style lang="css">
+	
 
 </style>
