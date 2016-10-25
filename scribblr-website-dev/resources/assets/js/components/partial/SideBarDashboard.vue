@@ -1,15 +1,15 @@
 <template lang="html">
-    <div :class="{ 'col-sm-3' : !addChildShow, 'col-md-2' : !addChildShow, 'col-sm-5 overlay-sidebar-shadow' : addChildShow, 'col-md-4 overlay-sidebar-shadow' :addChildShow }" class="sidebar">
+    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow }" class="sidebar">
         <!-- SIDEBARLIST START -->
         <ul class="nav nav-sidebar" id="childrenList" v-if='!addChildShow'>
             <li v-for="child in currentChildrenArray">
-                <a>
+                <a @click="openAddQuoteForm">
                     {{ child.childName }}
                 </a>
             </li>
 
             <li>
-                <a @click="openForm">
+                <a @click="openAddChildForm">
                     <i class="fa fa-plus"></i> ADD CHILD
                 </a>
             </li>
@@ -71,6 +71,10 @@
         </form>
         <!-- FORM END -->
 
+        <!-- FORM START -->
+        <add-quotes-dashboard v-if="addQuoteShow" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+        <!-- FORM END -->
+
     </div>
 </template>
 
@@ -86,7 +90,8 @@
                     gender: '',
                     dateOfBirth: ''
                 },
-                addChildShow: false, //show - hide form
+                addChildShow: false, //show - hide form add child
+                addQuoteShow: false, //show - hide form add quote
                 currentChildrenArray: [
 
                 ],
@@ -96,6 +101,7 @@
                     gender: '',
                     dateOfBirth: '',
                 }
+
             }
         },
         computed: {},
@@ -108,12 +114,15 @@
             });
         },
         methods: {
-            openForm: function () {
+            openAddChildForm: function () {
                 this.addChildShow = true;
             },
             closeForm: function () {
                 this.addChildShow = false;
-                this.clearForm();
+                this.clearChildForm();
+            },
+            openAddQuoteForm: function () {
+                this.addQuoteShow = true;
             },
             addNewChild: function () {
                 this.$http.post('/api/child', this.newChild).then((success_response) => {
@@ -132,7 +141,7 @@
                     console.log(this.errorMessagesForm);
                 });
             },
-            clearForm: function () {
+            clearChildForm: function () {
                 //clear form
                 this.newChild.childName   = '';
                 this.newChild.gender      = '';

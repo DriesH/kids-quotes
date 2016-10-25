@@ -2,7 +2,6 @@
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
             <side-bar-dashboard v-bind:current-children.sync="currentChildren"></side-bar-dashboard>
-            <add-quotes-dashboard></add-quotes-dashboard>
             <body-dashboard-personal></body-dashboard-personal>
         </div>
     </div>
@@ -14,7 +13,8 @@
             return {
                 currentChildren: [
 
-                ]
+                ],
+                addQuoteShow: false
             }
         },
         computed: {},
@@ -27,21 +27,19 @@
             },
             getChildren: function () {
                 this.$http.get('/api/child').then((success_response) => {
-                    // this.currentChildren = JSON.parse(success_response.body);
-                    // console.log(this.currentChildren);
-
                     this.$set('currentChildren', JSON.parse(success_response.body));
                     this.$nextTick(function(){
                         this.$broadcast('data-arrived', JSON.parse(success_response.body));
                         console.log('Working.');
                     });
-
-
                 },
                 (error_response) => {
-                    alert('error');
+                    alert('Error, we could not find your children. We are sorry... But in the meantime, look at this puppy!');
                 });
-            }
+            },
+            showPanel: function () {
+                this.addQuoteShow = true;
+            },
         },
         components: {}
     }
