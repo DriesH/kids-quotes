@@ -67,6 +67,7 @@
             <!-- DATEOFBIRTH END -->
 
             <button type="button" name="addChild" class="btn btn-success" @click="addNewChild"><i class="fa fa-plus"></i> add</button>
+            <button type="button" name="closeForm" class="btn btn-danger pull-right" @click="closeForm"><i class="fa fa-ban"></i> close</button>
         </form>
         <!-- FORM END -->
 
@@ -108,7 +109,11 @@
         },
         methods: {
             openForm: function () {
-                this.addChildShow = !this.addChildShow;
+                this.addChildShow = true;
+            },
+            closeForm: function () {
+                this.addChildShow = false;
+                this.clearForm();
             },
             addNewChild: function () {
                 this.$http.post('/api/child', this.newChild).then((success_response) => {
@@ -117,7 +122,6 @@
                     this.currentChildrenArray.push(success_response.body);
 
                     this.clearForm();
-
                 },
                 (error_response) => {
                     this.errorMessagesForm.error       = true;
