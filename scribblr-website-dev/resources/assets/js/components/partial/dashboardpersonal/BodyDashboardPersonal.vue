@@ -11,17 +11,13 @@
             <div id="grid" data-columns>
                 <div class="thumbnail quotes">
                     <img src="/business_imgs/apple.jpg" alt="" />
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
                 </div>
             </div>
             <!-- GRID WITH QUOTES END -->
 
-        </div>
-
-        <!-- ADDQUOTES START -->
-        <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
-        <!-- ADDQUOTES START -->
+            <!-- ADDQUOTES START -->
+            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+            <!-- ADDQUOTES START -->
         </div>
     </div>
 </template>
