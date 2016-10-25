@@ -5,64 +5,6 @@
                 <div class="thumbnail">
                     <img src="/business_imgs/elf.jpg" />
                 </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                <div class="thumbnail">
-                    <img src="/business_imgs/elf.jpg" />
-                </div>
-                
             </div>
         </div>
     </div>
@@ -72,20 +14,11 @@
     export default {
         data () {
             return {
-                currentChildren: [
-
-                ],
+                
             }
         },
         computed: {},
-        ready () {
-            this.$http.get('/api/child').then((success_response) => {
-                this.currentChildren = JSON.parse(success_response.body)
-            },
-            (error_response) => {
-                alert('error');
-            });
-        },
+        ready () {},
         methods: {},
         components: {}
     }

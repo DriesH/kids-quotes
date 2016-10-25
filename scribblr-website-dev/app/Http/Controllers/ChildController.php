@@ -12,6 +12,8 @@ use App\User;
 
 use Auth;
 
+use DateTime;
+
 class ChildController extends Controller
 {
     public function __construct()
@@ -38,20 +40,20 @@ class ChildController extends Controller
     }
 
     public function newChild (Request $request) {
-        $childName    = $request->json('childName');
-        $gender       = $request->json('gender');
-        $_dateOfBirth = $request->json('dateOfBirth');
-        $dateOfBirth  = date_create_from_format('Y/M/d', $_dateOfBirth);
-        $userId       = Auth::user()->id;
-
         $this->validate($request, [
         'childName' => 'required',
         'gender' => 'required',
         'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
+        $childName    = $request->json('childName');
+        $gender       = $request->json('gender');
+        $_dateOfBirth = $request->json('dateOfBirth');
+        $dateOfBirth  = DateTime::createFromFormat('d-m-Y', $_dateOfBirth);
+        $userId       = Auth::user()->id;
+
         $newChild = Child::create([
-            'name' => $childName,
+            'childName' => $childName,
             'dateOfBirth' => $dateOfBirth,
             'gender' => $gender,
             'user_id' => $userId
