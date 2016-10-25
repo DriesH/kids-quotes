@@ -5,5 +5,6 @@
 @endsection
 
 @section('content')
+    @include('partials.navbar')
     <parent-wrap></parent-wrap>
 @endsection

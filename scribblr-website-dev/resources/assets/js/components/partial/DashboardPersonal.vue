@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
-            <side-bar-dashboard></side-bar-dashboard>
+            <side-bar-dashboard v-bind:current-children.sync="currentChildren"></side-bar-dashboard>
             <body-dashboard-personal></body-dashboard-personal>
         </div>
     </div>
@@ -10,11 +10,37 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                currentChildren: [
+
+                ],
+                addQuoteShow: false
+            }
         },
         computed: {},
-        ready () {},
-        methods: {},
+        ready () {
+            this.init();
+        },
+        methods: {
+            init: function () {
+                this.getChildren();
+            },
+            getChildren: function () {
+                this.$http.get('/api/child').then((success_response) => {
+                    this.$set('currentChildren', JSON.parse(success_response.body));
+                    this.$nextTick(function(){
+                        this.$broadcast('data-arrived', JSON.parse(success_response.body));
+                        console.log('Working.');
+                    });
+                },
+                (error_response) => {
+                    alert('Error, we could not find your children. We are sorry... But in the meantime, look at this puppy!');
+                });
+            },
+            showPanel: function () {
+                this.addQuoteShow = true;
+            },
+        },
         components: {}
     }
 </script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\DataWebsite;
 use App\User;
 use App\Theme;
@@ -17,11 +18,14 @@ use JavaScript;
 class BusinessVersionController extends Controller
 {
     public function index () {
-        JavaScript::put([
-            'isLoggedIn' => Auth::user(),
-            'currentVersion' => 'business'
-        ]);
-        return view('business');
+        if( !Auth::user() ) {
+            SendJavascript::sendJavascript('business');
+            return view('business');
+        }
+        else{
+            SendJavascript::sendJavascript('business');
+            return view('business-dashboard');
+        }
     }
 
     public function getData () {
@@ -61,7 +65,7 @@ class BusinessVersionController extends Controller
             }
         }
 
-        return view('businessDashboard', [
+        return view('business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
         ]);

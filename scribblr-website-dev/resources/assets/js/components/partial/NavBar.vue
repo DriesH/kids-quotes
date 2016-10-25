@@ -77,11 +77,11 @@
         color: white;
         display: block;
         margin-left: 30px;
-        transition: 0.3s color;
+        transition: 0.1s color;
     }
 
     .logo:hover, .logo:hover>.sub-logo {
-        color: rgb(190, 11, 62);
+        color: rgba(200, 200, 200, 1);
         background: none;
     }
 
@@ -95,7 +95,7 @@
     }
 
     .login-reg>li>a:hover {
-        color: rgb(190, 11, 62);
+        color: rgba(200, 200, 200, 1);
         background: none;
     }
 
