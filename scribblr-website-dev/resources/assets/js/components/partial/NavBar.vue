@@ -1,6 +1,6 @@
 <template lang="html">
     <nav class="navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
                     Scribblr
