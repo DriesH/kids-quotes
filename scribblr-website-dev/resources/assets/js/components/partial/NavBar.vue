@@ -1,6 +1,6 @@
 <template lang="html">
     <nav class="navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
                     Scribblr
@@ -16,7 +16,7 @@
                     <li v-if="!data.user.isLoggedIn"><a href="/login">Log In</a></li>
                     <li v-if="!data.user.isLoggedIn"><a href="/register">Sign up</a></li>
 
-                    <li v-if="data.user.isLoggedIn"><a href="/dashboard">{{ data.user.name }}</a></li>
+                    <li v-if="data.user.isLoggedIn"><a href="/dashboard">{{ data.user.name }} <i class="fa fa-user"></i></a></li>
                     <li v-if="data.user.isLoggedIn"><a href="/logout">Logout</a></li>
                 </ul>
             </div>

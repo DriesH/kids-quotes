@@ -26,9 +26,9 @@ Vue.component('NavBar', require('./components/partial/NavBar.vue'));
 Vue.component('Banner', require('./components/partial/Banner.vue'));
 Vue.component('ContentHomePage', require('./components/partial/ContentHomePage.vue'));
 Vue.component('DashboardPersonal', require('./components/partial/DashboardPersonal.vue'));
-Vue.component('SideBarDashboard', require('./components/partial/SideBarDashboard.vue'));
-Vue.component('BodyDashboardPersonal', require('./components/partial/BodyDashboardPersonal.vue'));
-Vue.component('AddQuotesDashboard', require('./components/partial/AddQuotesDashboard.vue'));
+Vue.component('SideBarDashboard', require('./components/partial/dashboardpersonal/SideBarDashboard.vue'));
+Vue.component('BodyDashboardPersonal', require('./components/partial/dashboardpersonal/BodyDashboardPersonal.vue'));
+Vue.component('AddQuotesDashboard', require('./components/partial/dashboardpersonal/AddQuotesDashboard.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
