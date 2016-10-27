@@ -18,12 +18,9 @@
                 </div>
 
                 <div class="col-sm-7 col-md-5">
-                    <!-- COMING SOON!
                     <div class="pictures">
-                        <div class="picture">
-                            <img src="" alt="" />
-                        </div>
-                    </div>-->
+                            <img class="small_pic" src="/img/boat.png" alt="boat quote" />
+                    </div>
                 </div>
 
             </div>
@@ -90,5 +87,18 @@
         font-size: 16px;
     }
 
+    .small_pic {
+        width: 50%;
+        height: auto;
+        right: 20px;
+        position: absolute;
+    }
+
+    /*media queries*/
+    @media screen and (max-width: 991px) {
+        .small_pic {
+            display: none;
+        }
+    }
 
 </style>
