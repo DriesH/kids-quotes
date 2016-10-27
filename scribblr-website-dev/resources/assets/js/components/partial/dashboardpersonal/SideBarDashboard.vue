@@ -1,5 +1,5 @@
 <template lang="html">
-    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow }" class="sidebar">
+    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar">
         <!-- SIDEBARLIST START -->
         <ul class="nav nav-sidebar" id="childrenList" v-if='!addChildShow'>
             <li v-for="child in currentChildrenArray">
@@ -155,7 +155,7 @@
 </script>
 
 <style lang="css" scoped>
-    
+
 
     form {
         background: #496988;

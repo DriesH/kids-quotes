@@ -1,13 +1,19 @@
 <template lang="html">
-    <div class="col-md-8 col-sm-8 sidebar">
-            <button type="button" class="btn btn-danger pull-right" name="hide" @click="hidePanel"><i class="fa fa-ban"></i> Hide</button>
-            
-            <form>
+    <div class="col-md-6 col-sm-6 sidebar">
+
+            <form class="col-md-6 pull-right">
                 <!-- NAME START -->
                 <div class="form-group">
                     <label for="quoteName">Quote: </label>
-                    <input type="text" class="form-control" id="quoteName" placeholder="Fullname" v-model="newChild.childName">
+                    <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName">
                 </div>
+
+                <button type="button" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
+
+                <button type="button" class="btn btn-danger pull-right" name="hide" @click="hidePanel"><i class="fa fa-ban"></i> Hide</button>
+
+
+
                 <!-- NAME END -->
             </form>
         </div>
@@ -21,7 +27,9 @@
         ],
         data () {
             return {
-                addingQuote: false
+                quote: {
+                    quoteName: ''
+                }
             }
         },
         computed: {
