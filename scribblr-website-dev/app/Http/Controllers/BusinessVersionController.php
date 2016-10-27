@@ -19,11 +19,10 @@ class BusinessVersionController extends Controller
 {
     public function index () {
         if (Auth::user()) {
-            return redirect('business/pricing');
+            return redirect('business/dashboard');
         }
         else {
-            SendJavascript::sendJavascript('business');
-            return view('business');
+            return redirect('business/pricing');
         }
     }
 
