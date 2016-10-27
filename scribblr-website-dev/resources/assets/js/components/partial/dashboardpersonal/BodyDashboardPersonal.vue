@@ -4,8 +4,7 @@
             <div v-if='selectedChild !== "none"'>
                 <!-- ADD QUOTE BTN START -->
                 <div class="add-btn col-md-12 col-xs-12 col-lg-12">
-                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE</button>
-                    {{selectedChild}}
+                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE (id: {{selectedChild}})</button>
                 </div>
                 <!-- ADD QUOTE BTN END -->
 
