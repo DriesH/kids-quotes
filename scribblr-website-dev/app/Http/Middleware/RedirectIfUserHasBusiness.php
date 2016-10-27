@@ -20,7 +20,7 @@ class RedirectIfUserHasBusiness
                 return $next($request);
         }
         else {
-            return redirect('/business/pricing');
+            return redirect('/business#pricing');
         }
     }
 }
