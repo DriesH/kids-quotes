@@ -27,7 +27,7 @@
             <!-- ADDQUOTES START -->
 
             <!-- ADDQUOTES START -->
-            <edit-child v-if="editChildShow" style="z-index: 100;" v-bind:edit-child-show.sync="editChildShow" :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
+            <edit-child v-if="editChildShow" style="z-index: 100;" v-bind:edit-child-show.sync="editChildShow" v-bind:selected-child.sync="selectedChild" :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
             <!-- ADDQUOTES END -->
 
 

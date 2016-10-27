@@ -16,13 +16,11 @@ use DateTime;
 
 class ChildController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function childrenDashboard()
-    {
+    public function childrenDashboard() {
         $userId   = Auth::user()->id;
         $children = User::findOrFail($userId)->Children()->get();
 
@@ -41,9 +39,9 @@ class ChildController extends Controller
 
     public function newChild (Request $request) {
         $this->validate($request, [
-        'childName' => 'required',
-        'gender' => 'required',
-        'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
+            'childName' => 'required',
+            'gender' => 'required',
+            'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
         $childName    = $request->json('childName');
@@ -62,6 +60,24 @@ class ChildController extends Controller
         return $newChild;
     }
 
+    public function getChild ($id) {
+        $userId = Auth::user()->id;
+
+        $userChildren = User::find($userId)->children()->get();
+
+        $currentChild = null;
+
+        foreach($userChildren as $child) {
+            dd($child->id);
+            if($child->id == $id) {
+                $currentChild = $child;
+            }
+        }
+
+
+        return json_encode($currentChild);
+    }
+
     public function getChildren () {
         $userId = Auth::user()->id;
 
@@ -70,18 +86,24 @@ class ChildController extends Controller
         return json_encode($userChildren);
     }
 
-    public function updateChild ($id, Request $request) {
-
-        $childNameUpdate = $request->json('childName');
-        $genderUpdate = $request->json('childName');
-        $_dateOfBirthUpdate = $request->json('dateOfBirth');
-
-
-        $selectedChild = Child::where('id', $id)->update([
-            'childName' => $childName,
-            'dateOfBirth' => $dateOfBirth,
-            'gender' => $gender
+    public function update ($id, Request $request) {
+        $this->validate($request, [
+            'childName' => 'required',
+            'gender' => 'required',
+            'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
+        $childNameUpdate    = $request->json('childName');
+        $genderUpdate       = $request->json('gender');
+        $_dateOfBirthUpdate = $request->json('dateOfBirth');
+        $dateOfBirthUpdate  = date('d-m-Y', strtotime($_dateOfBirth));
+
+        $selectedChild = Child::where('id', $id)->update([
+            'childName' => $childNameUpdate,
+            'dateOfBirth' => $dateOfBirthUpdate,
+            'gender' => $genderUpdate
+        ]);
+
+        return $selectedChild;
     }
 }
