@@ -5,7 +5,7 @@
             <li v-for="child in currentChildrenArray">
                 <a @click="selectedChildFn(child.id)" id='child_{{ child.id }}'>
                     {{ child.childName }}
-                    <i class="fa fa-cog pull-left cog-wheel fontawesomefix" @click="openEditChildForm"></i>
+                    <i v-if='selectedChild==child.id' style="position:absolute;left:10px;" class="fa fa-cog pull-left cog-wheel fontawesomefix" @click="openEditChildForm"></i>
                 </a>
             </li>
 

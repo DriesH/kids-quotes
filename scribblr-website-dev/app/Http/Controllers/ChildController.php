@@ -60,6 +60,24 @@ class ChildController extends Controller
         return $newChild;
     }
 
+    public function getChild ($id) {
+        $userId = Auth::user()->id;
+
+        $userChildren = User::find($userId)->children()->get();
+
+        $currentChild = null;
+
+        foreach($userChildren as $child) {
+            dd($child->id);
+            if($child->id == $id) {
+                $currentChild = $child;
+            }
+        }
+
+
+        return json_encode($currentChild);
+    }
+
     public function getChildren () {
         $userId = Auth::user()->id;
 

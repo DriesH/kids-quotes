@@ -50,7 +50,7 @@
             <!-- DATEOFBIRTH END -->
 
             <!-- BUTTONS START -->
-            <button type="button" name="add" class="btn btn-success"><i class="fa fa-pencil"></i> Edit</button>
+            <button type="button" name="add" class="btn btn-success" @click="editChildFn"><i class="fa fa-pencil"></i> Edit</button>
             <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeEditChildForm"><i class="fa fa-ban"></i> Cancel</button>
             <!-- BUTTONS END -->
         </form>
@@ -85,16 +85,17 @@
 
         },
         ready () {
-            this.$http.get('api/child').then((success_response) => {
+            this.$http.get('api/child/' + this.selectedChild).then((success_response) => {
                 console.log('success edit child: ' + success_response.body);
+
             }, (error_response) => {
                 console.log('error edit child:' + success_response.body);
             });
         },
         methods: {
             editChildFn: function () {
-                this.$http.get('api/child/' + this.selectedChild + '/edit/').then((success_response) => {
-
+                this.$http.post('api/child/' + this.selectedChild + '/edit/', this.editChild).then((success_response) => {
+                    console.log(success_response.body);
                 }, (error_response) => {
 
                 });
@@ -110,6 +111,9 @@
                 editChild.childName   = '';
                 editChild.gender      = '';
                 editChild.dateOfBirth = '';
+            },
+            hasClass: function (element, cls) {
+                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
         },
         components: {
