@@ -57,7 +57,7 @@
                 this.addQuoteShow = true;
                 var sideBar = document.getElementById('sidebar-div');
                 if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className += 'overlay-sidebar-shadow';
+                    sideBar.className += ' overlay-sidebar-shadow';
                 }
             },
             getPreviousQuotes: function (id) {
