@@ -100,6 +100,10 @@
             },
             closeEditChildForm: function () {
                 this.editChildShow = false;
+                var sideBar = document.getElementById('sidebar-div');
+                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                }
             },
             clearEditChildForm: function () {
                 editChild.childName   = '';
