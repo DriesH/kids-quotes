@@ -113,6 +113,7 @@
         },
         watch: {
             selectedChild: function (value) {
+                //selectedChildFn(value);
                 console.log('Child id changed to: '+ value);
             }
         },
