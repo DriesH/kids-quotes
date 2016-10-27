@@ -1,33 +1,32 @@
 <template lang="html">
     <div class="col-md-6 col-sm-6 sidebar">
+        <form class="col-md-6 pull-right">
+            <!-- NAME START -->
+            <div class="form-group">
+                <label for="quoteName">Quote: </label>
+                <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName">
+            </div>
+            <!-- NAME END -->
 
-            <form class="col-md-6 pull-right">
-                <!-- NAME START -->
-                <div class="form-group">
-                    <label for="quoteName">Quote: </label>
-                    <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName">
+            <!-- DEFAULT BACKGROUND SELECTOR START -->
+            <div class="cc-selector-2">
+                <div v-for="defaultImg in defaultImgs">
+                    <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
+                    <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
                 </div>
-
-                <div class="cc-selector-2">
-                    <div v-for="defaultImg in defaultImgs">
-                        <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
-                        <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
-                    </div>
-                    <div>
-                        <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
-                        <label class="drinkcard-cc" for="customBackground"></label>
-                    </div>
+                <div>
+                    <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
+                    <label class="drinkcard-cc" for="customBackground"></label>
                 </div>
+            </div>
+            <!-- DEFAULT BACKGROUND SELECTOR END -->
 
-                <button type="button" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
+            <!-- BUTTONS START -->
+            <button type="button" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
 
-                <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeAddQuoteForm"><i class="fa fa-ban"></i> Hide</button>
-
-
-
-                <!-- NAME END -->
-            </form>
-        </div>
+            <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeAddQuoteForm"><i class="fa fa-ban"></i> Hide</button>
+            <!-- BUTTONS END -->
+        </form>
     </div>
 </template>
 
@@ -42,7 +41,8 @@
                     quoteName: '',
                     backgrImg: ''
                 },
-                defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg']
+                defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
+                prefixDefault: '/pictures/'
             }
         },
         computed: {

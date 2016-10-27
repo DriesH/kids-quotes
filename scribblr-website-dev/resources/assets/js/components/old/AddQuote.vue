@@ -163,7 +163,6 @@
 </script>
 
 <style lang="css" scoped>
-    .cc-selector-2 input{
         position:absolute;
         z-index:999;
     }
