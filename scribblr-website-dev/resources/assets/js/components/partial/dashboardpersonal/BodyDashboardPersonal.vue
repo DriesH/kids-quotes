@@ -56,7 +56,9 @@
                     salvattore.init();
                     this.initSal = true;
                 }
-                this.getPreviousQuotes(this.selectedChild);
+                if(this.selectedChild !== 'none') {
+                    this.getPreviousQuotes(this.selectedChild);
+                }
             },
             editChildShow: function (value) {
                 console.log('editChild in body dashboard is: ' + value);
