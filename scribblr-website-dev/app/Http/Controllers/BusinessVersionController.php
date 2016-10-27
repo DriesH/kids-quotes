@@ -24,7 +24,7 @@ class BusinessVersionController extends Controller
         }
         else{
             SendJavascript::sendJavascript('business');
-            return view('business-dashboard');
+            return view('buy_business');
         }
     }
 
@@ -40,7 +40,6 @@ class BusinessVersionController extends Controller
                                 ->get();
 
         $themes = Theme::all();
-
         $filter = $request->input('filter');
 
         if ($filter) {
@@ -65,11 +64,33 @@ class BusinessVersionController extends Controller
             }
         }
 
+
         return view('business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
         ]);
 
+    }
+
+    public function buy (Request $request) {
+        $version = $request->input('version');
+        /*if($version == "monhtly"){
+
+        }
+        else if ($version == "yearly") {
+            # code...
+        }
+        else if ($version == "permanent") {
+            # code...
+        }
+        else {
+            return redirect('/business');
+        }*/
+
+
+        return view('pay_with_paypal', [
+
+        ]);
     }
 
 }
