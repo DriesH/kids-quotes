@@ -1,0 +1,49 @@
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+        background-color: #95a5a6;
+    }
+}
+
+.main {
+    padding: 95px 20px 20px 20px;
+    background-color: #95a5a6;
+    min-height: 100vh;
+    max-height: 100%;
+}
+
+
+
+/*SALVATTORE SETTINGS*/
+#grid[data-columns]::before { content: "4 .column.size-1of4"; }
+.column { float: left; padding-left: 5px; padding-right: 5px; }
+.size-1of4 { width: 25%; }
+.size-1of3 { width: 33.3333% }
+.size-1of2 { width: 50% }
+.size-1of1 { width: 100% }
+
+
+@media screen and (min-width: 1500px) {
+	#grid[data-columns]::before {
+		content: '4 .column.size-1of4';
+	}
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1499px) {
+	#grid[data-columns]::before {
+		content: '3 .column.size-1of3';
+	}
+}
+
+@media screen and (min-width: 541px) and (max-width: 1080px) {
+	#grid[data-columns]::before {
+		content: '2 .column.size-1of2';
+	}
+}
+
+@media screen and (max-width: 540px) {
+	#grid[data-columns]::before {
+		content: '1 .column.size-1of1';
+	}
+}

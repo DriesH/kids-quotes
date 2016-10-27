@@ -1,34 +1,49 @@
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
-        top: 51px;
+        top: 80px;
         bottom: 0;
         left: 0;
         z-index: 1000;
         display: block;
-        padding: 20px;
+        padding: 20px 0;
         overflow-x: hidden;
         overflow-y: auto;
-        background-color: #f5f5f5;
-        border-right: 1px solid #eee;
+        background-color: #34495e;
+    }
+}
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
     }
 }
 
-.sidebar {
-    /*display: none;*/
+#childrenList a{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 25px;
+    font-weight: bold;
+    background-color: #7f8c8d;
+    text-align: center;
+    transition: 0.2s color, 0.2s background-color, 0.2s text-shadow;
+    cursor: pointer;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-@media (min-width: 768px) {
-    .main {
-        padding-right: 40px;
-        padding-left: 40px;
-    }
+#childrenList a:hover{
+    background-color: #95a5a6;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
 }
 
-.main {
-    padding: 20px;
+
+.add-child {
+    background-color: #27ae60 !important;
 }
 
-.active {
-    background-color: blue;
+.add-child:hover {
+    background-color: #2ecc71 !important;
+}
+
+#childrenList li {
+    margin-bottom: 15px;
 }

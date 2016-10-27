@@ -15,11 +15,14 @@ use JavaScript;
 class PersonalController extends Controller
 {
     function index () {
-        JavaScript::put([
-            'isLoggedIn' => Auth::user(),
-            'currentVersion' => 'personal'
-        ]);
-        return view('personal');
+        if( !Auth::user() ) {
+            SendJavascript::sendJavascript('personal');
+            return view('personal');
+        }
+        else{
+            SendJavascript::sendJavascript('personal');
+            return view('personal-dashboard');
+        }
     }
 
     function getData () {
