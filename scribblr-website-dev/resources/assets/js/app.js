@@ -29,6 +29,7 @@ Vue.component('DashboardPersonal', require('./components/partial/DashboardPerson
 Vue.component('SideBarDashboard', require('./components/partial/dashboardpersonal/SideBarDashboard.vue'));
 Vue.component('BodyDashboardPersonal', require('./components/partial/dashboardpersonal/BodyDashboardPersonal.vue'));
 Vue.component('AddQuotesDashboard', require('./components/partial/dashboardpersonal/AddQuotesDashboard.vue'));
+Vue.component('EditChild', require('./components/partial/dashboardpersonal/EditChild.vue'));
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',

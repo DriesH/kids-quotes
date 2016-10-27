@@ -4,8 +4,7 @@
             <div v-if='selectedChild !== "none"'>
                 <!-- ADD QUOTE BTN START -->
                 <div class="add-btn col-md-12 col-xs-12 col-lg-12">
-                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE</button>
-                    {{selectedChild}}
+                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE (id: {{selectedChild}})</button>
                 </div>
                 <!-- ADD QUOTE BTN END -->
 
@@ -26,6 +25,12 @@
             <!-- ADDQUOTES START -->
             <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
+
+            <!-- ADDQUOTES START -->
+            <edit-child v-if="editChildShow" style="z-index: 100;" v-bind:edit-child-show.sync="editChildShow" :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
+            <!-- ADDQUOTES END -->
+
+
         </div>
     </div>
 </template>
@@ -33,12 +38,14 @@
 <script>
     export default {
         props: [
-            'selectedChild'
+            'selectedChild',
+            'editChildShow'
         ],
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
-                previousQuotes: ''
+                previousQuotes: '',
+                editChildShow: false
             }
         },
         computed: {},
@@ -50,6 +57,10 @@
                     this.initSal = true;
                 }
                 this.getPreviousQuotes(this.selectedChild);
+            },
+            editChildShow: function (value) {
+                console.log('editChild in body dashboard is: ' + value);
+
             }
         },
         methods: {
@@ -57,7 +68,7 @@
                 this.addQuoteShow = true;
                 var sideBar = document.getElementById('sidebar-div');
                 if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className += 'overlay-sidebar-shadow';
+                    sideBar.className += ' overlay-sidebar-shadow';
                 }
             },
             getPreviousQuotes: function (id) {

@@ -5,7 +5,7 @@
             <li v-for="child in currentChildrenArray">
                 <a @click="selectedChildFn(child.id)" id='child_{{ child.id }}'>
                     {{ child.childName }}
-                    <i class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
+                    <i class="fa fa-cog pull-left cog-wheel fontawesomefix" @click="openEditChildForm"></i>
                 </a>
             </li>
 
@@ -78,7 +78,8 @@
     export default {
         props: [
             'currentChildren',
-            'selectedChild'
+            'selectedChild',
+            'editChildShow'
         ],
         data () {
             return {
@@ -102,6 +103,7 @@
         },
         computed: {},
         ready () {
+            //wait on api data.
             this.$on('data-arrived', function () {
                 console.log(this.currentChildren);
                 for( var i=0; i < this.currentChildren.length; i++ ) {
@@ -122,6 +124,14 @@
             closeForm: function () {
                 this.addChildShow = false;
                 this.clearChildForm();
+            },
+            openEditChildForm: function () {
+                console.log('openEditChildForm');
+                this.editChildShow = true;
+                var sideBar = document.getElementById('sidebar-div');
+                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className += ' overlay-sidebar-shadow';
+                }
             },
             addNewChild: function () {
                 this.$http.post('/api/child', this.newChild).then((success_response) => {
@@ -154,6 +164,9 @@
                     activeChildListItem[i].className = '';
                 }
                 childListItem.className += 'active';
+            },
+            hasClass: function (element, cls) {
+                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
         },
         components: {}

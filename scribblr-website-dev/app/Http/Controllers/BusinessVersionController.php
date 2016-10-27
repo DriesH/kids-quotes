@@ -17,6 +17,15 @@ use JavaScript;
 
 class BusinessVersionController extends Controller
 {
+    public function index () {
+        if (Auth::user()) {
+            return redirect('business/pricing');
+        }
+        else {
+            SendJavascript::sendJavascript('business');
+            return view('business');
+        }
+    }
 
     public function getData () {
         $data = DataWebsite::where('name', 'Business')->get();
@@ -66,33 +75,37 @@ class BusinessVersionController extends Controller
         $version = $request->input('version');
         $price = "";
         $chosenVersion = "";
+        $paypalFeePercent = 0.039;
 
         if($version == "monthly"){
-            $price = "49.99";
+            $price = 49.99;
             $chosenVersion = "monthly";
         }
         else if ($version == "yearly") {
-            $price = "499.99";
+            $price = 499.99;
             $chosenVersion = "yearly";
         }
         else if ($version == "permanent") {
-            $price = "4999.99";
-            $chosenVersion = "one time";
+            $price = 4999.99;
+            $chosenVersion = "lifetime";
         }
         else {
             return redirect('/business/pricing');
         }
 
-        return view('pay_with_paypal', [
+        $paypalFee = $price * $paypalFeePercent + 0.3;
+        $roundedPaypalFee = round($paypalFee, 2);
 
+        return view('pay-with-paypal', [
+            "price" => $price,
+            "paypalFee" => $roundedPaypalFee,
+            "chosenVersion" => $chosenVersion
         ]);
-
-
-
     }
 
+
     public function pricing () {
-        return view('choose_business_edition');
+        return view('choose-business-edition');
     }
 
 }
