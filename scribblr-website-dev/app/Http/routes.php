@@ -26,6 +26,8 @@ Route::get('dashboard', 'ChildController@childrenDashboard');
 //API routes
 Route::post('api/child', 'ChildController@newChild');
 Route::get('api/child', 'ChildController@getChildren');
+Route::get('api/child/{id}', 'ChildController@getChild');
+Route::post('api/child/{id}/edit', 'ChildController@update');
 
 Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
