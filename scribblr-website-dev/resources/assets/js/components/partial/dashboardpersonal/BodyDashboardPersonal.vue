@@ -25,6 +25,12 @@
             <!-- ADDQUOTES START -->
             <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
+
+            <!-- ADDQUOTES START -->
+            <edit-child v-if="editChildShow" style="z-index: 100;" v-bind:edit-child-show.sync="editChildShow" :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
+            <!-- ADDQUOTES END -->
+
+
         </div>
     </div>
 </template>
@@ -32,12 +38,14 @@
 <script>
     export default {
         props: [
-            'selectedChild'
+            'selectedChild',
+            'editChildShow'
         ],
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
-                previousQuotes: ''
+                previousQuotes: '',
+                editChildShow: false
             }
         },
         computed: {},
@@ -49,6 +57,10 @@
                     this.initSal = true;
                 }
                 this.getPreviousQuotes(this.selectedChild);
+            },
+            editChildShow: function (value) {
+                console.log('editChild in body dashboard is: ' + value);
+
             }
         },
         methods: {
