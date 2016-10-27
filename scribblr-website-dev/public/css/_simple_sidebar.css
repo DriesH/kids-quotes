@@ -18,6 +18,10 @@
     }
 }
 
+.overlay-sidebar-shadow {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 1);
+}
+
 #childrenList a{
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
@@ -46,4 +50,8 @@
 
 #childrenList li {
     margin-bottom: 15px;
+}
+
+.active {
+    background-color: #95a5a6 !important;
 }

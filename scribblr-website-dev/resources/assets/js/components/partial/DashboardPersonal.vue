@@ -1,8 +1,8 @@
 <template lang="html">
     <div class="container-fluid" id="dashboardMain">
         <div class="row" id="dashboardMainRow">
-            <side-bar-dashboard v-bind:current-children.sync="currentChildren"></side-bar-dashboard>
-            <body-dashboard-personal></body-dashboard-personal>
+            <side-bar-dashboard v-bind:current-children.sync="currentChildren" v-bind:selected-child.sync="selectedChild" v-bind:add-quote-show.sync="addQuoteShow"></side-bar-dashboard>
+            <body-dashboard-personal v-bind:selected-child.sync="selectedChild"></body-dashboard-personal>
         </div>
     </div>
 </template>
@@ -14,6 +14,7 @@
                 currentChildren: [
 
                 ],
+                selectedChild: 'none',
                 addQuoteShow: false
             }
         },
