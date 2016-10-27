@@ -23,8 +23,17 @@ class BusinessVersionController extends Controller
             return view('business');
         }
         else{
-            SendJavascript::sendJavascript('business');
-            return view('buy_business');
+            $userHasBusiness = Auth::user()->hasBusiness;
+            if($userHasBusiness){
+                //user is already business => don't show pricing tables
+                SendJavascript::sendJavascript('business');
+                return view('choose_business_edition');
+            }
+            else {
+                //user is not business yet => show pricing table
+                SendJavascript::sendJavascript('business');
+                return view('choose_business_edition');
+            }
         }
     }
 
