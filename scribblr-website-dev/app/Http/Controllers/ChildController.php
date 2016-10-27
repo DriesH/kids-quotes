@@ -49,7 +49,7 @@ class ChildController extends Controller
         $childName    = $request->json('childName');
         $gender       = $request->json('gender');
         $_dateOfBirth = $request->json('dateOfBirth');
-        $dateOfBirth  = DateTime::createFromFormat('d-m-Y', $_dateOfBirth);
+        $dateOfBirth  = date('d-m-Y', strtotime($_dateOfBirth));
         $userId       = Auth::user()->id;
 
         $newChild = Child::create([
@@ -68,5 +68,20 @@ class ChildController extends Controller
         $userChildren = User::find($userId)->children()->get();
 
         return json_encode($userChildren);
+    }
+
+    public function updateChild ($id, Request $request) {
+
+        $childNameUpdate = $request->json('childName');
+        $genderUpdate = $request->json('childName');
+        $_dateOfBirthUpdate = $request->json('dateOfBirth');
+
+
+        $selectedChild = Child::where('id', $id)->update([
+            'childName' => $childName,
+            'dateOfBirth' => $dateOfBirth,
+            'gender' => $gender
+        ]);
+
     }
 }
