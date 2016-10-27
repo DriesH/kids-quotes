@@ -51,3 +51,7 @@
 #childrenList li {
     margin-bottom: 15px;
 }
+
+.active {
+    background-color: #95a5a6 !important;
+}
