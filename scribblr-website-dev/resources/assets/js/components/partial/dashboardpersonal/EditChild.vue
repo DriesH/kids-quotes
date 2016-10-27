@@ -62,7 +62,8 @@
 <script>
     export default {
         props: [
-            'editChildShow'
+            'editChildShow',
+            'selectedChild'
         ],
         data () {
             return {
@@ -92,11 +93,11 @@
         },
         methods: {
             editChildFn: function () {
-                // this.$http.post('api/child').then((success_response) => {
-                //     console.log('' + success_response.body);
-                // }, (error_response) => {
-                //
-                // });
+                this.$http.get('api/child/' + this.selectedChild + '/edit/').then((success_response) => {
+
+                }, (error_response) => {
+
+                });
             },
             closeEditChildForm: function () {
                 this.editChildShow = false;
