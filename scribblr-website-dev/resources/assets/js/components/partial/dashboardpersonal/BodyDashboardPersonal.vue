@@ -4,7 +4,7 @@
             <div v-if='selectedChild !== "none"'>
                 <!-- ADD QUOTE BTN START -->
                 <div class="add-btn col-md-12 col-xs-12 col-lg-12">
-                    <button type="button" name="button" class="btn btn-success" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE</button>
+                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE</button>
                     {{selectedChild}}
                 </div>
                 <!-- ADD QUOTE BTN END -->
@@ -12,7 +12,7 @@
                 <!-- GRID WITH QUOTES START -->
                 <div id="grid" data-columns>
                     <div class="thumbnail quotes">
-                        <img src="/business_imgs/apple.jpg" alt="" />
+                        <!--<img src="" alt="" />-->
                     </div>
                 </div>
                 <!-- GRID WITH QUOTES END -->
@@ -55,6 +55,10 @@
         methods: {
             openAddQuoteForm: function () {
                 this.addQuoteShow = true;
+                var sideBar = document.getElementById('sidebar-div');
+                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className += 'overlay-sidebar-shadow';
+                }
             },
             getPreviousQuotes: function (id) {
                 //get previous quotes from current child
@@ -65,6 +69,9 @@
                 (error_response) => {
                     alert('error');
                 });
+            },
+            hasClass: function (element, cls) {
+                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
         },
         components: {}

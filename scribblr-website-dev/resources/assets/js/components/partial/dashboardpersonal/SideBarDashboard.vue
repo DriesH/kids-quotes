@@ -1,9 +1,9 @@
 <template lang="html">
-    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow }" class="sidebar">
+    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar" id='sidebar-div'>
         <!-- SIDEBARLIST START -->
         <ul class="nav nav-sidebar" id="childrenList" v-if='!addChildShow'>
             <li v-for="child in currentChildrenArray">
-                <a :class="{ 'active' : isActive }" @click="selectedChildFun(child.id)">
+                <a @click="selectedChildFn(child.id)" id='child_{{ child.id }}'>
                     {{ child.childName }}
                     <i class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
                 </a>
@@ -146,8 +146,14 @@
                 this.newChild.gender      = '';
                 this.newChild.dateOfBirth = '';
             },
-            selectedChildFun: function (id) {
+            selectedChildFn: function (id) {
                 this.selectedChild = id;
+                var childListItem = document.getElementById('child_' + id);
+                var activeChildListItem = document.getElementsByClassName('active');
+                for(var i = 0; i < activeChildListItem.length; i++) {
+                    activeChildListItem[i].className = '';
+                }
+                childListItem.className += 'active';
             }
         },
         components: {}
@@ -155,7 +161,7 @@
 </script>
 
 <style lang="css" scoped>
-    
+
 
     form {
         background: #496988;
