@@ -17,7 +17,7 @@
                             <div id="upload_file">
                                 <div v-if="backgroundChosen === 'custom'">
                                     <h2>Select an image</h2>
-                                    <input @change="previewBackground" name="backgr_img" type="file" v-model="backgr_img" id="testimage">
+                                    <input @change="previewBackground" name="backgr_img" type="file" v-model="backgrImg" id="testimage">
                                     <div class="alert alert-info" role="alert">
                                         <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
                                     </div>
@@ -89,7 +89,7 @@
         data () {
             return {
                 newQuote: '',
-                backgr_img: null,
+                backgrImg: null,
                 formData: new FormData(),
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
                 backgroundChosen: 0,
@@ -163,7 +163,6 @@
 </script>
 
 <style lang="css" scoped>
-    .cc-selector-2 input{
         position:absolute;
         z-index:999;
     }

@@ -17,16 +17,6 @@ use JavaScript;
 
 class BusinessVersionController extends Controller
 {
-    public function index () {
-        if( !Auth::user() ) {
-            SendJavascript::sendJavascript('business');
-            return view('business');
-        }
-        else{
-            SendJavascript::sendJavascript('business');
-            return view('business-dashboard');
-        }
-    }
 
     public function getData () {
         $data = DataWebsite::where('name', 'Business')->get();
@@ -40,7 +30,6 @@ class BusinessVersionController extends Controller
                                 ->get();
 
         $themes = Theme::all();
-
         $filter = $request->input('filter');
 
         if ($filter) {
@@ -65,11 +54,45 @@ class BusinessVersionController extends Controller
             }
         }
 
+        SendJavascript::sendJavascript('business');
         return view('business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
         ]);
 
+    }
+
+    public function buy (Request $request) {
+        $version = $request->input('version');
+        $price = "";
+        $chosenVersion = "";
+
+        if($version == "monthly"){
+            $price = "49.99";
+            $chosenVersion = "monthly";
+        }
+        else if ($version == "yearly") {
+            $price = "499.99";
+            $chosenVersion = "yearly";
+        }
+        else if ($version == "permanent") {
+            $price = "4999.99";
+            $chosenVersion = "one time";
+        }
+        else {
+            return redirect('/business/pricing');
+        }
+
+        return view('pay_with_paypal', [
+
+        ]);
+
+
+
+    }
+
+    public function pricing () {
+        return view('choose_business_edition');
     }
 
 }

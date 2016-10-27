@@ -1,9 +1,9 @@
 <template lang="html">
-    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow }" class="sidebar">
+    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar" id='sidebar-div'>
         <!-- SIDEBARLIST START -->
         <ul class="nav nav-sidebar" id="childrenList" v-if='!addChildShow'>
             <li v-for="child in currentChildrenArray">
-                <a :class="{ 'active' : isActive }">
+                <a @click="selectedChildFn(child.id)" id='child_{{ child.id }}'>
                     {{ child.childName }}
                     <i class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
                 </a>
@@ -77,7 +77,8 @@
 <script>
     export default {
         props: [
-            'currentChildren'
+            'currentChildren',
+            'selectedChild'
         ],
         data () {
             return {
@@ -108,9 +109,15 @@
                 }
             });
         },
+        watch: {
+            selectedChild: function (value) {
+                console.log('Child id changed to: '+ value);
+            }
+        },
         methods: {
             openAddChildForm: function () {
                 this.addChildShow = true;
+                this.clearChildForm();
             },
             closeForm: function () {
                 this.addChildShow = false;
@@ -122,7 +129,7 @@
                     this.addChildShow            = !this.addChildShow; //show - hide form
                     this.currentChildrenArray.push(success_response.body);
 
-                    this.clearForm();
+                    this.clearChildForm();
                 },
                 (error_response) => {
                     this.errorMessagesForm.error       = true;
@@ -138,6 +145,15 @@
                 this.newChild.childName   = '';
                 this.newChild.gender      = '';
                 this.newChild.dateOfBirth = '';
+            },
+            selectedChildFn: function (id) {
+                this.selectedChild = id;
+                var childListItem = document.getElementById('child_' + id);
+                var activeChildListItem = document.getElementsByClassName('active');
+                for(var i = 0; i < activeChildListItem.length; i++) {
+                    activeChildListItem[i].className = '';
+                }
+                childListItem.className += 'active';
             }
         },
         components: {}
@@ -145,9 +161,7 @@
 </script>
 
 <style lang="css" scoped>
-    .overlay-sidebar-shadow {
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 1);
-    }
+
 
     form {
         background: #496988;
