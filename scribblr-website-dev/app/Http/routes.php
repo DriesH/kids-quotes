@@ -31,14 +31,12 @@ Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 
 
-
-
-
 //business edition
-Route::get('business', 'BusinessVersionController@index');
+Route::get('business', 'BusinessVersionController@bussinesDashboard')->middleware('hasBusiness');
 Route::get('business/buy', 'BusinessVersionController@buy');
+Route::get('business/pricing', 'BusinessVersionController@pricing');
 
-Route::get('business/dashboard', 'BusinessVersionController@bussinesDashboard');
+//bussiness api
 Route::get('api/business/data', 'BusinessVersionController@getData');
 
 //personal edition

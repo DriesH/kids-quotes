@@ -17,25 +17,6 @@ use JavaScript;
 
 class BusinessVersionController extends Controller
 {
-    public function index () {
-        if( !Auth::user() ) {
-            SendJavascript::sendJavascript('business');
-            return view('business');
-        }
-        else{
-            $userHasBusiness = Auth::user()->hasBusiness;
-            if($userHasBusiness){
-                //user is already business => don't show pricing tables
-                SendJavascript::sendJavascript('business');
-                return view('choose_business_edition');
-            }
-            else {
-                //user is not business yet => show pricing table
-                SendJavascript::sendJavascript('business');
-                return view('choose_business_edition');
-            }
-        }
-    }
 
     public function getData () {
         $data = DataWebsite::where('name', 'Business')->get();
@@ -73,7 +54,7 @@ class BusinessVersionController extends Controller
             }
         }
 
-
+        SendJavascript::sendJavascript('business');
         return view('business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
@@ -83,23 +64,35 @@ class BusinessVersionController extends Controller
 
     public function buy (Request $request) {
         $version = $request->input('version');
-        /*if($version == "monhtly"){
+        $price = "";
+        $chosenVersion = "";
 
+        if($version == "monthly"){
+            $price = "49.99";
+            $chosenVersion = "monthly";
         }
         else if ($version == "yearly") {
-            # code...
+            $price = "499.99";
+            $chosenVersion = "yearly";
         }
         else if ($version == "permanent") {
-            # code...
+            $price = "4999.99";
+            $chosenVersion = "one time";
         }
         else {
-            return redirect('/business');
-        }*/
-
+            return redirect('/business/pricing');
+        }
 
         return view('pay_with_paypal', [
 
         ]);
+
+
+
+    }
+
+    public function pricing () {
+        return view('choose_business_edition');
     }
 
 }
