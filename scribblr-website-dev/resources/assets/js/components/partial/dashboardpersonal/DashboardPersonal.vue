@@ -35,7 +35,10 @@
                         return;
 
                     self.selectedChild = 'none';
-                    console.log('clicked', self.selectedChild);
+
+                    $('[id^=child_]').each(function(){
+                        $(this).removeClass('active');
+                    });
                 });
 
             },

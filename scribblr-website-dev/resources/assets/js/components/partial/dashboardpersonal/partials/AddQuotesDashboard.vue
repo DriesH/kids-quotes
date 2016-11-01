@@ -5,7 +5,7 @@
             <!-- NAME START -->
             <div class="form-group">
                 <label for="quoteName">Quote: </label>
-                <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName">
+                <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName" maxlength="105">
             </div>
             <!-- NAME END -->
 
@@ -33,7 +33,7 @@
                     <input @change="previewBackground" name="backgr_img" type="file" v-model="quote.backgrImg" id="testimage">
                 </div>
                 <div class="alert alert-info" role="alert">
-                    <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
+                    <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 400x400).
                 </div>
             </div>
             <!-- CUSTOM BACKGROUND END -->
@@ -79,7 +79,7 @@
                 previewBackgroundIMG: '',
                 backgroundChosen: 0,
                 formData: new FormData(),
-                defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
+                defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'dirt.jpg'],
                 prefixDefault: '/pictures/'
             }
         },
@@ -218,27 +218,31 @@
     .quote_text:hover{
         cursor: default;
     }
+    .uploaded_img {
+        width: 400px;
+        height: 400px;
+    }
     #quoteTextArea {
         resize: none;
         overflow: hidden;
         word-wrap: normal;
     }
     .quoteBox {
-        white-space: pre;
+        white-space: pre-line;
     }
     #widget{
         display: block;
-        width: 300px;
-        height: 300px;
+        width: 400px;
+        height: 400px;
         margin-bottom: 10px;
     }
     #img-out{
         display: none;
-        width: 300px;
-        height: 300px;
+        width: 400px;
+        height: 400px;
     }
     #img-out>canvas{
-        width: 300px;
-        height: 300px;
+        width: 400px;
+        height: 400px;
     }
 </style>

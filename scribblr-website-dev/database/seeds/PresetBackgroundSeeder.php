@@ -22,8 +22,8 @@ class PresetBackgroundSeeder extends Seeder
         ]);
 
         DB::table('preset_backgrounds')->insert([
-            'background_name' => 'paper',
-            'background_filename' => 'paper.jpg',
+            'background_name' => 'dirt',
+            'background_filename' => 'dirt.jpg',
         ]);
     }
 }
