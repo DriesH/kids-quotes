@@ -18,18 +18,24 @@ require('./bootstrap');
 //Vue.component('addQuote', require('./components/AddQuote.vue'));
 //Vue.component('homePage', require('./components/HomePage.vue'));
 //Vue.component('childModify', require('./components/childModify.vue'));
-Vue.component('BusinessContentHomePage', require('./components/businessContentHomePage.vue'));
-Vue.component('ParentWrap', require('./components/ParentWrap.vue'));
 
-//partial vues
-Vue.component('NavBar', require('./components/partial/NavBar.vue'));
-Vue.component('Banner', require('./components/partial/Banner.vue'));
-Vue.component('ContentHomePage', require('./components/partial/ContentHomePage.vue'));
-Vue.component('DashboardPersonal', require('./components/partial/DashboardPersonal.vue'));
-Vue.component('SideBarDashboard', require('./components/partial/dashboardpersonal/SideBarDashboard.vue'));
-Vue.component('BodyDashboardPersonal', require('./components/partial/dashboardpersonal/BodyDashboardPersonal.vue'));
-Vue.component('AddQuotesDashboard', require('./components/partial/dashboardpersonal/AddQuotesDashboard.vue'));
-Vue.component('EditChild', require('./components/partial/dashboardpersonal/EditChild.vue'));
+//shared homepage elements
+Vue.component('ParentWrap', require('./components/partial/homepage/ParentWrap.vue'));
+Vue.component('NavBar', require('./components/partial/homepage/NavBar.vue'));
+Vue.component('Banner', require('./components/partial/homepage/Banner.vue'));
+
+//content homepage
+Vue.component('ContentHomePage', require('./components/partial/homepagepersonal/ContentHomePage.vue'));
+Vue.component('BusinessContentHomePage', require('./components/partial/homepagebusiness/businessContentHomePage.vue'));
+
+//partial personal
+Vue.component('DashboardPersonal', require('./components/partial/dashboardpersonal/DashboardPersonal.vue'));
+Vue.component('SideBarDashboard', require('./components/partial/dashboardpersonal/partials/SideBarDashboard.vue'));
+Vue.component('BodyDashboardPersonal', require('./components/partial/dashboardpersonal/partials/BodyDashboardPersonal.vue'));
+Vue.component('AddQuotesDashboard', require('./components/partial/dashboardpersonal/partials/AddQuotesDashboard.vue'));
+Vue.component('EditChild', require('./components/partial/dashboardpersonal/partials/EditChild.vue'));
+
+//partial business
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
