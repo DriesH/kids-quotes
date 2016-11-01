@@ -9,10 +9,10 @@
                 <!-- ADD QUOTE BTN END -->
 
                 <!-- GRID WITH QUOTES START -->
-                <div id="grid" data-columns v-if="previousQuotes !== ''">
+                <div id="grid" data-columns v-if="previousQuotes.length > 0">
                     <div v-for="quote in previousQuotes">
                         <div class="quote">
-                            <img :src="path + standardBackground[quote.preset_background_id]" />
+                            <img :src="path + quote.preset_background.background_filename" />
                             <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
                         </div>
 
@@ -48,28 +48,22 @@
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
-                previousQuotes: '',
-                standardBackground: [
-                    'chalkboard.jpg',
-                    'paper.jpg',
-                    'wood.jpg'
-                ],
+                previousQuotes: [],
                 path: 'pictures/uploadedbackground/withoutquote/',
-                editChildShow: false
+                editChildShow: false,
+                initSal: false
             }
         },
         computed: {},
         ready () {},
         watch:{
             selectedChild: function (value) {
-
                 if(this.selectedChild !== 'none') {
                     this.getPreviousQuotes(this.selectedChild);
                 }
             },
             editChildShow: function (value) {
                 console.log('editChild in body dashboard is: ' + value);
-
             }
         },
         methods: {
@@ -85,11 +79,12 @@
                 this.$http.get('/api/quote/' + id).then((success_response) => {
                     this.previousQuotes = JSON.parse(success_response.body);
                     //anders werkt het niet
+                    var self = this;
+                    this.initSal = false;
                     setTimeout(function() {
-                        if(!this.initSal) {
-                            console.log('hello from the other side');
+                        if(!self.initSal) {
                             salvattore.init();
-                            this.initSal = true;
+                            self.initSal = true;
                         }
                     }, 0);
                 },
@@ -125,6 +120,7 @@
     .quote {
         position: relative;
         overflow: hidden;
+        margin-bottom: 10px;
     }
     .quote img {
         border-radius: 10px;
