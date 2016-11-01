@@ -54,7 +54,6 @@
             <div id="img-out"></div>
             <!-- PREVIEW END -->
 
-
             <!-- BUTTONS START -->
             <button type="submit" name="add" class="btn btn-success" ><i class="fa fa-plus"></i> Add Quote</button>
             <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeAddQuoteForm"><i class="fa fa-ban"></i> Cancel</button>
@@ -83,9 +82,6 @@
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
                 prefixDefault: '/pictures/'
             }
-        },
-        computed: {
-
         },
         ready () {
 
@@ -190,43 +186,57 @@
            -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
                 filter: brightness(1.2) grayscale(.5) opacity(.9);
     }
-
     .quote {
         position: relative;
         overflow: hidden;
     }
-
     .quote img {
         border-radius: 10px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-
     .quote_text {
         color: white;
         font-size: 40px;
-        font-family: amatic;
+        font-family: 'Amatic', cursive;
         position: absolute;
         top: 20px;
         left: 10px;
         word-break: break-all;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-
+    .quote_text:hover{
+        cursor: default;
+    }
     #quoteTextArea {
         resize: none;
         overflow: hidden;
         word-wrap: normal;
     }
-
     .quoteBox {
         white-space: pre;
     }
-
     #widget{
         display: block;
+        width: 300px;
+        height: 300px;
         margin-bottom: 10px;
     }
-
     #img-out{
         display: none;
+        width: 300px;
+        height: 300px;
+    }
+    #img-out>canvas{
         width: 300px;
         height: 300px;
     }

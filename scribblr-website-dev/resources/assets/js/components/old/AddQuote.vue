@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div id="img-out" style="dislay:none"></div>
+                        <div id="img-out" style="display:none"></div>
 
 
                     </div>
