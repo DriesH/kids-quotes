@@ -84,9 +84,6 @@
                 prefixDefault: '/pictures/'
             }
         },
-        computed: {
-
-        },
         ready () {
 
         },
