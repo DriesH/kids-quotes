@@ -1,5 +1,5 @@
 <template lang="html">
-    <nav class="navbar-fixed-top">
+    <nav class="navbar-fixed-top" :class="{ 'nav-background' : navBarBackground }">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
@@ -35,6 +35,7 @@
                         name: userName
                     }
                 },
+                navBarBackground: false,
                 ajaxData: [
 
                 ]
@@ -44,6 +45,8 @@
 
         },
         ready () {
+            window.addEventListener('scroll', this.showNavBackground);
+
             switch (this.data.current) {
                 case 'personal':
                     this.$http.get('/api/personal/data').then((succes_response) => {
@@ -64,7 +67,16 @@
             }
         },
         attached () {},
-        methods: {},
+        methods: {
+            showNavBackground: function () {
+                if(window.scrollY >= 5){
+                    this.navBarBackground = true;
+                }
+                else{
+                    this.navBarBackground = false;
+                }
+            }
+        },
         components: {}
     }
 </script>
@@ -108,6 +120,8 @@
         font-size: 30px;
     }
 
-
+    .nav-background {
+        background: rgba(60, 60, 60, 0.6);
+    }
 
 </style>
