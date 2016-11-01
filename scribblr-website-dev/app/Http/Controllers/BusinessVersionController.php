@@ -18,12 +18,8 @@ use JavaScript;
 class BusinessVersionController extends Controller
 {
     public function index () {
-        if (Auth::user()) {
-            return redirect('business/dashboard');
-        }
-        else {
-            return redirect('business/pricing');
-        }
+        SendJavascript::sendJavascript('business');
+        return view('business');
     }
 
     public function getData () {
