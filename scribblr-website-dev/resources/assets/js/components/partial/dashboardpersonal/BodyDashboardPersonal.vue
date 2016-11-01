@@ -23,7 +23,7 @@
 
 
             <!-- ADDQUOTES START -->
-            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" v-bind:selected-child.sync="selectedChild" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
             <!-- ADDQUOTES START -->

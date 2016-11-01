@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="col-md-6 col-sm-6 sidebar">
         <!-- FORM START -->
-        <form class="col-md-8 pull-right">
+        <form class="col-md-8 pull-right" @submit="addQuote($event)">
             <!-- NAME START -->
             <div class="form-group">
                 <label for="quoteName">Quote: </label>
@@ -26,18 +26,37 @@
             </div>
             <!-- DEFAULT BACKGROUND SELECTOR END -->
 
-            <div id="upload_file">
-                <div v-if="backgroundChosen === 'custom'">
-                    <h2>Select an image</h2>
-                    <input @change="previewBackground" name="backgr_img" type="file" v-model="backgrImg" id="testimage">
-                    <div class="alert alert-info" role="alert">
-                        <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
-                    </div>
+            <!-- CUSTOM BACKGROUND START -->
+            <div id="upload_file" v-if="backgroundChosen === 'custom'">
+                <div class="form-group">
+                    <label for="backgr_img"><h4>Select an image</h4></label>
+                    <input @change="previewBackground" name="backgr_img" type="file" v-model="quote.backgrImg" id="testimage">
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 300x300).
+                </div>
+            </div>
+            <!-- CUSTOM BACKGROUND END -->
+
+            <!-- PREVIEW START -->
+            <div class="quote" id="widget" v-if="backgroundChosen !== 'custom'">
+                <img v-bind:src="prefixDefault + defaultImgs[backgroundChosen]" id="target" />
+                <span class="quote_text"><p class="quoteBox">{{ quote.quoteName }}</p></span>
+            </div>
+
+            <div v-else>
+                <div class="quote grid-item" id="widget">
+                    <img :src="previewBackgroundIMG" class="uploaded_img" />
+                    <span class="quote_text"><p class="quoteBox">{{ quote.quoteName }}</p></span>
                 </div>
             </div>
 
+            <div id="img-out" style="display:none;"></div>
+            <!-- PREVIEW END -->
+
+
             <!-- BUTTONS START -->
-            <button type="button" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
+            <button type="submit" name="add" class="btn btn-success" ><i class="fa fa-plus"></i> Add Quote</button>
             <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeAddQuoteForm"><i class="fa fa-ban"></i> Cancel</button>
             <!-- BUTTONS END -->
         </form>
@@ -49,7 +68,8 @@
 <script>
     export default {
         props: [
-            'addQuoteShow'
+            'addQuoteShow',
+            'selectedChild'
         ],
         data () {
             return {
@@ -57,6 +77,7 @@
                     quoteName: '',
                     backgrImg: ''
                 },
+                previewBackgroundIMG: '',
                 backgroundChosen: 0,
                 formData: new FormData(),
                 defaultImgs: ['wood.jpg', 'chalkboard.jpg', 'paper.jpg'],
@@ -77,13 +98,16 @@
                     sideBar.className = 'col-sm-3 col-md-2 sidebar';
                 }
             },
-            addQuote: function() {
+            addQuote: function(event) {
+                event.preventDefault();
                 var fileInputEl = $("#testimage");
                 var self = this;
                 html2canvas($("#widget"), {
                     onrendered: function(canvas) {
                         var theCanvas = canvas;
                         document.body.appendChild(canvas);
+
+                        console.log('html2canvas');
 
                         // Convert and download as image
                         $("#img-out").append(canvas);
@@ -98,8 +122,8 @@
                         }
 
                         self.formData.append("imgWithQuote", self.canvas);                    // quote + image base64
-                        self.formData.append("quote", self.newQuote);                         // quote raw text
-                        self.formData.append("child_id", self.currentSelectedChildId);        // child_id of current child you're adding quote
+                        self.formData.append("quote", self.quote.quoteName);                  // quote raw text
+                        self.formData.append("child_id", self.selectedChild);                 // child_id of current child you're adding quote
 
                         self.$http.post('api/quote', self.formData).then((success_response) => {
                             console.log(success_response.body)
@@ -109,6 +133,23 @@
                         });
                     }
                 });
+            },
+            //preview the backgroun that was uploaded by the user
+            previewBackground: function(event) {
+                console.log('hey i got called!');
+                var input = event.target;
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    var vm = this;
+
+                    reader.onload = function(e) {
+                        vm.previewBackgroundIMG = e.target.result;
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
@@ -148,5 +189,39 @@
         -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
            -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
                 filter: brightness(1.2) grayscale(.5) opacity(.9);
+    }
+
+    .quote {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .quote img {
+        border-radius: 10px;
+    }
+
+    .quote_text {
+        color: white;
+        font-size: 40px;
+        font-family: amatic;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        word-break: break-all;
+    }
+
+    #quoteTextArea {
+        resize: none;
+        overflow: hidden;
+        word-wrap: normal;
+    }
+
+    .quoteBox {
+        white-space: pre;
+    }
+
+    #widget{
+        display: block;
+        margin-bottom: 10px;
     }
 </style>
