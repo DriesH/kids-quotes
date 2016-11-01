@@ -49,3 +49,7 @@ body, html{
     font-size:20px;
     padding-top:3px;
 }
+
+nav {
+    transition: 0.2s background;
+}

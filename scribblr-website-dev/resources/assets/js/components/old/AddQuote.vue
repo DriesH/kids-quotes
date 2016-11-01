@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div id="img-out" style="dislay:none"></div>
+                        <div id="img-out" style="display:none"></div>
 
 
                     </div>
@@ -163,9 +163,6 @@
 </script>
 
 <style lang="css" scoped>
-        position:absolute;
-        z-index:999;
-    }
     .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
     .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
         -webkit-filter: none;

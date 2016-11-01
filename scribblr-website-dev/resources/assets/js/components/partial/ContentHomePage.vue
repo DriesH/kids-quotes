@@ -1,7 +1,8 @@
 <template lang="html">
+    <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
     <div class="content">
         <div class="container">
-            <div class="row animated" transition="fadeLeft" v-show="showContentText">
+            <div class="row animated bottom-line" transition="fadeLeft" v-show="showContentText">
                 <div class="col-sm-5 col-md-6">
                     <div class="titles">
                         <h1>What is Scribblr?</h1>
@@ -24,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="row animated" transition="fadeLeft" v-show="showContentText">
+            <div class="row animated top-buffer" transition="fadeRight" v-show="showContentText">
                 <div class="col-sm-5 col-md-6">
                     <div class="titles">
                         <h1>Quick and easy!</h1>
@@ -46,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="row animated" transition="fadeLeft" v-show="showContentText">
+            <div class="row animated top-buffer" transition="fadeLeft" v-show="showContentText">
                 <div class="col-sm-5 col-md-6">
                     <div class="titles">
                         <h1>Still want the real thing?</h1>
@@ -77,6 +78,7 @@
         data () {
             return {
                 showContentText: false,
+                navBarBackground: false
             }
         },
         computed: {},
@@ -92,6 +94,10 @@
                 else{
                     this.showContentText = false;
                 }
+            },
+            scrollDown: function () {
+                console.log('test');
+                window.scrollTo(0, 750);
             }
         },
         components: {}
@@ -134,6 +140,25 @@
         height: auto;
         right: 20px;
         position: absolute;
+    }
+
+    .top-buffer{
+        margin-top: 100px;
+    }
+
+    .arrow{
+        text-align: center;
+        font-size: 4em;
+        color: rgb(99, 99, 99);
+    }
+
+    .arrow:hover{
+        cursor: default;
+    }
+
+    .arrow>i:hover{
+        cursor: pointer;
+        color: rgb(149, 149, 149);
     }
 
     /*media queries*/

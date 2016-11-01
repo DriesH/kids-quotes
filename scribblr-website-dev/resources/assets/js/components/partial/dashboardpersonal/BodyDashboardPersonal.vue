@@ -9,9 +9,13 @@
                 <!-- ADD QUOTE BTN END -->
 
                 <!-- GRID WITH QUOTES START -->
-                <div id="grid" data-columns>
-                    <div class="thumbnail quotes">
-                        <!--<img src="" alt="" />-->
+                <div id="grid" data-columns v-if="previousQuotes !== ''">
+                    <div v-for="quote in previousQuotes">
+                        <div class="quote">
+                            <img :src="path + standardBackground[quote.preset_background_id]" />
+                            <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
+                        </div>
+
                     </div>
                 </div>
                 <!-- GRID WITH QUOTES END -->
@@ -23,7 +27,7 @@
 
 
             <!-- ADDQUOTES START -->
-            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" v-bind:selected-child.sync="selectedChild" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
             <!-- ADDQUOTES START -->
@@ -45,6 +49,12 @@
             return {
                 addQuoteShow: false, //show - hide form add quote
                 previousQuotes: '',
+                standardBackground: [
+                    'chalkboard.jpg',
+                    'paper.jpg',
+                    'wood.jpg'
+                ],
+                path: 'pictures/uploadedbackground/withoutquote/',
                 editChildShow: false
             }
         },
@@ -52,10 +62,7 @@
         ready () {},
         watch:{
             selectedChild: function (value) {
-                if(!this.initSal) {
-                    salvattore.init();
-                    this.initSal = true;
-                }
+
                 if(this.selectedChild !== 'none') {
                     this.getPreviousQuotes(this.selectedChild);
                 }
@@ -77,7 +84,14 @@
                 //get previous quotes from current child
                 this.$http.get('/api/quote/' + id).then((success_response) => {
                     this.previousQuotes = JSON.parse(success_response.body);
-                    console.log(this.previousQuotes);
+                    //anders werkt het niet
+                    setTimeout(function() {
+                        if(!this.initSal) {
+                            console.log('hello from the other side');
+                            salvattore.init();
+                            this.initSal = true;
+                        }
+                    }, 0);
                 },
                 (error_response) => {
                     alert('error');
@@ -96,12 +110,47 @@
         padding: 5px;
         margin-bottom: 21px;
     }
-
     #quote-overview-text h1{
         font-family: 'Lobster', cursive;
         color: #34495e;
         text-shadow: rgb(224, 224, 224) 1px 1px 0px;
         font-size: 5em;
         padding: 20%;
+    }
+    #grid img {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    .quote {
+        position: relative;
+        overflow: hidden;
+    }
+    .quote img {
+        border-radius: 10px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .quote_text {
+        color: white;
+        font-size: 40px;
+        font-family: 'Amatic', cursive;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        word-break: break-all;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .quote_text:hover{
+        cursor: default;
     }
 </style>
