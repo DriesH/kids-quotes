@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div id="img-out" style="display:none;"></div>
+            <div id="img-out"></div>
             <!-- PREVIEW END -->
 
 
@@ -223,5 +223,11 @@
     #widget{
         display: block;
         margin-bottom: 10px;
+    }
+
+    #img-out{
+        display: none;
+        width: 300px;
+        height: 300px;
     }
 </style>
