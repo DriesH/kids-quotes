@@ -188,4 +188,8 @@
         border: 1px solid #ff0000;
     }
 
+    .add-child {
+        color: white !important;
+    }
+
 </style>

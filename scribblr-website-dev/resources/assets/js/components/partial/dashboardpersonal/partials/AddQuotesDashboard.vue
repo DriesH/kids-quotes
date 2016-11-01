@@ -122,7 +122,8 @@
                         self.formData.append("child_id", self.selectedChild);                 // child_id of current child you're adding quote
 
                         self.$http.post('api/quote', self.formData).then((success_response) => {
-                            console.log(success_response.body)
+                            console.log(success_response.body);
+                            self.closeAddQuoteForm();
                         },
                         (error_response) => {
                             console.log('error')

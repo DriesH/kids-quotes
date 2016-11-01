@@ -25,7 +25,9 @@ class QuoteController extends Controller
 
     public function getOldQuotes($childId)
     {
-        $oldQuotes = Child::find($childId)->quotes()->get();
+        $oldQuotes = Child::find($childId)->quotes()
+                                          ->with('presetBackground')
+                                          ->get();
         return json_encode($oldQuotes);
     }
 
