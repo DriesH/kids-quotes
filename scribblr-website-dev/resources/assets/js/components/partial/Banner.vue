@@ -46,11 +46,11 @@
     }
 
     .banner {
-
         background-position: center;
         background-size: cover;
-        height: 928px;
+        max-height: 928px;
         width: 100%;
+        min-height: 90vh;
     }
 
     .banner-text-area {
@@ -59,7 +59,7 @@
     }
 
     .banner-inner-text {
-        margin-top: 380px;
+        margin-top: 30vh;
     }
 
     #button-undertext {
