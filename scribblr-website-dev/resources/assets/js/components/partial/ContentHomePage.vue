@@ -1,4 +1,5 @@
 <template lang="html">
+    <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
     <div class="content">
         <div class="container">
             <div class="row animated bottom-line" transition="fadeLeft" v-show="showContentText">
@@ -93,6 +94,10 @@
                 else{
                     this.showContentText = false;
                 }
+            },
+            scrollDown: function () {
+                console.log('test');
+                window.scrollTo(0, 750);
             }
         },
         components: {}
@@ -139,6 +144,21 @@
 
     .top-buffer{
         margin-top: 100px;
+    }
+
+    .arrow{
+        text-align: center;
+        font-size: 4em;
+        color: rgb(99, 99, 99);
+    }
+
+    .arrow:hover{
+        cursor: default;
+    }
+
+    .arrow>i:hover{
+        cursor: pointer;
+        color: rgb(149, 149, 149);
     }
 
     /*media queries*/
