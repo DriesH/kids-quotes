@@ -1,78 +1,75 @@
 <template lang="html">
-    <div>
-        <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
-        <div class="content">
-            <div class="container">
-                <div class="row animated bottom-line" transition="fadeLeft" v-show="showContentText">
-                    <div class="col-sm-5 col-md-6">
-                        <div class="titles">
-                            <h1>What is Scribblr?</h1>
-                            <h2>A platform for remembering your little one's quotes.</h2>
-                        </div>
-                        <div class="content-text">
-                            <p>
-                                On Scribblr you can add your children’s best quotes. You can put them
-                                over all kinds of preset backgrounds, or upload your own.
-                                Of course you shouldn't keep these amazing quotes all to yourself.
-                                Share them on social media to put a smile on your friends' faces!
-                            </p>
-                        </div>
+    <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
+    <div class="content">
+        <div class="container">
+            <div class="row animated bottom-line" transition="fadeLeft" v-show="showContentText">
+                <div class="col-sm-5 col-md-6">
+                    <div class="titles">
+                        <h1>What is Scribblr?</h1>
+                        <h2>A platform for remembering your little one's quotes.</h2>
                     </div>
-
-                    <div class="col-sm-7 col-md-5">
-                        <div class="pictures">
-                                <img class="small_pic" src="/img/boat.png" alt="boat quote" />
-                        </div>
+                    <div class="content-text">
+                        <p>
+                            On Scribblr you can add your children’s best quotes. You can put them
+                            over all kinds of preset backgrounds, or upload your own.
+                            Of course you shouldn't keep these amazing quotes all to yourself.
+                            Share them on social media to put a smile on your friends' faces!
+                        </p>
                     </div>
                 </div>
 
-                <div class="row animated top-buffer" transition="fadeRight" v-show="showContentText">
-                    <div class="col-sm-5 col-md-6">
-                        <div class="titles">
-                            <h1>Quick and easy!</h1>
-                        </div>
-                        <div class="content-text">
-                            <p>
-                                You are only a few clicks away from making your children's quotes memories you will never forget. <strong>litteraly.</strong>
-                                Creating an account for personal use is completely free of charge and you can start making quotes immediately.
-                                Create an account. Add your children. Start adding their quotes whenever and wherever you want.
-                                Easy as pie!
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-7 col-md-5">
-                        <div class="pictures">
-                                <img class="small_pic" src="/img/moon.png" alt="boat quote" />
-                        </div>
+                <div class="col-sm-7 col-md-5">
+                    <div class="pictures">
+                        <img class="small_pic" src="/img/boat.png" alt="boat quote" />
                     </div>
                 </div>
-
-                <div class="row animated top-buffer" transition="fadeLeft" v-show="showContentText">
-                    <div class="col-sm-5 col-md-6">
-                        <div class="titles">
-                            <h1>Still want the real thing?</h1>
-                        </div>
-                        <div class="content-text">
-                            <p>
-                                Most people still like having those old photobooks lying around the house.
-                                Well, we at Scribblr share that feeling with you. That why we give you the option
-                                to print the most adorable physical copy of your most favorite quotes.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-7 col-md-5">
-                        <div class="pictures">
-                                <img class="small_pic" src="/img/photo-book.png" alt="boat quote" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <div class="row animated top-buffer" transition="fadeRight" v-show="showContentText">
+                <div class="col-sm-5 col-md-6">
+                    <div class="titles">
+                        <h1>Quick and easy!</h1>
+                    </div>
+                    <div class="content-text">
+                        <p>
+                            You are only a few clicks away from making your children's quotes memories you will never forget. <strong>litteraly.</strong>
+                            Creating an account for personal use is completely free of charge and you can start making quotes immediately.
+                            Create an account. Add your children. Start adding their quotes whenever and wherever you want.
+                            Easy as pie!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-7 col-md-5">
+                    <div class="pictures">
+                        <img class="small_pic" src="/img/moon.png" alt="boat quote" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row animated top-buffer" transition="fadeLeft" v-show="showContentText">
+                <div class="col-sm-5 col-md-6">
+                    <div class="titles">
+                        <h1>Still want the real thing?</h1>
+                    </div>
+                    <div class="content-text">
+                        <p>
+                            Most people still like having those old photobooks lying around the house.
+                            Well, we at Scribblr share that feeling with you. That why we give you the option
+                            to print the most adorable physical copy of your most favorite quotes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-7 col-md-5">
+                    <div class="pictures">
+                        <img class="small_pic" src="/img/photo-book.png" alt="boat quote" />
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
 </template>
 
 <script>
@@ -98,7 +95,6 @@
                 }
             },
             scrollDown: function () {
-                console.log('test');
                 window.scrollTo(0, 750);
             }
         },
