@@ -4,9 +4,6 @@
             <side-bar-dashboard v-bind:current-children.sync="currentChildren" v-bind:selected-child.sync="selectedChild" v-bind:add-quote-show.sync="addQuoteShow" v-bind:edit-child-show.sync="editChildShow"></side-bar-dashboard>
             <body-dashboard-personal v-bind:selected-child.sync="selectedChild" v-bind:edit-child-show.sync="editChildShow"></body-dashboard-personal>
         </div>
-        <script type="text/javascript">
-
-        </script>
     </div>
 </template>
 
@@ -35,7 +32,10 @@
                         return;
 
                     self.selectedChild = 'none';
-                    console.log('clicked', self.selectedChild);
+
+                    $('[id^=child_]').each(function(){
+                        $(this).removeClass('active');
+                    });
                 });
 
             },
@@ -61,9 +61,5 @@
 </script>
 
 <style lang="css">
-    .nav-background{
-        width: 100%;
-        height: 80px;
-        background-color: #2c3e50 !important;
-    }
+
 </style>

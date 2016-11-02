@@ -20,7 +20,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                            <img class="small_pic" src="/img/boat.png" alt="boat quote" />
+                        <img class="small_pic" src="/img/boat.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                            <img class="small_pic" src="/img/moon.png" alt="boat quote" />
+                        <img class="small_pic" src="/img/moon.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
@@ -63,14 +63,13 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                            <img class="small_pic" src="/img/photo-book.png" alt="boat quote" />
+                        <img class="small_pic" src="/img/photo-book.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
 </template>
 
 <script>
@@ -96,7 +95,6 @@
                 }
             },
             scrollDown: function () {
-                console.log('test');
                 window.scrollTo(0, 750);
             }
         },
