@@ -68,7 +68,7 @@ class BusinessVersionController extends Controller
             }
         }
 
-        
+
         return view('business.business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
@@ -122,5 +122,15 @@ class BusinessVersionController extends Controller
             return 'Error';
         }
         return $businessQuotes;
+    }
+
+    public function getThemes () {
+        try{
+            $themes = Theme::all();
+        }
+        catch(\Exception $e) {
+            return 'Error';
+        }
+        return $themes;
     }
 }
