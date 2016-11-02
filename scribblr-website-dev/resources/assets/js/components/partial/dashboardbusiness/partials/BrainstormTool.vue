@@ -1,10 +1,10 @@
 <template lang="html">
     <div>
         <div class="jumbotron" v-if="state == 0">
-            <h1>Brainstorm tool</h1>
-            <h5>(random!)</h5>
+
+            <h1>Completly random!</h1>
             <p>
-                If you are using this tool in a group, we recommend you to use the 'Brain writing' technique. Everyone in the group has a pen and a sheet of paper. Look at the randomly selected quote and write the first thing that comes to mind when you read the quote and see the illustration next to it. When everyone has finished writing down one word or idea, rotate your sheet to the person sitting next to you. Now build off what the others wrote on their paper. Continue doing this until everyone has written on everyone else's sheet. This way, every idea has a different and unique approach to it. This technique combined with the genius way that children think, makes for a great and innovative brainstorm session!
+                Totally random kids quotes from very different themes!
             </p>
             <button type="button" name="button" class="btn btn-default center-block" @click="state=1"><i class="fa fa-lightbulb-o"></i> LET'S GO!</button>
         </div>

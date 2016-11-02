@@ -1,10 +1,9 @@
 <template lang="html">
     <div>
         <div class="jumbotron" v-if="state == 0">
-            <h1>Select themes yourself</h1>
-            <h5>(not so random!)</h5>
+            <h1>Select themes yourself!</h1>
             <p>
-                If you don't want randomness, click here!
+                If you don't want too much randomness, click here!
             </p>
             <button type="button" name="button" class="btn btn-default center-block" @click="state=2"><i class="fa fa-lightbulb-o"></i> LET'S GO!</button>
         </div>
