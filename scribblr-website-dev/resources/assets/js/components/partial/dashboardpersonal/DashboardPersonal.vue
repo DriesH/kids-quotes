@@ -4,9 +4,6 @@
             <side-bar-dashboard v-bind:current-children.sync="currentChildren" v-bind:selected-child.sync="selectedChild" v-bind:add-quote-show.sync="addQuoteShow" v-bind:edit-child-show.sync="editChildShow"></side-bar-dashboard>
             <body-dashboard-personal v-bind:selected-child.sync="selectedChild" v-bind:edit-child-show.sync="editChildShow"></body-dashboard-personal>
         </div>
-        <script type="text/javascript">
-
-        </script>
     </div>
 </template>
 
@@ -64,5 +61,5 @@
 </script>
 
 <style lang="css">
-    
+
 </style>

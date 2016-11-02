@@ -47,7 +47,7 @@ body a{
 text-align: center;
 margin-top: 2em;
 font-size: 3em;
-color: #fff;
+color: #442061;
 }
 .price-head h3 {
     color: #404042;
@@ -56,7 +56,7 @@ color: #fff;
     font-weight: 700;
 }
 .pricing-grids {
-margin: 12% 0;
+margin: 50px 0 650px 0;
 }
 /*----*/
 .pricing-grid1,.pricing-grid2,.pricing-grid3 {

@@ -21,7 +21,7 @@ class PersonalController extends Controller
         }
         else{
             SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
-            return view('personal-dashboard');
+            return view('personal.personal-dashboard');
         }
     }
 

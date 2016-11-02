@@ -36,6 +36,9 @@ Vue.component('AddQuotesDashboard', require('./components/partial/dashboardperso
 Vue.component('EditChild', require('./components/partial/dashboardpersonal/partials/EditChild.vue'));
 
 //partial business
+Vue.component('DashboardBusiness', require('./components/partial/dashboardbusiness/DashboardBusiness.vue'));
+Vue.component('BodyDashboardBusiness', require('./components/partial/dashboardbusiness/partials/BodyDashboardBusiness.vue'));
+
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',

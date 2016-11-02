@@ -1,10 +1,10 @@
 <template lang="html">
     <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
-    <div class="container">
+    <div class="container-fluid">
         <div class="pricing-plans">
             <div class="wrap">
                 <div class="price-head">
-                    <h1>Flat Pricing Tables Design</h1>
+                    <h1>TExt die moet nog kome</h1>
                 </div>
                 <div class="pricing-grids">
                     <div class="pricing-grid1">
