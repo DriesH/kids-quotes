@@ -16,11 +16,11 @@ class PersonalController extends Controller
 {
     function index () {
         if( !Auth::user() ) {
-            SendJavascript::sendJavascript('personal');
-            return view('personal');
+            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
+            return view('homepage');
         }
         else{
-            SendJavascript::sendJavascript('personal');
+            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
             return view('personal-dashboard');
         }
     }

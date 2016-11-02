@@ -64,9 +64,5 @@
 </script>
 
 <style lang="css">
-    .nav-background{
-        width: 100%;
-        height: 80px;
-        background-color: #2c3e50 !important;
-    }
+    
 </style>

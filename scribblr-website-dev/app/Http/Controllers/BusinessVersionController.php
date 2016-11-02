@@ -19,7 +19,7 @@ class BusinessVersionController extends Controller
 {
     public function index () {
         SendJavascript::sendJavascript('business');
-        return view('business');
+        return view('homepage');
     }
 
     public function getData () {

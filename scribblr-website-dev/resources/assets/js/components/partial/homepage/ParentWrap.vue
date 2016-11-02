@@ -1,7 +1,8 @@
 <template lang="html">
     <div>
-        <banner></banner>
-        <content-home-page></content-home-page>
+        <banner v-bind:data.sync="data"></banner>
+        <content-home-page v-if="currentLink == 'personal'"></content-home-page>
+        <business-content-home-page v-if="currentLink == 'business'"></business-content-home-page>
     </div>
 </template>
 
@@ -17,9 +18,9 @@
         },
         computed: {},
         ready () {
-            this.currentLink = window.location.pathname;
+            this.currentLink = window.currentVersion;
             switch (this.currentLink) {
-                case '/personal':
+                case 'personal':
                     this.$http.get('/api/personal/data').then((succes_response) => {
                         this.data = JSON.parse(succes_response.body);
                     },
@@ -27,7 +28,7 @@
                         this.data = JSON.parse(error_callback.body);
                     });
                     break;
-                case '/business':
+                case 'business':
                     this.$http.get('/api/business/data').then((succes_response) => {
                         this.data = JSON.parse(succes_response.body);
                     },

@@ -120,8 +120,6 @@
         font-size: 30px;
     }
 
-    .nav-background {
-        background: rgba(60, 60, 60, 0.6);
-    }
+    
 
 </style>
