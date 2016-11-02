@@ -22,9 +22,13 @@ class BusinessVersionController extends Controller
             SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
             return view('homepage');
         }
-        else{
+        else if(Auth::user()->hasBusiness){
             SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
             return view('business.business-dashboard');
+        }
+        else{
+            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
+            return view('homepage');
         }
     }
 
@@ -64,7 +68,7 @@ class BusinessVersionController extends Controller
             }
         }
 
-        SendJavascript::sendJavascript('business');
+        
         return view('business.business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
@@ -104,9 +108,19 @@ class BusinessVersionController extends Controller
         ]);
     }
 
-
     public function pricing () {
         return view('business.choose-business-edition');
     }
 
+    public function getRandomQuote () {
+        try{
+            $businessQuotes = BusinessQuote::with('quote')
+                                            ->with('theme')
+                                            ->get();
+        }
+        catch(\Exception $e) {
+            return 'Error';
+        }
+        return $businessQuotes;
+    }
 }
