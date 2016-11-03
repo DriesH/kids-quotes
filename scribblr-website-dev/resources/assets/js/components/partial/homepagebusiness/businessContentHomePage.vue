@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="price-box" @click="goToPayment('year')">
+            <div class="price-box" @click="goToPayment('yearly')">
                 <div class="header orange">
                     <h2>Yearly access</h2>
                     <h4><span>$</span>449.99 / year</h4>
@@ -112,6 +112,7 @@
                         window.location.href = '/business/buy?version=permanent';
                         break;
                 }
+
             }
         },
         components: {}
