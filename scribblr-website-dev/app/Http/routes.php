@@ -31,6 +31,7 @@ Route::post('api/child/{id}/edit', 'ChildController@update');
 
 Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
+Route::get('api/quote/delete/{quoteId}', 'QuoteController@deleteQuote');
 
 
 

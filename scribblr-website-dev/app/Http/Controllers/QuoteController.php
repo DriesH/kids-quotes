@@ -98,4 +98,26 @@ class QuoteController extends Controller
 
         return json_encode($newQuote);
     }
+
+    public function deleteQuote($quoteId) {
+
+        $deletedQuote = Quote::where('id', $quoteId)->first();
+
+        unlink( 'pictures/uploadedbackground/withquote/' . $deletedQuote->backgr_with_quote ); //Delete img with baked in quote always
+
+        //check if there is an unbaked custom bg
+        if( $deletedQuote->preset_background_id == 0 ) {
+            unlink( 'pictures/uploadedbackground/withoutquote/' . $deletedQuote->backgr_with_quote );
+        }
+
+        $deletedQuote->backgr_with_quote = null;
+        $deletedQuote->child_id = null;
+        $deletedQuote->preset_background_id = null;
+
+        $deletedQuote->save();
+
+        $deletedQuote->delete();
+
+
+    }
 }

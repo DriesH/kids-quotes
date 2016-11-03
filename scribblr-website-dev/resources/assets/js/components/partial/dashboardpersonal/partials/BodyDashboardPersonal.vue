@@ -42,8 +42,18 @@
                                     <img class="img-responsive" v-else
                                     :src="path + quote.backgr_with_quote" />
 
-                                    <button class="share btn btn-warning" type="button" name="name" value="Share" @click="shareImage(quote.backgr_with_quote)"><i class="fa fa-pencil"></i> Share</button>
-                                    <button class="delete btn btn-danger" type="button" name="name" value="Delete"><i class="fa fa-trash-o"></i> Delete</button>
+                                    <button class="share btn btn-primary"
+                                        type="button"
+                                        name="share"
+                                        value="Share"
+                                        @click="shareImage(quote.backgr_with_quote)">
+                                        <i class="fa fa-facebook-official"></i> Share
+                                    </button>
+                                    <button class="delete btn btn-danger"
+                                        type="button"
+                                        name="name"
+                                        value="Delete"
+                                        @click="deleteQuote(quote.id)"><i class="fa fa-trash-o"></i> Delete</button>
 
                                     <span class="quote_text">
                                         <p class="quoteBox">{{ quote.quote }}</p>
@@ -118,6 +128,12 @@
                 if(this.selectedChild !== 'none') {
                     this.getPreviousQuotes(this.selectedChild, this.previousQuotes);
                 }
+                //remove add show if switching from child
+                this.addQuoteShow = false;
+                var sideBar = document.getElementById('sidebar-div');
+                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                }
             },
             editChildShow: function (value) {
                 console.log('editChild in body dashboard is: ' + value);
@@ -140,10 +156,17 @@
             shareImage: function(imageWithExt){
                 var shareurl = 'scribblr.local/img/' + imageWithExt;
                 $('head').append('<meta property="og:title" content="Coaches Wisdom Telesummit" />');
-
                 window.open('https://www.facebook.com/sharer/sharer.php?u='+escape(shareurl)+'&t='+document.title, '',
                 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
                 return false;
+            },
+            deleteQuote: function (id) {
+                this.$http.get('api/quote/delete/' + id).then((success_response) => {
+                    var index = this.previousQuotes.findIndex(x => x.id==id); //get the index of the object in the array.
+                    this.previousQuotes.splice(index, 1); //delete the object in the array.
+                }, (error_response) => {
+                    console.log(error_response.body);
+                });
             }
         },
         components: {}

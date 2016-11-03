@@ -14,10 +14,11 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('backgr_with_quote');
+            $table->string('backgr_with_quote')->nullable();
             $table->mediumText('quote');
-            $table->integer('child_id');
-            $table->integer('preset_background_id');
+            $table->integer('child_id')->nullable();
+            $table->integer('preset_background_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
