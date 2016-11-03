@@ -2,6 +2,21 @@
     <div class="col-md-6 col-sm-6 sidebar">
         <!-- FORM START -->
         <form class="col-md-8 pull-right" @submit="addQuote($event)">
+
+            <div class="alert alert-danger" role="alert" v-if="errors.errorQuote">
+                <p>
+                    {{ errors.messageQuote }}
+                </p>
+            </div>
+
+            <div class="alert alert-danger" role="alert" v-if="errors.errorPicture">
+                <p>
+                    {{ errors.messagePicture }}
+                </p>
+            </div>
+
+
+
             <!-- NAME START -->
             <div class="form-group">
                 <label for="quoteName">Quote: </label>
@@ -40,7 +55,7 @@
 
             <!-- PREVIEW START -->
             <div class="quote" id="widget" v-if="backgroundChosen !== 'custom'">
-                <img v-bind:src="prefixDefault + defaultImgs[backgroundChosen]" id="target" />
+                <img v-bind:src="previewBackgroundIMG = prefixDefault + defaultImgs[backgroundChosen]" id="target" />
                 <span class="quote_text"><p class="quoteBox">{{ quote.quoteName }}</p></span>
             </div>
 
@@ -76,6 +91,12 @@
                     quoteName: '',
                     backgrImg: ''
                 },
+                errors: {
+                    errorQuote: false,
+                    messageQuote: 'You have to fill in a quote! Silly you!',
+                    errorPicture: false,
+                    messagePicture: 'You have to add a picture! Otherwise your quote will be so... empty!'
+                },
                 previewBackgroundIMG: '',
                 backgroundChosen: 0,
                 formData: new FormData(),
@@ -85,6 +106,13 @@
         },
         ready () {
 
+        },
+        watch: {
+            backgroundChosen: function(value) {
+                if(value === 'custom'){
+                    this.previewBackgroundIMG = '';
+                }
+            }
         },
         methods: {
             closeAddQuoteForm: function () {
@@ -96,40 +124,56 @@
             },
             addQuote: function(event) {
                 event.preventDefault();
-                var fileInputEl = $("#testimage");
-                var self = this;
-                html2canvas($("#widget"), {
-                    onrendered: function(canvas) {
-                        var theCanvas = canvas;
-                        document.body.appendChild(canvas);
+                if(this.quote.quoteName !== '' && this.previewBackgroundIMG !== '') {
+                    this.errors.errorQuote = false;
+                    this.errors.errorPicture = false;
+                    var fileInputEl = $("#testimage");
+                    var self = this;
+                    html2canvas($("#widget"), {
+                        onrendered: function(canvas) {
+                            var theCanvas = canvas;
+                            document.body.appendChild(canvas);
 
-                        console.log('html2canvas');
+                            console.log('html2canvas');
 
-                        // Convert and download as image
-                        $("#img-out").append(canvas);
-                        self.canvas = document.getElementsByTagName('canvas')[0].toDataURL();
-                        // Clean up
-                        //document.body.removeChild(canvas);
-                        if(self.backgroundChosen === 'custom') {
-                            self.formData.append("backgroundImage", fileInputEl[0].files[0]);  // custom image
+                            // Convert and download as image
+                            $("#img-out").append(canvas);
+                            self.canvas = document.getElementsByTagName('canvas')[0].toDataURL();
+                            // Clean up
+                            //document.body.removeChild(canvas);
+                            if(self.backgroundChosen === 'custom') {
+                                self.formData.append("backgroundImage", fileInputEl[0].files[0]);  // custom image
+                            }
+                            else{
+                                self.formData.append("backgroundImage", self.defaultImgs[self.backgroundChosen]);
+                            }
+
+                            self.formData.append("imgWithQuote", self.canvas);                    // quote + image base64
+                            self.formData.append("quote", self.quote.quoteName);                  // quote raw text
+                            self.formData.append("child_id", self.selectedChild);                 // child_id of current child you're adding quote
+
+                            self.$http.post('api/quote', self.formData).then((success_response) => {
+                                console.log(success_response.body);
+                                self.closeAddQuoteForm();
+                            },
+                            (error_response) => {
+                                console.log('error')
+                            });
                         }
-                        else{
-                            self.formData.append("backgroundImage", self.defaultImgs[self.backgroundChosen]);
-                        }
-
-                        self.formData.append("imgWithQuote", self.canvas);                    // quote + image base64
-                        self.formData.append("quote", self.quote.quoteName);                  // quote raw text
-                        self.formData.append("child_id", self.selectedChild);                 // child_id of current child you're adding quote
-
-                        self.$http.post('api/quote', self.formData).then((success_response) => {
-                            console.log(success_response.body);
-                            self.closeAddQuoteForm();
-                        },
-                        (error_response) => {
-                            console.log('error')
-                        });
-                    }
-                });
+                    });
+                }
+                else if( this.quote.quoteName === '' &&  this.previewBackgroundIMG === '' ) {
+                    this.errors.errorQuote = true;
+                    this.errors.errorPicture = true;
+                }
+                else if(this.quote.quoteName === '' ){
+                    this.errors.errorQuote = true;
+                    this.errors.errorPicture = false;
+                }
+                else if(this.previewBackgroundIMG === '' ) {
+                    this.errors.errorQuote = false;
+                    this.errors.errorPicture = true;
+                }
             },
             //preview the backgroun that was uploaded by the user
             previewBackground: function(event) {
