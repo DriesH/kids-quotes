@@ -1,58 +1,92 @@
 <template lang="html">
     <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
-    <div class="container-fluid">
-        <div class="pricing-plans">
-            <div class="wrap">
-                <div class="price-head">
-                    <h1>TExt die moet nog kome</h1>
+
+    <div class="container top-buffer">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Think like a child again.</h1>
+                <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
+                    We all know that we lose creativity with age. With Scribblr Business edition we give your company the ability to think divergently over different ideas or problems. This way, you won't get stuck with the same old stereotypical answer, but you will start innovating!
+                    Combine your company's knowledge with the creativity captured inside a child's mind to create the ideas of the future.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive" src="/img/happy-child-bubbles.jpg" alt="happy child blowing bubles" />
+            </div>
+        </div>
+
+
+        <div class="row top-buffer">
+            <div class="col-md-8">
+                <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Let the storm rage on!</h1>
+                <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
+                    Probably the best way to come up with new and innovative ideas is to think like a child. Easier said than done. NOT.
+                    Scribblr Business comes with an amazing brainstorm tool for you and your company to use.
+                    Each quote you get to see comes with an astonishing kid-like illustration drawn by our design team. Each and every one unique
+                    and linked to the quote you see.
+                    As you can see, we provide everything your company needs to come up with divergent ideas and perspectives.
+                    No more excuses!
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive" src="/img/happy-child-paint.jpg" alt="happy child with paint on her face" />
+            </div>
+        </div>
+
+        <div class="row top-buffer">
+            <div class="col-md-8">
+                <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Quality or quantity? We go for both!</h1>
+                <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
+                    Sribblr Business edition is packed with an immense amount of quotes provided from real children and their parents.
+                    Our professional team is constantly updating the list of quotes to make sure you only get to see the quotes that might
+                    be of value for a brainstorm.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive" src="/img/happy-child-money.jpg" alt="happy child holding money" />
+            </div>
+        </div>
+
+
+
+
+        <div class="row top-buffer">
+            <h1 style="color:black; text-align:center; font-weight: bold; font-size: 3em;">Check out our plans!</h1>
+        </div>
+
+        <div class="row top-buffer" id='price-wrap'>
+            <div class="price-box" @click="goToPayment('monthly')">
+                <div class="header blue">
+                    <h2>Monthly access</h2>
+                    <h4><span>$</span>49.99 / month</h4>
                 </div>
-                <div class="pricing-grids">
-                    <div class="pricing-grid1">
-                        <div class="price-value">
-                            <h2><a href="/business/buy?version=monthly">Monthly access</a></h2>
-                            <h5><span class="currency">$</span><span class="price">49.99</span><label> / month</lable></h5>
-                            <div class="sale-box">
-                                <span class="on_sale title_shop">POPULAR</span>
-                            </div>
-                        </div>
-                        <div class="price-bg">
-                            <div class="cart1">
-                                <a class="popup-with-zoom-anim" href="/business/buy?version=monthly">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pricing-grid2">
-                        <div class="price-value two">
-                            <h3><a href="/business/buy?version=yearly">Yearly access</a></h3>
-                            <h5><span class="currency">$</span><span class="price">499.99</span><label> / year</lable></h5>
-                            <div class="sale-box two">
-                            </div>
-                        </div>
-                        <div class="price-bg">
-                            <div class="cart2">
-                                <a class="popup-with-zoom-anim" href="/business/buy?version=yearly">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pricing-grid3">
-                        <div class="price-value three">
-                            <h4><a href="/business/buy?version=permanent">Permanent access</a></h4>
-                            <h5><span class="currency">$</span><span class="price">4999.99</span><label> once</lable></h5>
-                            <div class="sale-box three">
-                                <span class="on_sale title_shop">EXCLUSIVE</span>
-                            </div>
-                        </div>
-                        <div class="price-bg">
-                            <div class="cart3">
-                                <a class="popup-with-zoom-anim" href="/business/buy?version=permanent">Purchase</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clear"> </div>
+                <div class="body-price-box">
+                    <h3>Hmm, looks good to me...</h3>
+                </div>
+            </div>
+
+            <div class="price-box" @click="goToPayment('year')">
+                <div class="header orange">
+                    <h2>Yearly access</h2>
+                    <h4><span>$</span>449.99 / year</h4>
+                </div>
+                <div class="body-price-box">
+                    <h3>I need this one!</h3>
+
+                </div>
+            </div>
+
+            <div class="price-box" @click="goToPayment('permanent')">
+                <div class="header grey">
+                    <h2>Permanent access</h2>
+                    <h4><span>$</span>4999.99</h4>
+                </div>
+                <div class="body-price-box">
+                    <h3>I must have this!</h3>
+
                 </div>
             </div>
         </div>
-        <!--//End-pricingplans-->
     </div>
 </template>
 
@@ -68,6 +102,19 @@
         methods: {
             scrollDown: function () {
                 window.scrollTo(0, 750);
+            },
+            goToPayment: function (plan) {
+                switch (plan) {
+                    case 'monthly':
+                        window.location.href = '/business/buy?version=monthly';
+                        break;
+                    case 'yearly':
+                        window.location.href = '/business/buy?version=yearly';
+                        break;
+                    case 'permanent':
+                        window.location.href = '/business/buy?version=permanent';
+                        break;
+                }
             }
         },
         components: {}
@@ -88,5 +135,8 @@
     .arrow>i:hover{
         cursor: pointer;
         color: rgb(149, 149, 149);
+    }
+    .top-buffer{
+        margin-top: 100px;
     }
 </style>

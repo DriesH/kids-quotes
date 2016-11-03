@@ -111,18 +111,20 @@
 
     .titles{
         font-family: "Source Sans Pro", sans-serif;
-        color: #442061;
+        color: #442061 !important;
         font-weight: bold !important;
     }
 
     .titles h1 {
         font-size: 50px;
         font-weight: bold !important;
+        color: #442061 !important;
     }
 
     .titles h2 {
         font-size: 35px;
         font-weight: bold !important;
+        color: #442061 !important;
     }
 
     .content-text {
