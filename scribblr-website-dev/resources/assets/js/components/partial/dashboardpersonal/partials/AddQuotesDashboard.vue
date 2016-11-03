@@ -139,7 +139,7 @@
                 <i class="fa fa-ban"></i>
                 Cancel
             </button>
-            
+
             <!-- BUTTONS END -->
         </form>
         <!-- FORM END -->
