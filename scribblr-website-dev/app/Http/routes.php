@@ -49,4 +49,8 @@ Route::get('api/business/themes', 'BusinessVersionController@getThemes');
 //personal edition
 Route::get('personal', 'PersonalController@index');
 
+//personal api
 Route::get('api/personal/data', 'PersonalController@getData');
+
+//share
+Route::get('img/{imgName}', 'ShareController@getImage');
