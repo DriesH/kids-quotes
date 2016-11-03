@@ -42,7 +42,7 @@
                                     <img class="img-responsive" v-else
                                     :src="path + quote.backgr_with_quote" />
 
-                                    <button class="update btn btn-warning" type="button" name="name" value="Update"><i class="fa fa-pencil"></i> Update</button>
+                                    <button class="share btn btn-warning" type="button" name="name" value="Share" @click="shareImage(quote.backgr_with_quote)"><i class="fa fa-pencil"></i> Share</button>
                                     <button class="delete btn btn-danger" type="button" name="name" value="Delete"><i class="fa fa-trash-o"></i> Delete</button>
 
                                     <span class="quote_text">
@@ -80,7 +80,6 @@
                 :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
             <!-- ADDQUOTES END -->
 
-
         </div>
     </div>
 </template>
@@ -111,7 +110,9 @@
             }
         },
         computed: {},
-        ready () {},
+        ready () {
+
+        },
         watch:{
             selectedChild: function (value) {
                 if(this.selectedChild !== 'none') {
@@ -135,6 +136,14 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            },
+            shareImage: function(imageWithExt){
+                var shareurl = 'scribblr.local/img/' + imageWithExt;
+                $('head').append('<meta property="og:title" content="Coaches Wisdom Telesummit" />');
+
+                window.open('https://www.facebook.com/sharer/sharer.php?u='+escape(shareurl)+'&t='+document.title, '',
+                'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+                return false;
             }
         },
         components: {}
@@ -219,7 +228,7 @@
         position:absolute;
         display:none;
     }
-    .show-image button.update {
+    .show-image button.share {
         top:45%;
         left:15%;
         box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);

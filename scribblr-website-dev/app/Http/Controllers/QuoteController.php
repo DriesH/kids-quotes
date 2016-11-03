@@ -60,10 +60,10 @@ class QuoteController extends Controller
 
         if(!is_string($bckgrimg)){
             //get extension
-            $ext = $bckgrimg->getClientOriginalExtension();
+            //$ext = $bckgrimg->getClientOriginalExtension();
 
             //rename file and save
-            $newName = $uniqueImgID . "." . $ext;
+            $newName = $uniqueImgID . ".png";
 
             //resize + save image without quote to path
             Image::make($bckgrimg->getRealPath())->resize(500,500)->save($pathWithout . $newName);
