@@ -2,13 +2,19 @@
     <nav class="navbar-fixed-top" :class="{ 'nav-background' : navBarBackground }">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
                     Scribblr
                     <span class="sub-logo">{{ ajaxData[0].name }}</span>
 
                 </a>
             </div>
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-right login-reg">
                     <li><a :href="ajaxData[0].switchHref">{{ ajaxData[0].switchHrefText }}</a></li>
                     <li class="devider">|</li>
@@ -123,5 +129,7 @@
     .nav-background {
         background: rgba(60, 60, 60, 0.6);
     }
+
+
 
 </style>

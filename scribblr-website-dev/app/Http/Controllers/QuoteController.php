@@ -91,6 +91,11 @@ class QuoteController extends Controller
             ]);
         }
 
-        return $newQuote;
+        $newQuote = Quote::where('quote', $quote)
+                                          ->with('presetBackground')
+                                          ->get();
+
+
+        return json_encode($newQuote);
     }
 }

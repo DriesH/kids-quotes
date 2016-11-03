@@ -33,6 +33,7 @@ Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 
 
+
 //business edition
 Route::get('business', 'BusinessVersionController@index');
 Route::get('business/dashboard', 'BusinessVersionController@bussinesDashboard')->middleware('hasBusiness');
@@ -41,6 +42,8 @@ Route::get('business/pricing', 'BusinessVersionController@pricing');
 
 //bussiness api
 Route::get('api/business/data', 'BusinessVersionController@getData');
+Route::get('api/business/randomquote', 'BusinessVersionController@getRandomQuote');
+Route::get('api/business/themes', 'BusinessVersionController@getThemes');
 
 //personal edition
 Route::get('personal', 'PersonalController@index');

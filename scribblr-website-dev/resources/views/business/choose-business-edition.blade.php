@@ -936,7 +936,7 @@ button::-moz-focus-inner {
 						<div class="pricing-grid1">
 							<div class="price-value">
 									<h2><a href="/business/buy?version=monthly">Monthly access</a></h2>
-									<h5><span class="currency">$</span><span class="price">49.99</span><lable> / month</lable></h5>
+									<h5><span class="currency">$</span><span class="price">49.99</span><label> / month</lable></h5>
 									<div class="sale-box">
                                     <span class="on_sale title_shop">POPULAR</span>
 							</div>
@@ -951,7 +951,7 @@ button::-moz-focus-inner {
 						<div class="pricing-grid2">
 							<div class="price-value two">
 								<h3><a href="/business/buy?version=yearly">Yearly access</a></h3>
-								<h5><span class="currency">$</span><span class="price">499.99</span><lable> / year</lable></h5>
+								<h5><span class="currency">$</span><span class="price">499.99</span><label> / year</lable></h5>
 								<div class="sale-box two">
 							</div>
 
@@ -965,7 +965,7 @@ button::-moz-focus-inner {
 						<div class="pricing-grid3">
 							<div class="price-value three">
 								<h4><a href="/business/buy?version=permanent">Permanent access</a></h4>
-								<h5><span class="currency">$</span><span class="price">4999.99</span><lable> once</lable></h5>
+								<h5><span class="currency">$</span><span class="price">4999.99</span><label> once</lable></h5>
 								<div class="sale-box three">
                                 <span class="on_sale title_shop">EXCLUSIVE</span>
 							</div>

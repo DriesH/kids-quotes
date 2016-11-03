@@ -1,0 +1,31 @@
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main {
+    padding-top: 95px;
+    min-height: 100vh;
+    max-height: 100%;
+}
+
+.jumbotron>h1,h2,h3,h4,h5,h6 {
+    color: black;
+    text-align: center;
+    margin: 0;
+
+}
+.jumbotron>h1,h2,h3 {
+    font-family: 'Lobster', cursive;
+    color: rgb(70, 70, 70);
+}
+
+
+.jumbotron>p {
+    margin-top: 15px;
+    color: black;
+    text-align: center;
+    font-weight: 400;
+}

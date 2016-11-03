@@ -2,22 +2,51 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row placeholders">
             <div v-if='selectedChild !== "none"'>
-                <!-- ADD QUOTE BTN START -->
-                <div class="add-btn col-md-12 col-xs-12 col-lg-12">
-                    <button type="button" name="button" class="btn btn-success center-block" @click="openAddQuoteForm"><i class="fa fa-plus"></i>  ADD NEW QUOTE (id: {{selectedChild}})</button>
+                <!-- ADD QUOTE BTN START  -->
+                <div class="add-btn">
+                    <button
+                    type="button"
+                    name="button"
+                    class="btn btn-success center-block"
+                    @click="openAddQuoteForm">
+                        <i class="fa fa-plus"></i>  ADD NEW QUOTE (id: {{selectedChild}})
+                    </button>
                 </div>
                 <!-- ADD QUOTE BTN END -->
 
                 <!-- GRID WITH QUOTES START -->
-                <div id="grid" data-columns v-if="previousQuotes.length > 0">
-                    <div v-for="quote in previousQuotes">
-                        <div class="quote">
-                            <img :src="path + quote.preset_background.background_filename" />
-                            <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
-                        </div>
+                <waterfall
+                    :line="-"
+                    :line-gap="400"
+                    :min-line-gap="200"
+                    :max-line-gap="400"
+                    :interval="50"
+                    :watch="previousQuotes"
+                >
+                    <waterfall-slot
+                        v-for="quote in previousQuotes"
+                        :width="380"
+                        :height="380"
+                        :move-class="item-move"
+                    >
 
-                    </div>
-                </div>
+                        <div class="item"
+                            v-if="previousQuotes.length > 0"
+                        >
+
+                            <div class="quote">
+                                <img class="img-responsive" v-if="quote.preset_background"
+                                :src="path + quote.preset_background.background_filename" />
+                                <img class="img-responsive" v-else
+                                :src="path + quote.backgr_with_quote" />
+
+                                <span class="quote_text">
+                                    <p class="quoteBox">{{ quote.quote }}</p>
+                                </span>
+                            </div>
+                        </div>
+                    </waterfall-slot>
+                </waterfall>
                 <!-- GRID WITH QUOTES END -->
             </div>
 
@@ -27,11 +56,22 @@
 
 
             <!-- ADDQUOTES START -->
-            <add-quotes-dashboard v-if="addQuoteShow" style="z-index: 100;" v-bind:add-quote-show.sync="addQuoteShow" v-bind:selected-child.sync="selectedChild" :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+            <add-quotes-dashboard
+            style="z-index: 100;"
+            v-if="addQuoteShow"
+            v-bind:add-quote-show.sync="addQuoteShow"
+            v-bind:selected-child.sync="selectedChild"
+            v-bind:previous-quotes.sync="previousQuotes"
+            :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
             <!-- ADDQUOTES START -->
-            <edit-child v-if="editChildShow" style="z-index: 100;" v-bind:edit-child-show.sync="editChildShow" v-bind:selected-child.sync="selectedChild" :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
+            <edit-child
+            style="z-index: 100;"
+            v-if="editChildShow"
+            v-bind:edit-child-show.sync="editChildShow"
+            v-bind:selected-child.sync="selectedChild"
+            :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
             <!-- ADDQUOTES END -->
 
 
@@ -41,16 +81,26 @@
 
 <script>
     export default {
-        props: [
-            'selectedChild',
-            'editChildShow'
-        ],
+        props: {
+            selectedChild: {
+                type: [String, Number]
+            },
+            editChildShow: {
+                type: Boolean,
+                default: false
+            },
+            getPreviousQuotes: {
+                type: Function
+            },
+            previousQuotes: {
+                type: Array
+            },
+        },
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
-                previousQuotes: [],
+
                 path: 'pictures/uploadedbackground/withoutquote/',
-                editChildShow: false,
                 initSal: false
             }
         },
@@ -59,11 +109,14 @@
         watch:{
             selectedChild: function (value) {
                 if(this.selectedChild !== 'none') {
-                    this.getPreviousQuotes(this.selectedChild);
+                    this.getPreviousQuotes(this.selectedChild, this.previousQuotes);
                 }
             },
             editChildShow: function (value) {
                 console.log('editChild in body dashboard is: ' + value);
+            },
+            previousQuotes: function(value) {
+
             }
         },
         methods: {
@@ -73,24 +126,6 @@
                 if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
                     sideBar.className += ' overlay-sidebar-shadow';
                 }
-            },
-            getPreviousQuotes: function (id) {
-                //get previous quotes from current child
-                this.$http.get('/api/quote/' + id).then((success_response) => {
-                    this.previousQuotes = JSON.parse(success_response.body);
-                    //anders werkt het niet
-                    var self = this;
-                    this.initSal = false;
-                    setTimeout(function() {
-                        if(!self.initSal) {
-                            salvattore.init();
-                            self.initSal = true;
-                        }
-                    }, 0);
-                },
-                (error_response) => {
-                    alert('error');
-                });
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
@@ -149,4 +184,10 @@
     .quote_text:hover{
         cursor: default;
     }
+
+    .item-move {
+        transition: all .5s cubic-bezier(.55,0,.1,1);
+        -webkit-transition: all .5s cubic-bezier(.55,0,.1,1);
+    }
+
 </style>

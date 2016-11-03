@@ -18,8 +18,18 @@ use JavaScript;
 class BusinessVersionController extends Controller
 {
     public function index () {
-        SendJavascript::sendJavascript('business');
-        return view('business');
+        if( !Auth::user() ) {
+            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
+            return view('homepage');
+        }
+        else if(Auth::user()->hasBusiness){
+            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
+            return view('business.business-dashboard');
+        }
+        else{
+            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
+            return view('homepage');
+        }
     }
 
     public function getData () {
@@ -52,14 +62,14 @@ class BusinessVersionController extends Controller
                                             ->get();
 
                 } catch (ModelNotFoundException $e) {
-                    return view('businessDashboard')->with('message', 'Filter could not be applied, try again.');
+                    return view('business.businessDashboard')->with('message', 'Filter could not be applied, try again.');
                 }
 
             }
         }
 
-        SendJavascript::sendJavascript('business');
-        return view('business-dashboard', [
+
+        return view('business.business-dashboard', [
             "businessQuotes" => $businessQuotes,
             "themes" => $themes
         ]);
@@ -91,16 +101,36 @@ class BusinessVersionController extends Controller
         $paypalFee = $price * $paypalFeePercent + 0.3;
         $roundedPaypalFee = round($paypalFee, 2);
 
-        return view('pay-with-paypal', [
+        return view('business.pay-with-paypal', [
             "price" => $price,
             "paypalFee" => $roundedPaypalFee,
             "chosenVersion" => $chosenVersion
         ]);
     }
 
-
     public function pricing () {
-        return view('choose-business-edition');
+        return view('business.choose-business-edition');
     }
 
+    public function getRandomQuote () {
+        try{
+            $businessQuotes = BusinessQuote::with('quote')
+                                            ->with('theme')
+                                            ->get();
+        }
+        catch(\Exception $e) {
+            return 'Error';
+        }
+        return $businessQuotes;
+    }
+
+    public function getThemes () {
+        try{
+            $themes = Theme::all();
+        }
+        catch(\Exception $e) {
+            return 'Error';
+        }
+        return $themes;
+    }
 }

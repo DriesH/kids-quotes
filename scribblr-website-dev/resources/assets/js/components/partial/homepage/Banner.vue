@@ -1,13 +1,13 @@
 <template lang="html">
-    <div class="banner" :style="{backgroundImage: 'url(../img/' + $parent.data[0].bannerBg + ')'}">
+    <div class="banner" :style="{backgroundImage: 'url(../img/' + data[0].bannerBg + ')'}">
         <div class="banner-text-area">
             <div class="container">
                 <div class="banner-inner-text">
-                    <h1 v-if="showBannerText" transition="fadeDown"><span>{{ $parent.data[0].bannerMsg }}</span></h1>
+                    <h1 v-if="showBannerText" transition="fadeDown"><span>{{ data[0].bannerMsg }}</span></h1>
                     <div id="button-undertext" v-if="showButton" transition="fadeDown">
                         <a class="signup-btn" href="/register">Sign up now.</a>
                         <p>
-                            <span>{{ $parent.data[0].subTextBtn  }}</span>
+                            <span>{{ data[0].subTextBtn  }}</span>
                         </p>
                     </div>
                 </div>
@@ -18,6 +18,9 @@
 
 <script>
     export default {
+        props: [
+            'data'
+        ],
         data () {
             return {
                 showBannerText: false,
@@ -28,8 +31,6 @@
         ready () {
             this.showBannerText = true;
             this.showButton = true;
-
-
         },
         attached () {},
         methods: {},
