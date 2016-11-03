@@ -43,6 +43,7 @@
             v-if="addQuoteShow"
             v-bind:add-quote-show.sync="addQuoteShow"
             v-bind:selected-child.sync="selectedChild"
+            v-bind:previous-quotes.sync="previousQuotes"
             :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
@@ -95,6 +96,9 @@
             },
             editChildShow: function (value) {
                 console.log('editChild in body dashboard is: ' + value);
+            },
+            previousQuotes: function(value) {
+                salvattore.rescanMediaQueries();
             }
         },
         methods: {

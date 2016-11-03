@@ -1,16 +1,26 @@
 <template lang="html">
     <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar" id='sidebar-div'>
         <!-- SIDEBARLIST START -->
-        <ul class="nav nav-sidebar" id="childrenList" v-if='!addChildShow'>
+        <ul v-if='!addChildShow'
+        class="nav nav-sidebar"
+        id="childrenList">
+
             <li v-for="child in currentChildrenArray">
-                <a @click="selectedChildFn(child.id)" id='child_{{ child.id }}'>
+                <a @click="selectedChildFn(child.id)"
+                id='child_{{ child.id }}'>
+
                     {{ child.childName }}
-                    <i v-if='selectedChild==child.id' style="position:absolute;left:10px;" class="fa fa-cog pull-left cog-wheel fontawesomefix" @click="openEditChildForm"></i>
+
+                    <i v-if='selectedChild==child.id'
+                    @click="openEditChildForm"
+                    style="position:absolute;left:10px;"
+                    class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
                 </a>
             </li>
 
             <li>
-                <a @click="openAddChildForm" class="add-child">
+                <a @click="openAddChildForm"
+                class="add-child">
                     <i class="fa fa-plus"></i> ADD CHILD
                 </a>
             </li>
@@ -158,13 +168,23 @@
                 this.newChild.dateOfBirth = '';
             },
             selectedChildFn: function (id) {
-                this.selectedChild = id;
-                var childListItem = document.getElementById('child_' + id);
-                var activeChildListItem = document.getElementsByClassName('active');
-                for(var i = 0; i < activeChildListItem.length; i++) {
-                    activeChildListItem[i].className = '';
+                if(this.selectedChild === id) {
+                    this.selectedChild = 'none'
+                    var childListItem = document.getElementById('child_' + id);
+                    var activeChildListItem = document.getElementsByClassName('active');
+                    for(var i = 0; i < activeChildListItem.length; i++) {
+                        activeChildListItem[i].className = '';
+                    }
                 }
-                childListItem.className += 'active';
+                else{
+                    this.selectedChild = id;
+                    var childListItem = document.getElementById('child_' + id);
+                    var activeChildListItem = document.getElementsByClassName('active');
+                    for(var i = 0; i < activeChildListItem.length; i++) {
+                        activeChildListItem[i].className = '';
+                    }
+                    childListItem.className += 'active';
+                }
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;

@@ -36,18 +36,6 @@
         methods: {
             init: function () {
                 this.getChildren();
-                var self = this;
-                $('#sidebar-div').on('click', function(e) {
-                    if (e.target !== this)
-                        return;
-
-                    self.selectedChild = 'none';
-
-                    $('[id^=child_]').each(function(){
-                        $(this).removeClass('active');
-                    });
-                });
-
             },
             getChildren: function () {
                 this.$http.get('/api/child').then((success_response) => {
@@ -61,7 +49,7 @@
                     alert('Error, we could not find your children. We are sorry... But in the meantime, look at this puppy!');
                 });
             },
-            getPreviousQuotes: function (id, previousQuotes) {
+            getPreviousQuotes: function (id) {
                 //get previous quotes from current child
                 this.$http.get('/api/quote/' + id).then((success_response) => {
                     this.previousQuotes = JSON.parse(success_response.body);
