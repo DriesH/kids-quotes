@@ -350,18 +350,22 @@
   </div>
 
   <div class="paypal__footer">
-      <div class="">
-          <script src="https://www.paypalobjects.com/api/button.js?"
-               data-merchant="braintree"
-               data-id="paypal-button"
-               data-button="checkout"
-               data-color="blue"
-               data-size="medium"
-               data-shape="pill"
-               data-button_type="submit"
-               data-button_disabled="false"
-           ></script>
-      </div>
+      <form action="" method="POST">
+          {{ csrf_field() }}
+          <input type="hidden" name="payment_confirmed" value="1">
+          <div class="">
+              <script src="https://www.paypalobjects.com/api/button.js?"
+                   data-merchant="braintree"
+                   data-id="paypal-button"
+                   data-button="checkout"
+                   data-color="blue"
+                   data-size="medium"
+                   data-shape="pill"
+                   data-button_type="submit"
+                   data-button_disabled="false"
+               ></script>
+          </div>
+      </form>
   </div>
 </div>
 

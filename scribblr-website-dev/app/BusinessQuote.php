@@ -13,6 +13,6 @@ class BusinessQuote extends Model
 
     public function quote()
     {
-        return $this->belongsTo('App\Quote');
+        return $this->belongsTo('App\Quote')->withTrashed();
     }
 }

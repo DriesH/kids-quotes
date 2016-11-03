@@ -2,7 +2,7 @@
     <div>
         <div class="jumbotron" v-if="state == 0">
 
-            <h1>Completly random!</h1>
+            <h1>Completely random!</h1>
             <p>
                 Totally random kids quotes from very different themes!
             </p>
