@@ -44,16 +44,20 @@
 
 <script>
     export default {
-        props: [
-            'selectedChild',
-            'editChildShow'
-        ],
+        props: {
+            selectedChild: {
+                type: [String, Number]
+            },
+            editChildShow: {
+                type: Boolean,
+                default: false
+            }
+        },
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
                 previousQuotes: [],
                 path: 'pictures/uploadedbackground/withoutquote/',
-                editChildShow: false,
                 initSal: false
             }
         },
