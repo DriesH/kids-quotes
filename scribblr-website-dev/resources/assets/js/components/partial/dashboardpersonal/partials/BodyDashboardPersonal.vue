@@ -18,15 +18,15 @@
                 <div id="grid" data-columns v-if="previousQuotes.length > 0">
                     <div v-for="quote in previousQuotes">
                         <div class="quote">
-
                             <img v-if="quote.preset_background"
                             :src="path + quote.preset_background.background_filename" />
                             <img v-else
                             :src="path + quote.backgr_with_quote" />
 
-                            <span class="quote_text"><p class="quoteBox">{{ quote.quote }}</p></span>
+                            <span class="quote_text">
+                                <p class="quoteBox">{{ quote.quote }}</p>
+                            </span>
                         </div>
-
                     </div>
                 </div>
                 <!-- GRID WITH QUOTES END -->

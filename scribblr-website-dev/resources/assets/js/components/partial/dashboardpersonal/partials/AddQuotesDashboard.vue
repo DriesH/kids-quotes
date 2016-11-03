@@ -3,13 +3,17 @@
         <!-- FORM START -->
         <form class="col-md-8 pull-right" @submit="addQuote($event)">
 
-            <div class="alert alert-danger" role="alert" v-if="errors.errorQuote">
+            <div v-if="errors.errorQuote"
+            class="alert alert-danger"
+            role="alert">
                 <p>
                     {{ errors.messageQuote }}
                 </p>
             </div>
 
-            <div class="alert alert-danger" role="alert" v-if="errors.errorPicture">
+            <div v-if="errors.errorPicture"
+            class="alert alert-danger"
+            role="alert" >
                 <p>
                     {{ errors.messagePicture }}
                 </p>
@@ -20,7 +24,14 @@
             <!-- NAME START -->
             <div class="form-group">
                 <label for="quoteName">Quote: </label>
-                <input type="text" class="form-control" id="quoteName" placeholder="Your quote..." v-model="quote.quoteName" maxlength="105">
+
+                <input v-model="quote.quoteName"
+                type="text"
+                class="form-control"
+                id="quoteName"
+                placeholder="Your quote..."
+                maxlength="105">
+
             </div>
             <!-- NAME END -->
 
@@ -28,12 +39,30 @@
             <h4>Select a default background, or choose a custom one.</h4>
             <div class="cc-selector-2">
                 <div v-for="defaultImg in defaultImgs">
-                    <input id="{{defaultImg}}" type="radio" name="background" value="{{defaultImgs.indexOf(defaultImg)}}" v-model="backgroundChosen"/>
-                    <label class="drinkcard-cc" for="{{defaultImg}}" v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"></label>
+
+                    <input v-model="backgroundChosen"
+                    id="{{defaultImg}}"
+                    type="radio"
+                    name="background"
+                    value="{{defaultImgs.indexOf(defaultImg)}}" />
+
+                    <label v-bind:style="{ backgroundImage : 'url(' + prefixDefault + defaultImg + ')' }"
+                    class="drinkcard-cc"
+                    for="{{defaultImg}}"></label>
+
                 </div>
                 <div style="height:80px;">
-                    <input id="customBackground" type="radio" name="background" value="custom" v-model="backgroundChosen"/>
-                    <label class="drinkcard-cc pull-left" for="customBackground" style="background-image: url(/pictures/custom-add.png)"></label>
+
+                    <input v-model="backgroundChosen"
+                    id="customBackground"
+                    type="radio"
+                    name="background"
+                    value="custom" />
+
+                    <label style="background-image: url(/pictures/custom-add.png)"
+                    class="drinkcard-cc pull-left"
+                    for="customBackground" ></label>
+
                     <p class="pull-left" style="padding-top:25px;">
                         Custom background
                     </p>
@@ -42,27 +71,58 @@
             <!-- DEFAULT BACKGROUND SELECTOR END -->
 
             <!-- CUSTOM BACKGROUND START -->
-            <div id="upload_file" v-if="backgroundChosen === 'custom'">
+            <div v-if="backgroundChosen === 'custom'"
+            id="upload_file">
+
                 <div class="form-group">
-                    <label for="backgr_img"><h4>Select an image</h4></label>
-                    <input @change="previewBackground" name="backgr_img" type="file" v-model="quote.backgrImg" id="testimage">
+
+                    <label for="backgr_img">
+                        <h4>Select an image</h4>
+                    </label>
+
+                    <input @change="previewBackground"
+                    v-model="quote.backgrImg"
+                    name="backgr_img"
+                    type="file"
+                    id="testimage">
+
                 </div>
+
                 <div class="alert alert-info" role="alert">
                     <strong>Heads up!</strong> For best image quality, use an image with a <strong>1:1</strong> aspect ratio (eg. 400x400).
                 </div>
+
             </div>
             <!-- CUSTOM BACKGROUND END -->
 
             <!-- PREVIEW START -->
-            <div class="quote" id="widget" v-if="backgroundChosen !== 'custom'">
-                <img v-bind:src="previewBackgroundIMG = prefixDefault + defaultImgs[backgroundChosen]" id="target" />
-                <span class="quote_text"><p class="quoteBox">{{ quote.quoteName }}</p></span>
+            <div v-if="backgroundChosen !== 'custom'"
+            class="quote"
+            id="widget">
+
+                <img v-bind:src="previewBackgroundIMG = prefixDefault + defaultImgs[backgroundChosen]"
+                id="target" />
+
+                <span class="quote_text">
+                    <p class="quoteBox">
+                        {{ quote.quoteName }}
+                    </p>
+                </span>
+
             </div>
 
             <div v-else>
                 <div class="quote grid-item" id="widget">
-                    <img :src="previewBackgroundIMG" class="uploaded_img" />
-                    <span class="quote_text"><p class="quoteBox">{{ quote.quoteName }}</p></span>
+
+                    <img :src="previewBackgroundIMG"
+                    class="uploaded_img" />
+
+                    <span class="quote_text">
+                        <p class="quoteBox">
+                            {{ quote.quoteName }}
+                        </p>
+                    </span>
+
                 </div>
             </div>
 
@@ -70,8 +130,16 @@
             <!-- PREVIEW END -->
 
             <!-- BUTTONS START -->
-            <button type="submit" name="add" class="btn btn-success" ><i class="fa fa-plus"></i> Add Quote</button>
-            <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeAddQuoteForm"><i class="fa fa-ban"></i> Cancel</button>
+            <button type="submit" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
+
+            <button @click="closeAddQuoteForm"
+            type="button"
+            class="btn btn-danger pull-right"
+            name="hide" >
+                <i class="fa fa-ban"></i>
+                Cancel
+            </button>
+            
             <!-- BUTTONS END -->
         </form>
         <!-- FORM END -->
