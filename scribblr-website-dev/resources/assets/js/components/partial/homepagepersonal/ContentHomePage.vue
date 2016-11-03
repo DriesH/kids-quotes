@@ -20,7 +20,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                        <img class="small_pic" src="/img/boat.png" alt="boat quote" />
+                        <img class="img-responsive" src="/img/boat.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="content-text">
                         <p>
-                            You are only a few clicks away from making your children's quotes memories you will never forget. <strong>litteraly.</strong>
+                            You are only a few clicks away from making your children's quotes memories you will never forget. <strong>Litteraly.</strong>
                             Creating an account for personal use is completely free of charge and you can start making quotes immediately.
                             Create an account. Add your children. Start adding their quotes whenever and wherever you want.
                             Easy as pie!
@@ -42,12 +42,12 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                        <img class="small_pic" src="/img/moon.png" alt="boat quote" />
+                        <img class="img-responsive" src="/img/moon.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
 
-            <div class="row animated top-buffer" transition="fadeLeft" v-show="showContentText">
+            <div class="row animated top-buffer bottom-buffer" transition="fadeLeft" v-show="showContentText">
                 <div class="col-sm-5 col-md-6">
                     <div class="titles">
                         <h1>Still want the real thing?</h1>
@@ -63,7 +63,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                        <img class="small_pic" src="/img/photo-book.png" alt="boat quote" />
+                        <img class="img-responsive" src="/img/photo-book.png" alt="boat quote" />
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
 
     .titles{
         font-family: "Source Sans Pro", sans-serif;
-        color: #442061;
+        color: black !important;
         font-weight: bold !important;
     }
 
@@ -128,17 +128,12 @@
     .content-text {
         font-family: "Source Sans Pro", sans-serif;
         color: black;
-        font-weight: 600;
         width: 520px;
-        font-size: 16px;
+        font-size:1.5em;
+        font-weight: normal;
     }
 
-    .small_pic {
-        width: 50%;
-        height: auto;
-        right: 20px;
-        position: absolute;
-    }
+
 
     .top-buffer{
         margin-top: 100px;
@@ -157,6 +152,10 @@
     .arrow>i:hover{
         cursor: pointer;
         color: rgb(149, 149, 149);
+    }
+
+    .bottom-buffer {
+        margin-bottom: 150px;
     }
 
     /*media queries*/
