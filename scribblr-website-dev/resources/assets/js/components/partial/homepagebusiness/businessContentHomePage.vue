@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <img class="img-responsive" src="/img/happy-child-bubbles.jpg" alt="happy child blowing bubles" />
+                <img class="img-responsive img-rounded" src="/img/happy-child-bubbles.jpg" alt="happy child blowing bubles" />
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <img class="img-responsive" src="/img/happy-child-paint.jpg" alt="happy child with paint on her face" />
+                <img class="img-responsive img-rounded" src="/img/happy-child-paint.jpg" alt="happy child with paint on her face" />
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <img class="img-responsive" src="/img/happy-child-money.jpg" alt="happy child holding money" />
+                <img class="img-responsive img-rounded" src="/img/happy-child-money.jpg" alt="happy child holding money" />
             </div>
         </div>
 
@@ -121,7 +121,7 @@
     }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
     .arrow{
         text-align: center;
         font-size: 4em;
@@ -139,4 +139,88 @@
     .top-buffer{
         margin-top: 100px;
     }
+    /* wrapper around the 3 boxes */
+    #price-wrap{
+        margin-top: 25px;
+        margin-bottom: 100px;
+        display: flex;
+    }
+
+    /* pricebox */
+    .price-box{
+        height: 300px;
+        width: 33.33333%;
+        margin: 0 5px 0 5px;
+        transition: 0.5s height, 0.5s transform;
+    }
+    .price-box:first-child {
+        background-color: #2196F3;
+    }
+    .price-box:nth-child(2) {
+        background-color: #FF5722;
+    }
+    .price-box:last-child {
+        background-color: #9E9E9E;
+    }
+
+    .price-box:hover{
+        height: 350px;
+        transform: translateY(-20px);
+        cursor: pointer;
+    }
+
+    .price-box:hover > .body-price-box h3 {
+        background-color: white;
+    }
+
+    /* header */
+    .header{
+        height: 200px;
+        padding: 20% 5%;
+    }
+    .header>h1,h2,h3,h4,h5,h6 {
+        text-align: center;
+        margin: 0;
+        color: white;
+        font-weight: normal;
+    }
+    .blue {
+        background-color: #0D47A1;
+        border: none;
+        color: white;
+    }
+    .orange {
+        background-color: #BF360C;
+        border: none;
+        color: white;
+    }
+    .grey {
+        background-color: #212121;
+        border: none;
+        color: white;
+    }
+    .header h4{
+        position: relative;
+    }
+    .header h4 span{
+        font-size: 10px;
+    }
+
+    .body-price-box{
+        width: 100%;
+        height: auto;
+    }
+
+    .body-price-box>h3{
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 100;
+        border-radius: 5px;
+        background-color: #d4d4d4;
+        color: black;
+        padding: 10px;
+        width: 80%;
+    }
+
 </style>
