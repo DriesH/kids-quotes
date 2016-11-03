@@ -2,8 +2,8 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row placeholders">
             <div v-if='selectedChild !== "none"'>
-                <!-- ADD QUOTE BTN START -->
-                <div class="add-btn col-md-12 col-xs-12 col-lg-12">
+                <!-- ADD QUOTE BTN START  -->
+                <div class="add-btn">
                     <button
                     type="button"
                     name="button"
@@ -15,20 +15,38 @@
                 <!-- ADD QUOTE BTN END -->
 
                 <!-- GRID WITH QUOTES START -->
-                <div id="grid" data-columns v-if="previousQuotes.length > 0">
-                    <div v-for="quote in previousQuotes">
-                        <div class="quote">
-                            <img v-if="quote.preset_background"
-                            :src="path + quote.preset_background.background_filename" />
-                            <img v-else
-                            :src="path + quote.backgr_with_quote" />
+                <waterfall
+                    :line="-"
+                    :line-gap="400"
+                    :min-line-gap="200"
+                    :max-line-gap="400"
+                    :interval="50"
+                    :watch="previousQuotes"
+                >
+                    <waterfall-slot
+                        v-for="quote in previousQuotes"
+                        :width="380"
+                        :height="380"
+                        :move-class="item-move"
+                    >
 
-                            <span class="quote_text">
-                                <p class="quoteBox">{{ quote.quote }}</p>
-                            </span>
+                        <div class="item"
+                            v-if="previousQuotes.length > 0"
+                        >
+
+                            <div class="quote">
+                                <img class="img-responsive" v-if="quote.preset_background"
+                                :src="path + quote.preset_background.background_filename" />
+                                <img class="img-responsive" v-else
+                                :src="path + quote.backgr_with_quote" />
+
+                                <span class="quote_text">
+                                    <p class="quoteBox">{{ quote.quote }}</p>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </waterfall-slot>
+                </waterfall>
                 <!-- GRID WITH QUOTES END -->
             </div>
 
@@ -98,7 +116,7 @@
                 console.log('editChild in body dashboard is: ' + value);
             },
             previousQuotes: function(value) {
-                salvattore.rescanMediaQueries();
+
             }
         },
         methods: {
@@ -166,4 +184,10 @@
     .quote_text:hover{
         cursor: default;
     }
+
+    .item-move {
+        transition: all .5s cubic-bezier(.55,0,.1,1);
+        -webkit-transition: all .5s cubic-bezier(.55,0,.1,1);
+    }
+
 </style>

@@ -52,16 +52,7 @@
             getPreviousQuotes: function (id) {
                 //get previous quotes from current child
                 this.$http.get('/api/quote/' + id).then((success_response) => {
-                    this.previousQuotes = JSON.parse(success_response.body);
-                    //anders werkt het niet
-                    var self = this;
-                    this.initSal = false;
-                    setTimeout(function() {
-                        if(!self.initSal) {
-                            salvattore.init();
-                            self.initSal = true;
-                        }
-                    }, 0);
+                    this.previousQuotes = JSON.parse(success_response.body);    
                 },
                 (error_response) => {
                     alert('error');
