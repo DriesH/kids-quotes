@@ -43,6 +43,7 @@ Route::get('business/pricing', 'BusinessVersionController@pricing');
 //bussiness api
 Route::get('api/business/data', 'BusinessVersionController@getData');
 Route::get('api/business/randomquote', 'BusinessVersionController@getRandomQuote');
+Route::get('api/business/themes', 'BusinessVersionController@getThemes');
 
 //personal edition
 Route::get('personal', 'PersonalController@index');

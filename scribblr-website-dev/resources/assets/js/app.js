@@ -38,6 +38,8 @@ Vue.component('EditChild', require('./components/partial/dashboardpersonal/parti
 //partial business
 Vue.component('DashboardBusiness', require('./components/partial/dashboardbusiness/DashboardBusiness.vue'));
 Vue.component('BodyDashboardBusiness', require('./components/partial/dashboardbusiness/partials/BodyDashboardBusiness.vue'));
+Vue.component('BrainstormTool', require('./components/partial/dashboardbusiness/partials/BrainstormTool.vue'));
+Vue.component('ThemesTool', require('./components/partial/dashboardbusiness/partials/ThemesTool.vue'));
 
 
 Vue.transition('slideIn', {
