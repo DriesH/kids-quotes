@@ -38,6 +38,7 @@ Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 Route::get('business', 'BusinessVersionController@index');
 Route::get('business/dashboard', 'BusinessVersionController@bussinesDashboard')->middleware('hasBusiness');
 Route::get('business/buy', 'BusinessVersionController@buy');
+Route::post('business/buy', 'BusinessVersionController@confirmPayment');
 Route::get('business/pricing', 'BusinessVersionController@pricing');
 
 //bussiness api

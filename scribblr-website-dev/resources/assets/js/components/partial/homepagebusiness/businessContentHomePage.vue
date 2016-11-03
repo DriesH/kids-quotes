@@ -47,9 +47,6 @@
             </div>
         </div>
 
-
-
-
         <div class="row top-buffer">
             <h1 style="color:black; text-align:center; font-weight: bold; font-size: 3em;">Check out our plans!</h1>
         </div>
