@@ -56,14 +56,16 @@
             },
             randomize: function() {
                 var randomkey = Math.floor((Math.random() * this.data.length));
-                if( this.previousKey !== randomkey ) {
-                    this.quote = this.data[randomkey].quote.quote;
-                    this.theme = this.data[randomkey].theme.theme_name;
-                    this.illustration = this.data[randomkey].illustration_name;
-                    this.previousKey = randomkey;
-                }
-                else{
-                    this.randomize();
+                if(this.data.length > 0) {
+                    if( this.previousKey !== randomkey ) {
+                        this.quote = this.data[randomkey].quote.quote;
+                        this.theme = this.data[randomkey].theme.theme_name;
+                        this.illustration = this.data[randomkey].illustration_name;
+                        this.previousKey = randomkey;
+                    }
+                    else{
+                        this.randomize();
+                    }
                 }
             }
         },

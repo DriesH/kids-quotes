@@ -35,14 +35,20 @@
                         >
 
                             <div class="quote">
-                                <img class="img-responsive" v-if="quote.preset_background"
-                                :src="path + quote.preset_background.background_filename" />
-                                <img class="img-responsive" v-else
-                                :src="path + quote.backgr_with_quote" />
+                                <div class="show-image">
 
-                                <span class="quote_text">
-                                    <p class="quoteBox">{{ quote.quote }}</p>
-                                </span>
+                                    <img class="img-responsive" v-if="quote.preset_background"
+                                    :src="path + quote.preset_background.background_filename" />
+                                    <img class="img-responsive" v-else
+                                    :src="path + quote.backgr_with_quote" />
+
+                                    <button class="update btn btn-warning" type="button" name="name" value="Update"><i class="fa fa-pencil"></i> Update</button>
+                                    <button class="delete btn btn-danger" type="button" name="name" value="Delete"><i class="fa fa-trash-o"></i> Delete</button>
+
+                                    <span class="quote_text">
+                                        <p class="quoteBox">{{ quote.quote }}</p>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </waterfall-slot>
@@ -57,21 +63,21 @@
 
             <!-- ADDQUOTES START -->
             <add-quotes-dashboard
-            style="z-index: 100;"
-            v-if="addQuoteShow"
-            v-bind:add-quote-show.sync="addQuoteShow"
-            v-bind:selected-child.sync="selectedChild"
-            v-bind:previous-quotes.sync="previousQuotes"
-            :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
+                style="z-index: 100;"
+                v-if="addQuoteShow"
+                v-bind:add-quote-show.sync="addQuoteShow"
+                v-bind:selected-child.sync="selectedChild"
+                v-bind:previous-quotes.sync="previousQuotes"
+                :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
             <!-- ADDQUOTES START -->
             <edit-child
-            style="z-index: 100;"
-            v-if="editChildShow"
-            v-bind:edit-child-show.sync="editChildShow"
-            v-bind:selected-child.sync="selectedChild"
-            :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
+                style="z-index: 100;"
+                v-if="editChildShow"
+                v-bind:edit-child-show.sync="editChildShow"
+                v-bind:selected-child.sync="selectedChild"
+                :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
             <!-- ADDQUOTES END -->
 
 
@@ -189,5 +195,40 @@
         transition: all .5s cubic-bezier(.55,0,.1,1);
         -webkit-transition: all .5s cubic-bezier(.55,0,.1,1);
     }
+
+
+    .show-image {
+        position: relative;
+        float:left;
+        margin:5px;
+        border-radius: 10px;
+
+    }
+
+    .show-image img {
+        transition: 0.5s filter;
+    }
+
+    .show-image:hover img{
+        -webkit-filter: grayscale(100%);
+    }
+    .show-image:hover button {
+        display: block;
+    }
+    .show-image button {
+        position:absolute;
+        display:none;
+    }
+    .show-image button.update {
+        top:45%;
+        left:15%;
+        box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
+    }
+    .show-image button.delete {
+        top:45%;
+        right:15%;
+        box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
+    }
+
 
 </style>
