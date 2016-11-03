@@ -20,5 +20,5 @@
 
 
 @section('scripts')
-    <script src="js/salvattore.js" charset="utf-8"></script>
+    
 @endsection

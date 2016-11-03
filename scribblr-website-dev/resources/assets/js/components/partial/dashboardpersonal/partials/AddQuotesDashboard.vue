@@ -2,7 +2,7 @@
     <div class="col-md-6 col-sm-6 sidebar">
         <!-- FORM START -->
         <form class="col-md-8 pull-right" @submit="addQuote($event)">
-
+            <!-- ERROR FIELD START -->
             <div v-if="errors.errorQuote"
             class="alert alert-danger"
             role="alert">
@@ -18,8 +18,7 @@
                     {{ errors.messagePicture }}
                 </p>
             </div>
-
-
+            <!-- ERROR FIELD END -->
 
             <!-- NAME START -->
             <div class="form-group">
@@ -149,10 +148,17 @@
 
 <script>
     export default {
-        props: [
-            'addQuoteShow',
-            'selectedChild'
-        ],
+        props: {
+            addQuoteShow: {
+                type: Boolean
+            },
+            selectedChild: {
+                type: [String, Number]
+            },
+            previousQuotes: {
+                type: Array
+            }
+        },
         data () {
             return {
                 quote: {
@@ -223,6 +229,7 @@
                             self.$http.post('api/quote', self.formData).then((success_response) => {
                                 console.log(success_response.body);
                                 self.closeAddQuoteForm();
+                                self.previousQuotes.push(JSON.parse(success_response.body)[0]);
                             },
                             (error_response) => {
                                 console.log('error')
