@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="col-md-6 col-sm-6 sidebar">
+    <div class="col-md-9 col-sm-10 sidebar">
         <!-- FORM START -->
         <form class="col-md-8 pull-right" @submit="addQuote($event)">
             <!-- ERROR FIELD START -->
@@ -193,7 +193,7 @@
                 this.addQuoteShow = false;
                 var sideBar = document.getElementById('sidebar-div');
                 if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
                 }
             },
             addQuote: function(event) {

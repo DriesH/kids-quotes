@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
         <div class="row placeholders">
             <div v-if='selectedChild !== "none"'>
                 <!-- ADD QUOTE BTN START  -->
@@ -136,13 +136,13 @@
                 this.addQuoteShow = false;
                 var sideBar = document.getElementById('sidebar-div');
                 if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
                 }
                 //remove edit form if switching from child
                 this.editChildShow = false;
                 var sideBar = document.getElementById('sidebar-div');
                 if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
                 }
             },
             editChildShow: function (value) {

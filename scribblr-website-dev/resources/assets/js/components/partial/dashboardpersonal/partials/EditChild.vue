@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="col-md-6 col-sm-6 sidebar">
         <!-- FORM START -->
-        <form class="col-md-8 pull-right">
+        <form class="col-md-6 col-sm-6 pull-right">
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -101,7 +101,7 @@
                 this.editChildShow = false;
                 var sideBar = document.getElementById('sidebar-div');
                 if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
                 }
             },
             clearEditChildForm: function () {
