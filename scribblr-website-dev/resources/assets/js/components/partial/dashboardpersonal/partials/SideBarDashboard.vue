@@ -30,6 +30,14 @@
                     <i class="fa fa-plus"></i> ADD CHILD
                 </a>
             </li>
+
+            <li>
+                <a href="/personal/photobook/buy" target="_blank"
+                    class="buy-book">
+
+                    <i class="fa fa-shopping-cart"></i> BUY BOOK
+                </a>
+            </li>
         </ul>
         <!-- SIDEBARLIST END -->
 
@@ -184,8 +192,6 @@
 </script>
 
 <style lang="css" scoped>
-
-
     form {
         background: #496988;
         border-radius: 5px;
@@ -197,8 +203,6 @@
         border: 1px solid #ff0000;
     }
 
-    .add-child {
-        color: white !important;
-    }
+
 
 </style>

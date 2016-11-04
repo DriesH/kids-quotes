@@ -30,4 +30,13 @@ class PersonalController extends Controller
         return json_encode($data);
     }
 
+    function showBookBuilder() {
+        SendJavascript::sendJavascript('personal');
+        return view('personal.photobook');
+    }
+
+    function buyBook() {
+
+    }
+
 }
