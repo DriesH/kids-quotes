@@ -106,12 +106,23 @@
     <nav-bar></nav-bar>
 
     <div class="container top-buffer">
+
+        <div class="jumbotron">
+            <h1>Let's start printing!</h1>
+            <p>
+                Please select a minimum of {{$minQuotesPerPrint}} and a maximum of {{$maxQuotesPerPrint}} quotes to get your printed version.
+            </p>
+        </div>
+        @if ( session()->has('message'))
+            <div class="alert alert-warning alert-dismissable">{{ session()->get('message') }}</div>
+        @endif
         <form class="" action="" method="POST">
+            {{ csrf_field() }}
             @foreach ($allQuotes as $quote)
                 <div class="col-md-4">
                     <div class="quote">
                         <div class="show-image">
-                            <input type="checkbox" id="myCheckbox{{$quote->id}}" />
+                            <input type="checkbox" id="myCheckbox{{$quote->id}}" name="myCheckbox{{$quote->id}}" />
                             <label for="myCheckbox{{$quote->id}}">
                                 <img class="img-responsive" src="/pictures/uploadedbackground/withquote/{{ $quote->backgr_with_quote }}" />
                             </label>
@@ -119,6 +130,7 @@
                     </div>
                 </div>
             @endforeach
+            <input type="submit" name="print!" value="Print!">
         </form>
     </div>
 
