@@ -1,5 +1,11 @@
 <template lang="html">
-    <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar" id='sidebar-div'>
+    <div :class="{ 'col-sm-4 col-md-3' : !addChildShow,
+        'col-sm-6 col-md-4 overlay-sidebar-shadow' : addChildShow ,
+        'col-sm-4 col-md-3' : !addQuoteShow,
+        'col-sm-6 col-md-4 overlay-sidebar-shadow' : addQuoteShow}"
+        class="sidebar"
+        id='sidebar-div'>
+
         <!-- SIDEBARLIST START -->
         <ul v-if='!addChildShow'
             class="nav nav-sidebar"
@@ -9,17 +15,18 @@
                 <a @click.self="selectedChildFn(child.id)"
                     id='child_{{ child.id }}'>
 
-                    <span v-if="child.gender === 'boy'">
+                    <span v-if="child.gender === 'boy'" @click.self="selectedChildFn(child.id)">
                         <i class="fa fa-mars"></i> {{ child.childName }}
                     </span>
-                    <span v-else>
+                    <span v-else @click.self="selectedChildFn(child.id)">
                         <i class="fa fa-venus"></i> {{ child.childName }}
                     </span>
 
                     <i v-if='selectedChild==child.id'
                         @click="openEditChildForm"
                         style="position:absolute;left:10px;"
-                        class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
+                        class="fa fa-cog pull-left cog-wheel fontawesomefix">
+                    </i>
                 </a>
             </li>
 
