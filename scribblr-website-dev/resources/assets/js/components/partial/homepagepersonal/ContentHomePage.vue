@@ -42,7 +42,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                        <img class="img-responsive" src="/img/moon.png" alt="boat quote" />
+                        <img class="img-responsive" src="/img/moon.png" alt="moon quote" />
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
                 <div class="col-sm-7 col-md-5">
                     <div class="pictures">
-                        <img class="img-responsive" src="/img/photo-book.png" alt="boat quote" />
+                        <img class="img-responsive photobook" src="/img/photobook.jpg" alt="scribblr personal photobook" />
                     </div>
                 </div>
             </div>
@@ -103,6 +103,9 @@
 </script>
 
 <style lang="css" scoped>
+    .photobook {
+        border-radius:30px;
+    }
     .content {
         margin-top: 100px;
         height: 924px;

@@ -8,6 +8,7 @@
             v-bind:edit-child-show.sync="editChildShow"></side-bar-dashboard>
 
             <body-dashboard-personal
+            v-bind:current-children.sync="currentChildren"
             v-bind:selected-child.sync="selectedChild"
             v-bind:edit-child-show.sync="editChildShow"
             v-bind:get-previous-quotes="getPreviousQuotes"
@@ -42,7 +43,7 @@
                     this.$set('currentChildren', JSON.parse(success_response.body));
                     this.$nextTick(function(){
                         this.$broadcast('data-arrived', JSON.parse(success_response.body));
-                        //console.log('Working.');
+                        
                     });
                 },
                 (error_response) => {
@@ -52,7 +53,7 @@
             getPreviousQuotes: function (id) {
                 //get previous quotes from current child
                 this.$http.get('/api/quote/' + id).then((success_response) => {
-                    this.previousQuotes = JSON.parse(success_response.body);    
+                    this.previousQuotes = JSON.parse(success_response.body);
                 },
                 (error_response) => {
                     alert('error');

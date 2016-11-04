@@ -47,7 +47,6 @@
                 newChild: {
                     childName: '',
                     gender: '',
-                    dateOfBirth: ''
                 },
                 currentChildren: [
 
@@ -89,8 +88,6 @@
                     this.errorMessagesForm = [];
                     error_response.body.childName != undefined && this.errorMessagesForm.push(error_response.body.childName);
                     error_response.body.gender != undefined && this.errorMessagesForm.push(error_response.body.gender);
-                    error_response.body.dateOfBirth != undefined && this.errorMessagesForm.push(error_response.body.dateOfBirth);
-                    console.log(this.errorMessagesForm);
                 });
             },
             showHideForm: function () {
@@ -98,7 +95,6 @@
                 this.newChild = {
                     childName: '',
                     gender: '',
-                    dateOfBirth: ''
                 };
                 this.addingNewChild = !this.addingNewChild;
             },

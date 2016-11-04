@@ -208,7 +208,7 @@
                             var theCanvas = canvas;
                             document.body.appendChild(canvas);
 
-                            console.log('html2canvas');
+
 
                             // Convert and download as image
                             $("#img-out").append(canvas);
@@ -227,7 +227,6 @@
                             self.formData.append("child_id", self.selectedChild);                 // child_id of current child you're adding quote
 
                             self.$http.post('api/quote', self.formData).then((success_response) => {
-                                console.log(success_response.body);
                                 self.closeAddQuoteForm();
                                 self.previousQuotes.push(JSON.parse(success_response.body)[0]);
                             },
@@ -252,7 +251,6 @@
             },
             //preview the backgroun that was uploaded by the user
             previewBackground: function(event) {
-                console.log('hey i got called!');
                 var input = event.target;
 
                 if (input.files && input.files[0]) {

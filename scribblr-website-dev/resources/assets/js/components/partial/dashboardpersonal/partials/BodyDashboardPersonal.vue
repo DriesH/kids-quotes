@@ -85,6 +85,7 @@
             <edit-child
                 style="z-index: 100;"
                 v-if="editChildShow"
+                v-bind:current-children.sync="currentChildren"
                 v-bind:edit-child-show.sync="editChildShow"
                 v-bind:selected-child.sync="selectedChild"
                 :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
@@ -110,6 +111,9 @@
             previousQuotes: {
                 type: Array
             },
+            currentChildren: {
+                type: Array
+            }
         },
         data () {
             return {
@@ -134,9 +138,15 @@
                 if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
                     sideBar.className = 'col-sm-3 col-md-2 sidebar';
                 }
+                //remove edit form if switching from child
+                this.editChildShow = false;
+                var sideBar = document.getElementById('sidebar-div');
+                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className = 'col-sm-3 col-md-2 sidebar';
+                }
             },
             editChildShow: function (value) {
-                console.log('editChild in body dashboard is: ' + value);
+
             },
             previousQuotes: function(value) {
 
@@ -165,7 +175,7 @@
                     var index = this.previousQuotes.findIndex(x => x.id==id); //get the index of the object in the array.
                     this.previousQuotes.splice(index, 1); //delete the object in the array.
                 }, (error_response) => {
-                    console.log(error_response.body);
+                    alert("error");
                 });
             }
         },

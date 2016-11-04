@@ -112,7 +112,6 @@ return [
 
     'attributes'           => [
         'childName' => 'child name',
-        'dateOfBirth' => 'date of birth'
     ],
 
 ];
