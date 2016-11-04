@@ -15,6 +15,13 @@ use JavaScript;
 
 class PersonalController extends Controller
 {
+
+    function __construct () {
+        $this->maxQuotesPerPrint = 10;
+        $this->minQuotesPerPrint = 1;
+
+    }
+
     function index () {
         if( !Auth::user() ) {
             SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
@@ -44,12 +51,36 @@ class PersonalController extends Controller
 
         SendJavascript::sendJavascript('personal');
         return view('personal.photobook', [
-            'allQuotes' => $allQuotes
+            'allQuotes' => $allQuotes,
+            'maxQuotesPerPrint' => $this->maxQuotesPerPrint,
+            'minQuotesPerPrint' => $this->minQuotesPerPrint
         ]);
     }
 
-    function buyBook() {
+    function buyBook(Request $request) {
+        $amountSelectedQuotes = 0;
+        $requestVars = $request->all();
+        $pricePerQuote = 0.1;
 
+        foreach ($requestVars as $inputVar) {
+            if($inputVar == "on"){
+                $amountSelectedQuotes++;
+            }
+        }
+
+        if($amountSelectedQuotes > $this->maxQuotesPerPrint){
+            return redirect("/personal/photobook/buy")->with("message", "You can only print a maximum of ". $this->maxQuotesPerPrint ." quotes per photobook. Please try again.");
+
+        }
+        elseif ($amountSelectedQuotes < $this->minQuotesPerPrint) {
+            return redirect("/personal/photobook/buy")->with("message", "Please select at least " . $this->minQuotesPerPrint . " quote beforing printing your photobook.");
+        }
+        else {
+            $fee = $amountSelectedQuotes * $pricePerQuote;
+            return view('personal.photobook-payment', [
+                'fee' => $fee
+            ]);
+        }
     }
 
 }
