@@ -30,6 +30,14 @@
                     <i class="fa fa-plus"></i> ADD CHILD
                 </a>
             </li>
+
+            <li>
+                <a @click="buyBook"
+                    class="buy-book">
+
+                    <i class="fa fa-shopping-cart"></i> BUY BOOK
+                </a>
+            </li>
         </ul>
         <!-- SIDEBARLIST END -->
 
@@ -177,6 +185,13 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            },
+            buyBook: function () {
+                this.$http.get('/').then((success_response) => {
+                    
+                }, (error_response) => {
+
+                });
             }
         },
         components: {}
@@ -184,8 +199,6 @@
 </script>
 
 <style lang="css" scoped>
-
-
     form {
         background: #496988;
         border-radius: 5px;
@@ -197,8 +210,6 @@
         border: 1px solid #ff0000;
     }
 
-    .add-child {
-        color: white !important;
-    }
+
 
 </style>

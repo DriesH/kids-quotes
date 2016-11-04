@@ -23,17 +23,6 @@ Route::get('/callback', 'SocialAuthController@callback');
 //handles homepage loading + all child loading to homepage
 Route::get('dashboard', 'ChildController@childrenDashboard');
 
-//API routes
-Route::post('api/child', 'ChildController@newChild');
-Route::get('api/child', 'ChildController@getChildren');
-Route::post('api/child/{id}/edit', 'ChildController@update');
-
-Route::post('api/quote', 'QuoteController@newQuote');
-Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
-Route::get('api/quote/delete/{quoteId}', 'QuoteController@deleteQuote');
-
-
-
 //business edition
 Route::get('business', 'BusinessVersionController@index');
 Route::get('business/dashboard', 'BusinessVersionController@bussinesDashboard')->middleware('hasBusiness');
@@ -51,6 +40,16 @@ Route::get('personal', 'PersonalController@index');
 
 //personal api
 Route::get('api/personal/data', 'PersonalController@getData');
+
+Route::post('api/child', 'ChildController@newChild');
+Route::get('api/child', 'ChildController@getChildren');
+Route::post('api/child/{id}/edit', 'ChildController@update');
+
+Route::post('api/quote', 'QuoteController@newQuote');
+Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
+Route::get('api/quote/delete/{quoteId}', 'QuoteController@deleteQuote');
+
+Routes
 
 //share
 Route::get('img/{imgName}', 'ShareController@getImage');
