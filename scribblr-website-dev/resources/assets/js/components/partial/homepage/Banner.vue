@@ -5,9 +5,11 @@
                 <div class="banner-inner-text">
                     <h1 v-if="showBannerText" transition="fadeDown"><span>{{ data[0].bannerMsg }}</span></h1>
                     <div id="button-undertext" v-if="showButton" transition="fadeDown">
-                        <a class="signup-btn" href="/register">Sign up now.</a>
+
+                        <a v-if="data[0].name == 'Personal'" class="signup-btn" href="/register">Sign up now.</a>
+                        <a v-else style="cursor:pointer;" class="signup-btn" @click="scrollDown($event)">Sign up now.</a>
                         <p>
-                            <span>{{ data[0].subTextBtn  }}</span>
+                            <span>{{ data[0].subTextBtn }}</span>
                         </p>
                     </div>
                 </div>
@@ -33,7 +35,12 @@
             this.showButton = true;
         },
         attached () {},
-        methods: {},
+        methods: {
+            scrollDown: function (e) {
+                e.preventDefault();
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        },
         components: {}
     }
 </script>

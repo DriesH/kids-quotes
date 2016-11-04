@@ -11,10 +11,6 @@
                 <p v-if="errorMessagesForm.gender">
                     {{ errorMessagesForm.gender }}
                 </p>
-
-                <p v-if="errorMessagesForm.dateOfBirth">
-                    {{ errorMessagesForm.dateOfBirth }}
-                </p>
             </div>
             <!-- ALERT BOX END -->
 
@@ -42,13 +38,6 @@
             </div>
             <!-- GENDER END -->
 
-            <!--  DATEOFBIRTH START -->
-            <div class="form-group">
-                <label for="dateOfBirth">Date Of Birth:</label>
-                <input type="text" class="form-control" id="dateOfBirth" placeholder="01-01-2001" v-model="editChild.dateOfBirth" :class="{ 'error-form' : errorMessagesForm.dateOfBirth }">
-            </div>
-            <!-- DATEOFBIRTH END -->
-
             <!-- BUTTONS START -->
             <button type="button" name="add" class="btn btn-success" @click="editChildFn"><i class="fa fa-pencil"></i> Edit</button>
             <button type="button" class="btn btn-danger pull-right" name="hide" @click="closeEditChildForm"><i class="fa fa-ban"></i> Cancel</button>
@@ -61,22 +50,28 @@
 
 <script>
     export default {
-        props: [
-            'editChildShow',
-            'selectedChild'
-        ],
+        props: {
+            currentChildren: {
+                type: Array
+            },
+            editChildShow: {
+                type: Boolean,
+                default: false
+            },
+            selectedChild: {
+                type: [String, Number]
+            },
+        },
         data () {
             return {
                 editChild: {
                     childName: '',
                     gender: '',
-                    dateOfBirth: ''
                 },
                 errorMessagesForm: {
                     error: '',
                     childName: '',
                     gender: '',
-                    dateOfBirth: ''
                 }
 
             }
@@ -84,18 +79,20 @@
         computed: {
 
         },
-        ready () {
-            this.$http.get('api/child/' + this.selectedChild).then((success_response) => {
-                console.log('success edit child: ' + success_response.body);
+        watch: {
 
-            }, (error_response) => {
-                console.log('error edit child:' + success_response.body);
-            });
+        },
+        ready () {
+            var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
+            this.editChild.childName   = this.currentChildren[index].childName;
+            this.editChild.gender      = this.currentChildren[index].gender;
         },
         methods: {
             editChildFn: function () {
-                this.$http.post('api/child/' + this.selectedChild + '/edit/', this.editChild).then((success_response) => {
-                    console.log(success_response.body);
+                this.$http.post('api/child/' + this.selectedChild + '/edit', this.editChild).then((success_response) => {
+                    if( success_response === 1 ){
+
+                    }
                 }, (error_response) => {
 
                 });
@@ -110,7 +107,6 @@
             clearEditChildForm: function () {
                 editChild.childName   = '';
                 editChild.gender      = '';
-                editChild.dateOfBirth = '';
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;

@@ -43,6 +43,7 @@
 
 .add-child {
     background-color: #27ae60 !important;
+    color: white !important;
 }
 
 .add-child:hover {
@@ -56,4 +57,14 @@
 .active {
     background-color: #95a5a6 !important;
     color: #fbfbfb !important;
+}
+
+.buy-book {
+    background-color: #2781ad !important;
+    color: white !important;
+    margin-top: 50px;
+}
+
+.buy-book:hover {
+    background-color: #2b9ed6 !important;
 }

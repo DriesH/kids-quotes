@@ -17,4 +17,8 @@ class Quote extends Model
     public function presetBackground() {
         return $this->belongsTo('App\PresetBackground');
     }
+
+    public function child() {
+        return $this->belongsTo('App\Child');
+    }
 }

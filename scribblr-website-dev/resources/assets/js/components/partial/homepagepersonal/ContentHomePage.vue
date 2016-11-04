@@ -1,5 +1,5 @@
 <template lang="html">
-    <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
+    <a href="#" class="center-block arrow" @click="scrollDown($event)"><i class="fa fa-angle-double-down"></i></a>
     <div class="content">
         <div class="container">
             <div class="row animated bottom-line" transition="fadeLeft" v-show="showContentText">
@@ -94,7 +94,8 @@
                     this.showContentText = false;
                 }
             },
-            scrollDown: function () {
+            scrollDown: function (e) {
+                e.preventDefault();
                 window.scrollTo(0, 750);
             }
         },
