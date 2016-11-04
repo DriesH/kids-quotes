@@ -2,25 +2,31 @@
     <div :class="{ 'col-sm-3 col-md-2' : !addChildShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addChildShow , 'col-sm-3 col-md-2' : !addQuoteShow, 'col-sm-5 col-md-4 overlay-sidebar-shadow' : addQuoteShow}" class="sidebar" id='sidebar-div'>
         <!-- SIDEBARLIST START -->
         <ul v-if='!addChildShow'
-        class="nav nav-sidebar"
-        id="childrenList">
+            class="nav nav-sidebar"
+            id="childrenList">
 
             <li v-for="child in currentChildrenArray">
-                <a @click="selectedChildFn(child.id)"
-                id='child_{{ child.id }}'>
+                <a @click.self="selectedChildFn(child.id)"
+                    id='child_{{ child.id }}'>
 
-                    {{ child.childName }}
+                    <span v-if="child.gender === 'boy'">
+                        <i class="fa fa-mars"></i> {{ child.childName }}
+                    </span>
+                    <span v-else>
+                        <i class="fa fa-venus"></i> {{ child.childName }}
+                    </span>
 
                     <i v-if='selectedChild==child.id'
-                    @click="openEditChildForm"
-                    style="position:absolute;left:10px;"
-                    class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
+                        @click="openEditChildForm"
+                        style="position:absolute;left:10px;"
+                        class="fa fa-cog pull-left cog-wheel fontawesomefix"></i>
                 </a>
             </li>
 
             <li>
                 <a @click="openAddChildForm"
-                class="add-child">
+                    class="add-child">
+
                     <i class="fa fa-plus"></i> ADD CHILD
                 </a>
             </li>
@@ -37,10 +43,6 @@
 
                 <p v-if="errorMessagesForm.gender">
                     {{ errorMessagesForm.gender }}
-                </p>
-
-                <p v-if="errorMessagesForm.dateOfBirth">
-                    {{ errorMessagesForm.dateOfBirth }}
                 </p>
 
             </div>
@@ -70,13 +72,6 @@
             </div>
             <!-- GENDER END -->
 
-            <!--  DATEOFBIRTH START -->
-            <div class="form-group">
-                <label for="dateOfBirth">Date Of Birth:</label>
-                <input type="text" class="form-control" id="dateOfBirth" placeholder="01-01-2001" v-model="newChild.dateOfBirth" :class="{ 'error-form' : errorMessagesForm.dateOfBirth }">
-            </div>
-            <!-- DATEOFBIRTH END -->
-
             <button type="button" name="addChild" class="btn btn-success" @click="addNewChild"><i class="fa fa-plus"></i> add</button>
             <button type="button" name="closeForm" class="btn btn-danger pull-right" @click="closeForm"><i class="fa fa-ban"></i> close</button>
         </form>
@@ -96,7 +91,6 @@
                 newChild: {          //json data for adding new child
                     childName: '',
                     gender: '',
-                    dateOfBirth: ''
                 },
                 addChildShow: false, //show - hide form add child
                 currentChildrenArray: [
@@ -106,7 +100,6 @@
                     error: false,
                     childName: '',
                     gender: '',
-                    dateOfBirth: '',
                 }
 
             }
@@ -115,7 +108,6 @@
         ready () {
             //wait on api data.
             this.$on('data-arrived', function () {
-                console.log(this.currentChildren);
                 for( var i=0; i < this.currentChildren.length; i++ ) {
                     this.currentChildrenArray.push(this.currentChildren[i]);
                 }
@@ -124,7 +116,7 @@
         watch: {
             selectedChild: function (value) {
                 //selectedChildFn(value);
-                console.log('Child id changed to: '+ value);
+                //console.log('Child id changed to: '+ value);
             }
         },
         methods: {
@@ -137,7 +129,6 @@
                 this.clearChildForm();
             },
             openEditChildForm: function () {
-                console.log('openEditChildForm');
                 this.editChildShow = true;
                 var sideBar = document.getElementById('sidebar-div');
                 if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
@@ -156,16 +147,14 @@
                     this.errorMessagesForm.error       = true;
                     this.errorMessagesForm.childName   = error_response.body.childName;
                     this.errorMessagesForm.gender      = error_response.body.gender;
-                    this.errorMessagesForm.dateOfBirth = error_response.body.dateOfBirth;
 
-                    console.log(this.errorMessagesForm);
+                    alert('Error adding a new child...');
                 });
             },
             clearChildForm: function () {
                 //clear form
                 this.newChild.childName   = '';
                 this.newChild.gender      = '';
-                this.newChild.dateOfBirth = '';
             },
             selectedChildFn: function (id) {
                 if(this.selectedChild === id) {

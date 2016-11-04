@@ -41,18 +41,14 @@ class ChildController extends Controller
         $this->validate($request, [
             'childName' => 'required',
             'gender' => 'required',
-            'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
         $childName    = $request->json('childName');
         $gender       = $request->json('gender');
-        $_dateOfBirth = $request->json('dateOfBirth');
-        $dateOfBirth  = date('d-m-Y', strtotime($_dateOfBirth));
         $userId       = Auth::user()->id;
 
         $newChild = Child::create([
             'childName' => $childName,
-            'dateOfBirth' => $dateOfBirth,
             'gender' => $gender,
             'user_id' => $userId
         ]);
@@ -90,17 +86,13 @@ class ChildController extends Controller
         $this->validate($request, [
             'childName' => 'required',
             'gender' => 'required',
-            'dateOfBirth' => 'required|date|date_format:d-m-Y|before:today',
         ]);
 
         $childNameUpdate    = $request->json('childName');
         $genderUpdate       = $request->json('gender');
-        $_dateOfBirthUpdate = $request->json('dateOfBirth');
-        $dateOfBirthUpdate  = date('d-m-Y', strtotime($_dateOfBirth));
-
+        
         $selectedChild = Child::where('id', $id)->update([
             'childName' => $childNameUpdate,
-            'dateOfBirth' => $dateOfBirthUpdate,
             'gender' => $genderUpdate
         ]);
 
