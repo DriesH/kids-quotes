@@ -49,7 +49,8 @@ Route::post('api/quote', 'QuoteController@newQuote');
 Route::get('api/quote/{childId}', 'QuoteController@getOldQuotes');
 Route::get('api/quote/delete/{quoteId}', 'QuoteController@deleteQuote');
 
-Routes
+Route::get('personal/photobook/buy', 'PersonalController@showBookBuilder');
+Route::post('personal/photobook/buy', 'PersonalController@buyBook');
 
 //share
 Route::get('img/{imgName}', 'ShareController@getImage');

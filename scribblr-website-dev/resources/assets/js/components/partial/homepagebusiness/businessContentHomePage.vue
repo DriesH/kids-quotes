@@ -1,5 +1,5 @@
 <template lang="html">
-    <a href="#" class="center-block arrow" @click="scrollDown"><i class="fa fa-angle-double-down"></i></a>
+    <a href="#" class="center-block arrow" @click="scrollDown($event)"><i class="fa fa-angle-double-down"></i></a>
 
     <div class="container top-buffer">
         <div class="row">
@@ -97,7 +97,8 @@
         },
         computed: {},
         methods: {
-            scrollDown: function () {
+            scrollDown: function (e) {
+                e.preventDefault();
                 window.scrollTo(0, 750);
             },
             goToPayment: function (plan) {

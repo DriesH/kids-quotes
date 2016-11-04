@@ -32,7 +32,7 @@
             </li>
 
             <li>
-                <a @click="buyBook"
+                <a href="/personal/photobook/buy" target="_blank"
                     class="buy-book">
 
                     <i class="fa fa-shopping-cart"></i> BUY BOOK
@@ -185,13 +185,6 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-            },
-            buyBook: function () {
-                this.$http.get('/').then((success_response) => {
-                    
-                }, (error_response) => {
-
-                });
             }
         },
         components: {}
