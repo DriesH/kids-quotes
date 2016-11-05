@@ -114,7 +114,7 @@
             </p>
         </div>
         @if ( session()->has('message'))
-            <div class="alert alert-warning alert-dismissable">{{ session()->get('message') }}</div>
+            <div class="alert alert-info alert-dismissable">{{ session()->get('message') }}</div>
         @endif
         <form class="" action="" method="POST">
             {{ csrf_field() }}

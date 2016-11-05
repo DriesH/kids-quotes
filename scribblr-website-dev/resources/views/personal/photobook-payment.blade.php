@@ -324,7 +324,7 @@
   <div class="paypal__subheader-wrapper">
     <div class="paypal__subheader">
       <h1 class="paypal__username">Hi there, {{Auth::user()->name}}</h1>
-      <span class="paypal__help-text">Thank you for your interest in Scribblr Business edition</span>
+      <span class="paypal__help-text">Confirm your payment and you Scribblr photobook is in your hands tomorrow!</span>
     </div>
   </div>
 
@@ -333,24 +333,34 @@
 
     <ul class="paypal__cart-list">
       <li class="paypal__cart-item">
-        <span class="paypal__item-name">Scribblr {{$chosenVersion}} license</span>
-        <span class="paypal__item-price">${{$price}}</span>
+        <span class="paypal__item-name">Scribblr photobook default price</span>
+        <span class="paypal__item-price">${{$defaultPrice}}</span>
+      </li>
+
+      <li class="paypal__cart-item">
+        <span class="paypal__item-name">Quotes: {{$amountSelectedQuotes}}</span>
+        <span class="paypal__item-price">{{$amountSelectedQuotes}} x ${{$pricePerQuote}} = ${{$quoteFee}}</span>
       </li>
 
       <li class="paypal__cart-item">
         <span class="paypal__item-name">Service fee</span>
-        <span class="paypal__item-price">${{$paypalFee}}</span>
+        <span class="paypal__item-price">{{$paypalFee}}</span>
+      </li>
+
+      <li class="paypal__cart-item">
+        <span class="paypal__item-name">Shipping</span>
+        <span class="paypal__item-price"><strong>FREE</strong></span>
       </li>
 
       <li class="paypal__cart-item">
         <span class="paypal__cart-total">Total</span>
-        <span class="paypal__item-price">${{$price + $paypalFee}}</span>
+        <span class="paypal__item-price">${{$endTotal}}</span>
       </li>
     </ul>
   </div>
 
   <div class="paypal__footer">
-      <form action="" method="POST">
+      <form action="/" method="GET">
           {{ csrf_field() }}
           <input type="hidden" name="payment_confirmed" value="1">
           <div class="">
