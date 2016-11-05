@@ -67,7 +67,7 @@
             </div>
 
             <div v-else id='quote-overview-text'>
-                <h1>{{ randomQuote }}</h1>
+                <h1>{{{ randomQuote }}}</h1>
             </div>
 
 
@@ -124,11 +124,11 @@
                 randomQuotesArray: [
                     "Let\'s start Scribblin\'!",
                     "Everyday I\'m Scribblin\'!",
-                    "\“Every child is an artist. The problem is how to remain an artist once we grow up.\” -Pablo Picasso",
-                    "\“Children see magic because they look for it.\” -Christopher Moore",
-                    "\“It\'s never too late to have a happy childhood.\” -Tom Robbins",
-                    "\“You must give everything to make your life as beautiful as the dreams that dance in your imagination.\” -Roman Payne",
-                    "\“Childhood means simplicity. Look at the world with the child\'s eye. it is very beautiful.\” -Kailash Satyarthi"
+                    "\“Every child is an artist. The problem is how to remain an artist once we grow up.\”<br />-Pablo Picasso",
+                    "\“Children see magic because they look for it.\”<br />-Christopher Moore",
+                    "\“It\'s never too late to have a happy childhood.\”<br />-Tom Robbins",
+                    "\“You must give everything to make your life as beautiful as the dreams that dance in your imagination.\”<br />-Roman Payne",
+                    "\“Childhood means simplicity. Look at the world with the child\'s eye. it is very beautiful.\” <br />-Kailash Satyarthi"
                     ]
             }
         },
@@ -236,6 +236,7 @@
         position: absolute;
         top: 20px;
         left: 10px;
+        text-shadow: 2px 2px 0px #000;
         word-break: break-all;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -251,6 +252,10 @@
     .item-move {
         transition: all .5s cubic-bezier(.55,0,.1,1);
         -webkit-transition: all .5s cubic-bezier(.55,0,.1,1);
+    }
+    .quoteBox {
+        white-space: normal;
+        word-break: normal;
     }
 
 
@@ -275,6 +280,7 @@
     .show-image button {
         position:absolute;
         display:none;
+        z-index: 999;
     }
     .show-image button.share {
         top:45%;
