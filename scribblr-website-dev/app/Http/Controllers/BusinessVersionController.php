@@ -17,64 +17,10 @@ use JavaScript;
 
 class BusinessVersionController extends Controller
 {
-    public function index () {
-        if( !Auth::user() ) {
-            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
-            return view('homepage');
-        }
-        else if(Auth::user()->hasBusiness){
-            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
-            return view('business.business-dashboard');
-        }
-        else{
-            SendJavascript::sendJavascript('business'); //Controller sendjavascript -> static function
-            return view('homepage');
-        }
-    }
 
-    public function getData () {
-        $data = DataWebsite::where('name', 'Business')->get();
-        return json_encode($data);
+    function __construct () {
+        $this->middleware('auth');
     }
-
-    // public function bussinesDashboard (Request $request) {
-    //
-    //     $businessQuotes = BusinessQuote::with('quote')
-    //     ->with('theme')
-    //     ->get();
-    //
-    //     $themes = Theme::all();
-    //     $filter = $request->input('filter');
-    //
-    //     if ($filter) {
-    //         if ($filter == "random") {
-    //             $businessQuotes = array(BusinessQuote::with('quote')
-    //             ->with('theme')
-    //             ->inRandomOrder()
-    //             ->first());
-    //
-    //         }
-    //         elseif (is_numeric($filter)) {
-    //             try {
-    //                 $businessQuotes = BusinessQuote::where('theme_id', $filter)
-    //                 ->with('quote')
-    //                 ->with('theme')
-    //                 ->get();
-    //
-    //             } catch (ModelNotFoundException $e) {
-    //                 return view('business.businessDashboard')->with('message', 'Filter could not be applied, try again.');
-    //             }
-    //
-    //         }
-    //     }
-    //
-    //
-    //     return view('business.business-dashboard', [
-    //         "businessQuotes" => $businessQuotes,
-    //         "themes" => $themes
-    //     ]);
-    //
-    // }
 
     public function buy (Request $request) {
         $version          = $request->input('version'); //get payment plan/version

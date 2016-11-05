@@ -17,25 +17,10 @@ class PersonalController extends Controller
 {
 
     function __construct () {
+        $this->middleware('auth');
         $this->maxQuotesPerPrint = 10;
         $this->minQuotesPerPrint = 1;
 
-    }
-
-    function index () {
-        if( !Auth::user() ) {
-            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
-            return view('homepage');
-        }
-        else{
-            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
-            return view('personal.personal-dashboard');
-        }
-    }
-
-    function getData () {
-        $data = DataWebsite::where('name', 'Personal')->get();
-        return json_encode($data);
     }
 
     function showBookBuilder(Request $request) {
