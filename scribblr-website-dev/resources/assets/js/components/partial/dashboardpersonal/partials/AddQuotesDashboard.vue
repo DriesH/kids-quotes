@@ -324,6 +324,7 @@
         position: absolute;
         top: 20px;
         left: 10px;
+        text-shadow: 2px 2px 0px #000;
         word-break: break-all;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -345,7 +346,8 @@
         word-wrap: normal;
     }
     .quoteBox {
-        white-space: pre-line;
+        white-space: normal;
+        word-break: normal;
     }
     #widget{
         display: block;
