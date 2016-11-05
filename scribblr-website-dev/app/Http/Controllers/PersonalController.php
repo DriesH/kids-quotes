@@ -17,25 +17,10 @@ class PersonalController extends Controller
 {
 
     function __construct () {
+        $this->middleware('auth');
         $this->maxQuotesPerPrint = 10;
         $this->minQuotesPerPrint = 1;
 
-    }
-
-    function index () {
-        if( !Auth::user() ) {
-            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
-            return view('homepage');
-        }
-        else{
-            SendJavascript::sendJavascript('personal'); //Controller sendjavascript -> static function
-            return view('personal.personal-dashboard');
-        }
-    }
-
-    function getData () {
-        $data = DataWebsite::where('name', 'Personal')->get();
-        return json_encode($data);
     }
 
     function showBookBuilder(Request $request) {
@@ -60,7 +45,9 @@ class PersonalController extends Controller
     function buyBook(Request $request) {
         $amountSelectedQuotes = 0;
         $requestVars = $request->all();
-        $pricePerQuote = 0.1;
+        $defaultPrice = 8.99;
+        $pricePerQuote = 0.2;
+        $paypalFeePercent = 0.039;
 
         foreach ($requestVars as $inputVar) {
             if($inputVar == "on"){
@@ -76,9 +63,18 @@ class PersonalController extends Controller
             return redirect("/personal/photobook/buy")->with("message", "Please select at least " . $this->minQuotesPerPrint . " quote beforing printing your photobook.");
         }
         else {
-            $fee = $amountSelectedQuotes * $pricePerQuote;
+            $quotesFee = $amountSelectedQuotes * $pricePerQuote; //fee charged for total amount of quotes
+            $totalWithoutPaypalFee = $defaultPrice + $quotesFee; //total without paypal fee added
+            $paypalFee = round($totalWithoutPaypalFee * $paypalFeePercent, 2); //paypal fee charged
+            $endTotal = round($totalWithoutPaypalFee + $paypalFee, 2); //end total to pay
+
             return view('personal.photobook-payment', [
-                'fee' => $fee
+                'defaultPrice' => $defaultPrice,
+                'amountSelectedQuotes' => $amountSelectedQuotes,
+                'pricePerQuote' => $pricePerQuote,
+                'quoteFee' => $quotesFee,
+                'paypalFee' => $paypalFee,
+                'endTotal' => $endTotal
             ]);
         }
     }

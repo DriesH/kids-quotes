@@ -24,22 +24,21 @@ Route::get('/callback', 'SocialAuthController@callback');
 Route::get('dashboard', 'ChildController@childrenDashboard');
 
 //business edition
-Route::get('business', 'BusinessVersionController@index');
-Route::get('business/dashboard', 'BusinessVersionController@bussinesDashboard')->middleware('hasBusiness');
+Route::get('business', 'HomeController@businessIndex');
 Route::get('business/buy', 'BusinessVersionController@buy');
 Route::post('business/buy', 'BusinessVersionController@confirmPayment');
 Route::get('business/pricing', 'BusinessVersionController@pricing');
 
 //bussiness api
-Route::get('api/business/data', 'BusinessVersionController@getData');
+Route::get('api/business/data', 'HomeController@getBusinessData');
 Route::get('api/business/randomquote', 'BusinessVersionController@getRandomQuote');
 Route::get('api/business/themes', 'BusinessVersionController@getThemes');
 
 //personal edition
-Route::get('personal', 'PersonalController@index');
+Route::get('personal', 'HomeController@personalIndex');
 
 //personal api
-Route::get('api/personal/data', 'PersonalController@getData');
+Route::get('api/personal/data', 'HomeController@getPersonalData');
 
 Route::post('api/child', 'ChildController@newChild');
 Route::get('api/child', 'ChildController@getChildren');

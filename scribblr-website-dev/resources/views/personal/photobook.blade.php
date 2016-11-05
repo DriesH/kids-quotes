@@ -10,14 +10,26 @@
             height: 80px;
             background-color: #2c3e50 !important;
         }
+
+        .jumbotron h1 {
+            font-family: lobster;
+            color: rgb(70, 70, 70);
+            text-align: center;
+        }
+
+        .jumbotron p {
+            color: #000;
+            font-family: 'Source Sans Pro', sans-serif;
+            text-align: center;
+            font-weight: 400;
+            margin-top: 30px;
+            margin-bottom: 0;
+        }
+
         .top-buffer {
             margin-top: 90px;
         }
-        .quote {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
+
         .quote img {
             border-radius: 10px;
             -webkit-touch-callout: none;
@@ -26,24 +38,6 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-        }
-        .quote_text {
-            color: white;
-            font-size: 40px;
-            font-family: 'Amatic', cursive;
-            position: absolute;
-            top: 20px;
-            left: 10px;
-            word-break: break-all;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .quote_text:hover{
-            cursor: default;
         }
 
         input[type="checkbox"][id^="myCheckbox"] {
@@ -99,6 +93,17 @@
             z-index: -1;
         }
 
+        .printbutton {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 50px;
+            margin-bottom: 10px;
+            padding: 10px 30px;
+            box-shadow: 2px 2px  5px #000;
+
+        }
+
     </style>
 @endsection
 
@@ -114,7 +119,7 @@
             </p>
         </div>
         @if ( session()->has('message'))
-            <div class="alert alert-warning alert-dismissable">{{ session()->get('message') }}</div>
+            <div class="alert alert-info alert-dismissable">{{ session()->get('message') }}</div>
         @endif
         <form class="" action="" method="POST">
             {{ csrf_field() }}
@@ -130,7 +135,7 @@
                     </div>
                 </div>
             @endforeach
-            <input type="submit" name="print!" value="Print!">
+            <input type="submit" class="printbutton btn btn-success" name="print!" value="Print!">
         </form>
     </div>
 
