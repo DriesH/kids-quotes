@@ -9,7 +9,7 @@
                     name="button"
                     class="btn btn-success center-block"
                     @click="openAddQuoteForm">
-                        <i class="fa fa-plus"></i>  ADD NEW QUOTE (id: {{selectedChild}})
+                        <i class="fa fa-plus"></i>  ADD NEW QUOTE
                     </button>
                 </div>
                 <!-- ADD QUOTE BTN END -->
@@ -67,7 +67,7 @@
             </div>
 
             <div v-else id='quote-overview-text'>
-                <h1>Quote that inspires you!</h1>
+                <h1>{{ randomQuote }}</h1>
             </div>
 
 
@@ -118,19 +118,31 @@
         data () {
             return {
                 addQuoteShow: false, //show - hide form add quote
-
                 path: 'pictures/uploadedbackground/withoutquote/',
-                initSal: false
+                initSal: false,
+                randomQuote: "",
+                randomQuotesArray: [
+                    "Let\'s start Scribblin\'!",
+                    "Everyday I\'m Scribblin\'!",
+                    "\“Every child is an artist. The problem is how to remain an artist once we grow up.\” -Pablo Picasso",
+                    "\“Children see magic because they look for it.\” -Christopher Moore",
+                    "\“It\'s never too late to have a happy childhood.\” -Tom Robbins",
+                    "\“You must give everything to make your life as beautiful as the dreams that dance in your imagination.\” -Roman Payne",
+                    "\“Childhood means simplicity. Look at the world with the child\'s eye. it is very beautiful.\” -Kailash Satyarthi"
+                    ]
             }
         },
         computed: {},
         ready () {
-
+            this.showRandomQuote();
         },
         watch:{
             selectedChild: function (value) {
                 if(this.selectedChild !== 'none') {
                     this.getPreviousQuotes(this.selectedChild, this.previousQuotes);
+                }
+                else {
+                    this.showRandomQuote();
                 }
                 //remove add show if switching from child
                 this.addQuoteShow = false;
@@ -177,6 +189,9 @@
                 }, (error_response) => {
                     alert("error");
                 });
+            },
+            showRandomQuote: function () {
+                this.randomQuote = this.randomQuotesArray[Math.floor(Math.random() * this.randomQuotesArray.length)];
             }
         },
         components: {}
@@ -193,7 +208,7 @@
         color: #34495e;
         text-shadow: rgb(224, 224, 224) 1px 1px 0px;
         font-size: 5em;
-        padding: 20%;
+        padding: 10%;
     }
     #grid img {
         width: 100%;
