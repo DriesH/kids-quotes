@@ -1,7 +1,11 @@
 <template lang="html">
     <div class="row placeholders main">
-        <div class="">
-            <button @click="toggleNav($event)" type="button" name="button" class="btn btn-primary close-button"><i class="fa fa-bars"></i></button>
+        <div class="pull-left">
+            <button @click="toggleNav($event)"
+                type="button"
+                name="button"
+                class="btn btn-primary"><i class="fa fa-bars"></i>
+            </button>
         </div>
         <div v-if='selectedChild !== "none"'>
             <!-- ADD QUOTE BTN START  -->
@@ -251,7 +255,7 @@
         right:15%;
         box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
     }
-    
+
 
 
 </style>

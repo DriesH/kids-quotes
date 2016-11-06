@@ -83,7 +83,8 @@
                 editChildShow: false,
                 addChildShow: false,
                 previousQuotes: [],
-                navIsShowing: false //added toggle class
+                navIsShowing: false, //added toggle class
+                windowWidth: window.innerWidth
             }
         },
         ready () {
@@ -92,20 +93,27 @@
         methods: {
             init: function () {
                 this.getChildren();
+                this.listenToWindow();
             },
             toggleNav: function(e) {
                 e.preventDefault();
                 var $wrapper = $("#wrapper");
                 $wrapper.toggleClass("toggled");
-
-
             },
             openAddQuoteForm: function (e) {
                 this.addQuoteShow = true;
                 this.editChildShow = false;
                 this.addChildShow = false;
                 this.sideBarShow = false;
-                this.toggleNav(e);
+
+                var $wrapper = $("#wrapper");
+
+                if(this.windowWidth >= 768) {
+                    $wrapper.removeClass("toggled");
+                }
+                else{
+                    $wrapper.addClass("toggled");
+                }
             },
             openAddChildForm: function () {
                 this.addChildShow = true;
@@ -144,6 +152,12 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            },
+            listenToWindow: function() {
+                var self = this;
+                window.addEventListener("resize", function() {
+                    self.windowWidth = window.innerWidth;
+                });
             }
         }
     }
