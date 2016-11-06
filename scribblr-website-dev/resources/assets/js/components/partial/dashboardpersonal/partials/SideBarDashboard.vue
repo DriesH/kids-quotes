@@ -1,14 +1,8 @@
 <template lang="html">
-    <div :class="{ 'col-sm-4 col-md-3' : !addChildShow,
-        'col-sm-6 col-md-4 overlay-sidebar-shadow' : addChildShow ,
-        'col-sm-4 col-md-3' : !addQuoteShow,
-        'col-sm-6 col-md-4 overlay-sidebar-shadow' : addQuoteShow}"
-        class="sidebar"
-        id='sidebar-div'>
-
+    <div class="sidebar-nav" id="sidebar-div">
         <!-- SIDEBARLIST START -->
         <ul v-if='!addChildShow'
-            class="nav nav-sidebar"
+            class="nav "
             id="childrenList">
 
             <li v-for="child in currentChildrenArray">
@@ -47,76 +41,37 @@
             </li>
         </ul>
         <!-- SIDEBARLIST END -->
-
-        <!-- FORM START -->
-        <form v-if='addChildShow' class="col-sm-12 col-md-8 col-md-push-2">
-            <!-- ALERT BOX START -->
-            <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
-                <p v-if="errorMessagesForm.childName">
-                    {{ errorMessagesForm.childName }}
-                </p>
-
-                <p v-if="errorMessagesForm.gender">
-                    {{ errorMessagesForm.gender }}
-                </p>
-
-            </div>
-            <!-- ALERT BOX END -->
-
-            <!-- NAME START -->
-            <div class="form-group">
-                <label for="childName">Full name: </label>
-                <input type="text" class="form-control" id="childName" placeholder="Fullname" v-model="newChild.childName" :class="{ 'error-form' : errorMessagesForm.childName }">
-            </div>
-            <!-- NAME END -->
-
-            <!-- GENDER START -->
-            <div class="form-group">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="boy" value="boy" checked v-model="newChild.gender" :class="{ 'error-form' : errorMessagesForm.gender }">
-                        Boy
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="girl" value="girl" v-model="newChild.gender" :class="{ 'error-form' : errorMessagesForm.gender }">
-                        Girl
-                    </label>
-                </div>
-            </div>
-            <!-- GENDER END -->
-
-            <button type="button" name="addChild" class="btn btn-success" @click="addNewChild"><i class="fa fa-plus"></i> add</button>
-            <button type="button" name="closeForm" class="btn btn-danger pull-right" @click="closeForm"><i class="fa fa-ban"></i> close</button>
-        </form>
-        <!-- FORM END -->
     </div>
 </template>
 
 <script>
     export default {
-        props: [
-            'currentChildren',
-            'selectedChild',
-            'editChildShow'
-        ],
+        props: {
+            currentChildren: {
+                type: Array
+            },
+            selectedChild: {
+                type: [String, Number]
+            },
+            editChildShow: {
+                type: Boolean
+            },
+            toggleSideBar: {
+                type: Function
+            },
+            openAddChildForm: {
+                type: Function
+            },
+            openEditChildForm: {
+                type: Function
+            },
+            hasClass: {
+                type: Function
+            }
+        },
         data () {
             return {
-                newChild: {          //json data for adding new child
-                    childName: '',
-                    gender: '',
-                },
-                addChildShow: false, //show - hide form add child
-                currentChildrenArray: [
-
-                ],
-                errorMessagesForm: { //Error data add child form
-                    error: false,
-                    childName: '',
-                    gender: '',
-                }
-
+                currentChildrenArray: []
             }
         },
         computed: {},
@@ -127,50 +82,18 @@
                     this.currentChildrenArray.push(this.currentChildren[i]);
                 }
             });
-        },
-        watch: {
-            selectedChild: function (value) {
-                //selectedChildFn(value);
-                //console.log('Child id changed to: '+ value);
+            //re-add everything
+            if(this.currentChildrenArray.length <= 0) {
+                for( var i=0; i < this.currentChildren.length; i++ ) {
+                    this.currentChildrenArray.push(this.currentChildren[i]);
+                }
             }
         },
+        watch: {
+            selectedChild: function (value) {}
+        },
         methods: {
-            openAddChildForm: function () {
-                this.addChildShow = true;
-                this.clearChildForm();
-            },
-            closeForm: function () {
-                this.addChildShow = false;
-                this.clearChildForm();
-            },
-            openEditChildForm: function () {
-                this.editChildShow = true;
-                var sideBar = document.getElementById('sidebar-div');
-                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className += ' overlay-sidebar-shadow';
-                }
-            },
-            addNewChild: function () {
-                this.$http.post('/api/child', this.newChild).then((success_response) => {
-                    this.errorMessagesForm.error = false;
-                    this.addChildShow            = !this.addChildShow; //show - hide form
-                    this.currentChildrenArray.push(success_response.body);
 
-                    this.clearChildForm();
-                },
-                (error_response) => {
-                    this.errorMessagesForm.error       = true;
-                    this.errorMessagesForm.childName   = error_response.body.childName;
-                    this.errorMessagesForm.gender      = error_response.body.gender;
-
-                    alert('Error adding a new child...');
-                });
-            },
-            clearChildForm: function () {
-                //clear form
-                this.newChild.childName   = '';
-                this.newChild.gender      = '';
-            },
             selectedChildFn: function (id) {
                 if(this.selectedChild === id) {
                     this.selectedChild = 'none'
@@ -189,9 +112,6 @@
                     }
                     childListItem.className += 'active';
                 }
-            },
-            hasClass: function (element, cls) {
-                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
         },
         components: {}

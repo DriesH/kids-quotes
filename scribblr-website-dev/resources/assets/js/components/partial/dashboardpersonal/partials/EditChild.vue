@@ -1,7 +1,7 @@
 <template lang="html">
-    <div class="col-md-6 col-sm-6 sidebar">
+    <div class="sidebar-dries">
         <!-- FORM START -->
-        <form class="col-md-6 col-sm-6 pull-right">
+        <form >
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -61,6 +61,9 @@
             selectedChild: {
                 type: [String, Number]
             },
+            sideBarShow: {
+                type: Boolean
+            }
         },
         data () {
             return {
@@ -74,7 +77,7 @@
                     gender: '',
                 }
             }
-        },        
+        },
         ready () {
             this.getCurrentChildInformation();
         },

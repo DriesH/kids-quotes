@@ -34,6 +34,7 @@ Vue.component('SideBarDashboard', require('./components/partial/dashboardpersona
 Vue.component('BodyDashboardPersonal', require('./components/partial/dashboardpersonal/partials/BodyDashboardPersonal.vue'));
 Vue.component('AddQuotesDashboard', require('./components/partial/dashboardpersonal/partials/AddQuotesDashboard.vue'));
 Vue.component('EditChild', require('./components/partial/dashboardpersonal/partials/EditChild.vue'));
+Vue.component('AddChildForm', require('./components/partial/dashboardpersonal/partials/addChildForm.vue'));
 
 //partial business
 Vue.component('DashboardBusiness', require('./components/partial/dashboardbusiness/DashboardBusiness.vue'));
@@ -44,6 +45,10 @@ Vue.component('ThemesTool', require('./components/partial/dashboardbusiness/part
 //waterfall
 Vue.component('WaterfallSlot', require('./components/waterfall/waterfall-slot.vue'));
 Vue.component('Waterfall', require('./components/waterfall/waterfall.vue'));
+
+Vue.component('development', require('./components/development/dashboard_personal_dev.vue'))
+
+
 
 Vue.transition('slideIn', {
     enterClass: 'slideInLeft',
