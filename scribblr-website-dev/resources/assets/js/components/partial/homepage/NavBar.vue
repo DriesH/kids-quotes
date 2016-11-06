@@ -2,9 +2,9 @@
     <nav class="navbar-fixed-top" :class="{ 'nav-background' : navBarBackground }">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+                <button type="button" class="navbar-toggle collapsed" @click="toggleCollapseNav">
                     <span class="sr-only">Toggle navigation</span>
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-bars fa-3x"></i>
                 </button>
                 <a class="navbar-brand pull-left lobster logo" :href="'/' + data.current">
                     Scribblr
@@ -25,6 +25,8 @@
             </div>
         </div>
     </nav>
+
+
 
 </template>
 
@@ -79,6 +81,17 @@
                 else{
                     this.navBarBackground = false;
                 }
+            },
+            toggleCollapseNav: function() {
+                var $navbar = $("#nav-collapse");
+                if(this.navBarBackground === true) {
+                    this.navBarBackground = false;
+                }
+                else{
+                    this.navBarBackground = true;
+                }
+
+                $navbar.toggleClass("in");
             }
         },
         components: {}
@@ -124,10 +137,13 @@
         font-size: 30px;
     }
 
+    @media screen and (max-width: 767px) {
+        .devider {
+            display: none;
+        }
+    }
+
     .nav-background {
         background: rgba(60, 60, 60, 0.6);
     }
-
-
-
 </style>

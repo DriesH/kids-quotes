@@ -2,7 +2,7 @@
     <a href="#" class="center-block arrow" @click="scrollDown($event)"><i class="fa fa-angle-double-down"></i></a>
 
     <div class="container top-buffer">
-        <div class="row">
+        <div class="row" transition="fadeLeft" v-show="showContentText">
             <div class="col-md-8">
                 <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Think like a child again.</h1>
                 <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
@@ -16,7 +16,7 @@
         </div>
 
 
-        <div class="row top-buffer">
+        <div class="row top-buffer" transition="fadeRight" v-show="showContentText">
             <div class="col-md-8">
                 <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Let the storm rage on!</h1>
                 <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="row top-buffer">
+        <div class="row top-buffer" transition="fadeLeft" v-show="showContentText">
             <div class="col-md-8">
                 <h1 style="color:black; text-align:left; font-weight: bold; font-size: 3em; margin-top: 0;">Quality or quantity? We go for both!</h1>
                 <p style="color:black; text-align:left; font-weight: normal; font-size: 1.5em;">
@@ -47,11 +47,11 @@
             </div>
         </div>
 
-        <div class="row top-buffer">
+        <div class="row top-buffer" transition="fade" v-show="showContentText">
             <h1 style="color:black; text-align:center; font-weight: bold; font-size: 3em;">Check out our plans!</h1>
         </div>
 
-        <div class="row top-buffer" id='price-wrap'>
+        <div class="row top-buffer" id='price-wrap' transition="fade" v-show="showContentText">
             <div class="price-box" @click="goToPayment('monthly')">
                 <div class="header blue">
                     <h2>Monthly access</h2>
@@ -90,13 +90,23 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                showContentText: false
+            }
         },
         ready () {
-
+            window.addEventListener('scroll', this.showText);
         },
         computed: {},
         methods: {
+            showText: function () {
+                if(window.scrollY >= 100){
+                    this.showContentText = true;
+                }
+                else{
+                    this.showContentText = false;
+                }
+            },
             scrollDown: function (e) {
                 e.preventDefault();
                 window.scrollTo(0, 750);
