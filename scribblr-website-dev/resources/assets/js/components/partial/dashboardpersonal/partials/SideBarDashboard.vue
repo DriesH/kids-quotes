@@ -39,6 +39,12 @@
                     <i class="fa fa-shopping-cart"></i> BUY BOOK
                 </a>
             </li>
+
+            <li class="close-button" style="background-color: red !important;">
+                <a @click="toggleNav($event)">
+                    <i class="fa fa-times"></i> CLOSE
+                </a>
+            </li>
         </ul>
         <!-- SIDEBARLIST END -->
     </div>
@@ -67,6 +73,9 @@
             },
             hasClass: {
                 type: Function
+            },
+            toggleNav: {
+                type: Function
             }
         },
         data () {
@@ -93,7 +102,6 @@
             selectedChild: function (value) {}
         },
         methods: {
-
             selectedChildFn: function (id) {
                 if(this.selectedChild === id) {
                     this.selectedChild = 'none'
@@ -119,17 +127,5 @@
 </script>
 
 <style lang="css" scoped>
-    form {
-        background: #496988;
-        border-radius: 5px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-
-    .error-form {
-        border: 1px solid #ff0000;
-    }
-
-
 
 </style>

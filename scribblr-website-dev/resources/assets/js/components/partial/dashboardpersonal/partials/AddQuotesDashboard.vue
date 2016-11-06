@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="sidebar-dries">
         <!-- FORM START -->
-        <form @submit="addQuote($event)">
+        <form class="bottom-buffer" @submit="addQuote($event)">
             <button @click="closeAddQuoteForm"
                 type="button"
                 class="btn btn-danger pull-right bottom-buffer"
@@ -242,7 +242,7 @@
                                 self.previousQuotes.push(JSON.parse(success_response.body)[0]);
                             },
                             (error_response) => {
-                                console.log('error')
+                                alert('Something went wrong!');
                             });
                         }
                     });

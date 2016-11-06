@@ -87,7 +87,6 @@
                     if( success_response.body === '1' ){
                         this.closeEditChildForm();
                         this.updateChildList();
-                        alert('Succesfully updated!');
                     }
                 }, (error_response) => {
                     alert('Error while updating...');
@@ -95,10 +94,7 @@
             },
             closeEditChildForm: function () {
                 this.editChildShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
+                this.sideBarShow = true;
             },
             clearEditChildForm: function () {
                 editChild.childName   = '';

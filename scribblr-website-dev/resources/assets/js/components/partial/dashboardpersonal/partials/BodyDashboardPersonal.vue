@@ -1,5 +1,8 @@
 <template lang="html">
     <div class="row placeholders main">
+        <div class="">
+            <button @click="toggleNav($event)" type="button" name="button" class="btn btn-primary close-button"><i class="fa fa-bars"></i></button>
+        </div>
         <div v-if='selectedChild !== "none"'>
             <!-- ADD QUOTE BTN START  -->
             <div class="add-btn">
@@ -7,7 +10,7 @@
                 type="button"
                 name="button"
                 class="btn btn-success center-block"
-                @click="openAddQuoteForm">
+                @click="openAddQuoteForm($event)">
                     <i class="fa fa-plus"></i>  ADD NEW QUOTE
                 </button>
             </div>
@@ -93,7 +96,7 @@
             openAddQuoteForm: {
                 type: Function
             },
-            addShadow: {
+            toggleNav: {
                 type: Function
             }
         },
@@ -248,4 +251,7 @@
         right:15%;
         box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
     }
+    
+
+
 </style>

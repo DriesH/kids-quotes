@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="sidebar-dries">
-        <form>
+        <form class="col-md-12">
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="optionsRadios" id="boy" value="boy" checked v-model="newChild.gender" :class="{ 'error-form' : errorMessagesForm.gender }" checked>
+                        <input type="radio" name="optionsRadios" id="boy" value="boy" v-model="newChild.gender" :class="{ 'error-form' : errorMessagesForm.gender }" checked>
                         Boy
                     </label>
                 </div>
@@ -61,7 +61,7 @@
             return {
                 newChild: {          //json data for adding new child
                     childName: '',
-                    gender: 'boy',
+                    gender: '',
                 },
                 errorMessagesForm: { //Error data add child form
                     error: false,
@@ -71,7 +71,7 @@
             }
         },
         ready () {
-            this.clearChildForm();
+
         },
         methods: {
             closeAddChildForm: function () {
@@ -104,5 +104,16 @@
     }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+    .error-form {
+        border: 1px solid #ff0000;
+    }
+
+    form {
+        background: #496988;
+        border-radius: 5px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
 </style>

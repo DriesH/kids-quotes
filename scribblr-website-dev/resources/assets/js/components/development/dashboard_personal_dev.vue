@@ -17,7 +17,8 @@
                 v-bind:has-class="hasClass"
                 v-bind:open-add-child-form="openAddChildForm"
                 v-bind:open-edit-child-form="openEditChildForm"
-                ></side-bar-dashboard>
+                v-bind:toggle-nav="toggleNav">
+            </side-bar-dashboard>
             <!-- SIDEBAR START -->
 
             <!-- ADDQUOTES START -->
@@ -27,8 +28,8 @@
                 v-bind:side-bar-show.sync="sideBarShow"
                 v-bind:add-quote-show.sync="addQuoteShow"
                 v-bind:selected-child.sync="selectedChild"
-                v-bind:previous-quotes.sync="previousQuotes"
-                ></add-quotes-dashboard>
+                v-bind:previous-quotes.sync="previousQuotes">
+            </add-quotes-dashboard>
             <!-- ADDQUOTES START -->
 
             <!-- ADDCHILD START -->
@@ -37,7 +38,8 @@
                 v-if="addChildShow"
                 v-bind:side-bar-show.sync="sideBarShow"
                 v-bind:add-child-show.sync="addChildShow"
-                v-bind:clear-child-form="clearChildForm"></add-child-form>
+                v-bind:clear-child-form="clearChildForm">
+            </add-child-form>
             <!-- ADDCHILD START -->
 
             <!-- EDIT START -->
@@ -47,8 +49,8 @@
                 v-bind:side-bar-show.sync="sideBarShow"
                 v-bind:current-children.sync="currentChildren"
                 v-bind:edit-child-show.sync="editChildShow"
-                v-bind:selected-child.sync="selectedChild"
-                ></edit-child>
+                v-bind:selected-child.sync="selectedChild">
+            </edit-child>
             <!-- EDIT END -->
         </div>
         <div id="page-content-wrapper">
@@ -61,7 +63,8 @@
                     v-bind:get-previous-quotes="getPreviousQuotes"
                     v-bind:previous-quotes.sync="previousQuotes"
                     v-bind:open-add-quote-form="openAddQuoteForm"
-                    v-bind:hasClass="hasClass"></body-dashboard-personal>
+                    v-bind:toggle-nav="toggleNav">
+                </body-dashboard-personal>
                 <!-- BODYDASHBOARD END -->
 
             </div>
@@ -80,6 +83,7 @@
                 editChildShow: false,
                 addChildShow: false,
                 previousQuotes: [],
+                navIsShowing: false //added toggle class
             }
         },
         ready () {
@@ -89,11 +93,19 @@
             init: function () {
                 this.getChildren();
             },
-            openAddQuoteForm: function () {
+            toggleNav: function(e) {
+                e.preventDefault();
+                var $wrapper = $("#wrapper");
+                $wrapper.toggleClass("toggled");
+
+
+            },
+            openAddQuoteForm: function (e) {
                 this.addQuoteShow = true;
                 this.editChildShow = false;
                 this.addChildShow = false;
                 this.sideBarShow = false;
+                this.toggleNav(e);
             },
             openAddChildForm: function () {
                 this.addChildShow = true;

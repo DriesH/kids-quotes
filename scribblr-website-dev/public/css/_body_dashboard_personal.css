@@ -8,7 +8,7 @@
 
 .main {
     padding: 95px 20px 20px 20px;
-    
+
     min-height: 100vh;
     max-height: 100%;
 }
@@ -44,4 +44,11 @@
 	#grid[data-columns]::before {
 		content: '1 .column.size-1of1';
 	}
+}
+
+@media screen and (max-width: 540px) {
+    #quote-overview-text h1{
+        font-size: 2.5em !important;
+        padding: 10%;
+    }
 }
