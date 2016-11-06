@@ -2,7 +2,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="/css/_simple_sidebar.css" media="screen" title="no title">
-    <link rel="stylesheet" href="/css/_personal_dashboard.css" media="screen" title="no title">
     <link rel="stylesheet" href="/css/_body_dashboard_personal.css" media="screen" title="no title">
     <style>
         nav{
@@ -15,10 +14,11 @@
 
 @section('content')
     <nav-bar></nav-bar>
-    <dashboard-personal></dashboard-personal>
+    {{-- <dashboard-personal></dashboard-personal> --}}
+    <development></development>
 @endsection
 
 
 @section('scripts')
-    
+
 @endsection
