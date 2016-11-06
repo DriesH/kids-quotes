@@ -1,7 +1,7 @@
 <template lang="html">
-    <div class="col-md-6 col-sm-6 sidebar">
+    <div class="sidebar-dries">
         <!-- FORM START -->
-        <form class="col-md-6 col-sm-6 pull-right">
+        <form >
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -61,6 +61,9 @@
             selectedChild: {
                 type: [String, Number]
             },
+            sideBarShow: {
+                type: Boolean
+            }
         },
         data () {
             return {
@@ -73,36 +76,25 @@
                     childName: '',
                     gender: '',
                 }
-
             }
         },
-        computed: {
-
-        },
-        watch: {
-
-        },
         ready () {
-            var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-            this.editChild.childName   = this.currentChildren[index].childName;
-            this.editChild.gender      = this.currentChildren[index].gender;
+            this.getCurrentChildInformation();
         },
         methods: {
             editChildFn: function () {
                 this.$http.post('api/child/' + this.selectedChild + '/edit', this.editChild).then((success_response) => {
-                    if( success_response === 1 ){
-
+                    if( success_response.body === '1' ){
+                        this.closeEditChildForm();
+                        this.updateChildList();
                     }
                 }, (error_response) => {
-
+                    alert('Error while updating...');
                 });
             },
             closeEditChildForm: function () {
                 this.editChildShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
+                this.sideBarShow = true;
             },
             clearEditChildForm: function () {
                 editChild.childName   = '';
@@ -110,10 +102,17 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            },
+            getCurrentChildInformation: function () {
+                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
+                this.editChild.childName   = this.currentChildren[index].childName;
+                this.editChild.gender      = this.currentChildren[index].gender;
+            },
+            updateChildList: function() {
+                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
+                this.currentChildren[index].childName = this.editChild.childName;
+                this.currentChildren[index].gender    = this.editChild.gender;
             }
-        },
-        components: {
-
         }
     }
 </script>

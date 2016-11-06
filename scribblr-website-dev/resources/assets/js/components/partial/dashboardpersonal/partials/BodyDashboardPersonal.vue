@@ -1,96 +1,79 @@
 <template lang="html">
-    <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
-        <div class="row placeholders">
-            <div v-if='selectedChild !== "none"'>
-                <!-- ADD QUOTE BTN START  -->
-                <div class="add-btn">
-                    <button
-                    type="button"
-                    name="button"
-                    class="btn btn-success center-block"
-                    @click="openAddQuoteForm">
-                        <i class="fa fa-plus"></i>  ADD NEW QUOTE
-                    </button>
-                </div>
-                <!-- ADD QUOTE BTN END -->
+    <div class="row placeholders main">
+        <div class="pull-left">
+            <button @click="toggleNav($event)"
+                type="button"
+                name="button"
+                class="btn btn-primary"><i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <div v-if='selectedChild !== "none"'>
+            <!-- ADD QUOTE BTN START  -->
+            <div class="add-btn">
+                <button
+                type="button"
+                name="button"
+                class="btn btn-success center-block"
+                @click="openAddQuoteForm($event)">
+                    <i class="fa fa-plus"></i>  ADD NEW QUOTE
+                </button>
+            </div>
+            <!-- ADD QUOTE BTN END -->
 
-                <!-- GRID WITH QUOTES START -->
-                <waterfall
-                    :line="-"
-                    :line-gap="400"
-                    :min-line-gap="200"
-                    :max-line-gap="400"
-                    :interval="50"
-                    :watch="previousQuotes"
+            <!-- GRID WITH QUOTES START -->
+            <waterfall
+                :line="-"
+                :line-gap="400"
+                :min-line-gap="200"
+                :max-line-gap="400"
+                :interval="50"
+                :watch="previousQuotes"
+            >
+                <waterfall-slot
+                    v-for="quote in previousQuotes"
+                    :width="380"
+                    :height="380"
+                    :move-class="item-move"
                 >
-                    <waterfall-slot
-                        v-for="quote in previousQuotes"
-                        :width="380"
-                        :height="380"
-                        :move-class="item-move"
+
+                    <div class="item"
+                        v-if="previousQuotes.length > 0"
                     >
 
-                        <div class="item"
-                            v-if="previousQuotes.length > 0"
-                        >
+                        <div class="quote">
+                            <div class="show-image">
 
-                            <div class="quote">
-                                <div class="show-image">
+                                <img class="img-responsive" v-if="quote.preset_background"
+                                :src="path + quote.preset_background.background_filename" />
+                                <img class="img-responsive" v-else
+                                :src="path + quote.backgr_with_quote" />
 
-                                    <img class="img-responsive" v-if="quote.preset_background"
-                                    :src="path + quote.preset_background.background_filename" />
-                                    <img class="img-responsive" v-else
-                                    :src="path + quote.backgr_with_quote" />
+                                <button class="share btn btn-primary"
+                                    type="button"
+                                    name="share"
+                                    value="Share"
+                                    @click="shareImage(quote.backgr_with_quote)">
+                                    <i class="fa fa-facebook-official"></i> Share
+                                </button>
+                                <button class="delete btn btn-danger"
+                                    type="button"
+                                    name="name"
+                                    value="Delete"
+                                    @click="deleteQuote(quote.id)"><i class="fa fa-trash-o"></i> Delete</button>
 
-                                    <button class="share btn btn-primary"
-                                        type="button"
-                                        name="share"
-                                        value="Share"
-                                        @click="shareImage(quote.backgr_with_quote)">
-                                        <i class="fa fa-facebook-official"></i> Share
-                                    </button>
-                                    <button class="delete btn btn-danger"
-                                        type="button"
-                                        name="name"
-                                        value="Delete"
-                                        @click="deleteQuote(quote.id)"><i class="fa fa-trash-o"></i> Delete</button>
-
-                                    <span class="quote_text">
-                                        <p class="quoteBox">{{ quote.quote }}</p>
-                                    </span>
-                                </div>
+                                <span class="quote_text">
+                                    <p class="quoteBox">{{ quote.quote }}</p>
+                                </span>
                             </div>
                         </div>
-                    </waterfall-slot>
-                </waterfall>
-                <!-- GRID WITH QUOTES END -->
-            </div>
+                    </div>
+                </waterfall-slot>
+            </waterfall>
+            <!-- GRID WITH QUOTES END -->
+        </div>
 
-            <div v-else id='quote-overview-text'>
-                <h1>{{{ randomQuote }}}</h1>
-            </div>
-
-
-            <!-- ADDQUOTES START -->
-            <add-quotes-dashboard
-                style="z-index: 100;"
-                v-if="addQuoteShow"
-                v-bind:add-quote-show.sync="addQuoteShow"
-                v-bind:selected-child.sync="selectedChild"
-                v-bind:previous-quotes.sync="previousQuotes"
-                :class="{ 'overlay-sidebar-shadow': addQuoteShow }"></add-quotes-dashboard>
-            <!-- ADDQUOTES START -->
-
-            <!-- ADDQUOTES START -->
-            <edit-child
-                style="z-index: 100;"
-                v-if="editChildShow"
-                v-bind:current-children.sync="currentChildren"
-                v-bind:edit-child-show.sync="editChildShow"
-                v-bind:selected-child.sync="selectedChild"
-                :class="{ 'overlay-sidebar-shadow': editChildShow }"></edit-child>
-            <!-- ADDQUOTES END -->
-
+        <div v-else id='quote-overview-text'>
+            <h1>{{{ randomQuote }}}</h1>
         </div>
     </div>
 </template>
@@ -113,13 +96,17 @@
             },
             currentChildren: {
                 type: Array
+            },
+            openAddQuoteForm: {
+                type: Function
+            },
+            toggleNav: {
+                type: Function
             }
         },
         data () {
             return {
-                addQuoteShow: false, //show - hide form add quote
                 path: 'pictures/uploadedbackground/withoutquote/',
-                initSal: false,
                 randomQuote: "",
                 randomQuotesArray: [
                     "Let\'s start Scribblin\'!",
@@ -146,16 +133,8 @@
                 }
                 //remove add show if switching from child
                 this.addQuoteShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
-                //remove edit form if switching from child
+                //remove edit if switching from child
                 this.editChildShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
             },
             editChildShow: function (value) {
 
@@ -165,16 +144,6 @@
             }
         },
         methods: {
-            openAddQuoteForm: function () {
-                this.addQuoteShow = true;
-                var sideBar = document.getElementById('sidebar-div');
-                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className += ' overlay-sidebar-shadow';
-                }
-            },
-            hasClass: function (element, cls) {
-                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-            },
             shareImage: function(imageWithExt){
                 var shareurl = 'scribblr.local/img/' + imageWithExt;
                 $('head').append('<meta property="og:title" content="Coaches Wisdom Telesummit" />');
@@ -193,8 +162,7 @@
             showRandomQuote: function () {
                 this.randomQuote = this.randomQuotesArray[Math.floor(Math.random() * this.randomQuotesArray.length)];
             }
-        },
-        components: {}
+        }
     }
 </script>
 
@@ -248,7 +216,6 @@
     .quote_text:hover{
         cursor: default;
     }
-
     .item-move {
         transition: all .5s cubic-bezier(.55,0,.1,1);
         -webkit-transition: all .5s cubic-bezier(.55,0,.1,1);
@@ -257,8 +224,6 @@
         white-space: normal;
         word-break: normal;
     }
-
-
     .show-image {
         position: relative;
         float:left;
@@ -266,11 +231,9 @@
         border-radius: 10px;
 
     }
-
     .show-image img {
         transition: 0.5s filter;
     }
-
     .show-image:hover img{
         -webkit-filter: grayscale(100%);
     }
@@ -280,7 +243,7 @@
     .show-image button {
         position:absolute;
         display:none;
-        z-index: 999;
+        z-index: 10;
     }
     .show-image button.share {
         top:45%;
@@ -292,6 +255,7 @@
         right:15%;
         box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
     }
+
 
 
 </style>

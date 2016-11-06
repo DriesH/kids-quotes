@@ -1,7 +1,14 @@
 <template lang="html">
-    <div class="col-md-9 col-sm-10 sidebar">
+    <div class="sidebar-dries">
         <!-- FORM START -->
-        <form class="col-md-8 pull-right" @submit="addQuote($event)">
+        <form class="bottom-buffer" @submit="addQuote($event)">
+            <button @click="closeAddQuoteForm"
+                type="button"
+                class="btn btn-danger pull-right bottom-buffer"
+                name="hide" >
+                    <i class="fa fa-times"></i>
+            </button>
+
             <!-- ERROR FIELD START -->
             <div v-if="errors.errorQuote"
             class="alert alert-danger"
@@ -129,20 +136,24 @@
             <!-- PREVIEW END -->
 
             <!-- BUTTONS START -->
-            <button type="submit" name="add" class="btn btn-success"><i class="fa fa-plus"></i> Add Quote</button>
+            <button
+                type="submit"
+                name="add"
+                class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                    Add Quote</button>
 
             <button @click="closeAddQuoteForm"
-            type="button"
-            class="btn btn-danger pull-right"
-            name="hide" >
-                <i class="fa fa-ban"></i>
-                Cancel
+                type="button"
+                class="btn btn-danger pull-right"
+                name="hide" >
+                    <i class="fa fa-ban"></i>
+                    Cancel
             </button>
 
             <!-- BUTTONS END -->
         </form>
         <!-- FORM END -->
-
     </div>
 </template>
 
@@ -157,6 +168,9 @@
             },
             previousQuotes: {
                 type: Array
+            },
+            sideBarShow: {
+                type: Boolean
             }
         },
         data () {
@@ -191,10 +205,7 @@
         methods: {
             closeAddQuoteForm: function () {
                 this.addQuoteShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
+                this.sideBarShow = true;
             },
             addQuote: function(event) {
                 event.preventDefault();
@@ -231,7 +242,7 @@
                                 self.previousQuotes.push(JSON.parse(success_response.body)[0]);
                             },
                             (error_response) => {
-                                console.log('error')
+                                alert('Something went wrong!');
                             });
                         }
                     });
@@ -364,4 +375,8 @@
         width: 400px;
         height: 400px;
     }
+    .bottom-buffer{
+        margin-bottom: 25px;
+    }
+
 </style>

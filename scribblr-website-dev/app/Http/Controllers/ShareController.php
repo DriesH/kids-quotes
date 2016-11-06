@@ -11,7 +11,7 @@ class ShareController extends Controller
     public function getImage( $imgName)
     {
         if(file_exists('pictures/uploadedbackground/withquote/' . $imgName)){
-            return view('shareTest', ['img' => $imgName]);
+            return view('share', ['img' => $imgName]);
 
         }
         else {
