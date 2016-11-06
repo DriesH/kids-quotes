@@ -146,16 +146,18 @@
                 }
                 //remove add show if switching from child
                 this.addQuoteShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
+                this.removeShadow();
+                // var sideBar = document.getElementById('sidebar-div');
+                // if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                //     sideBar.className = 'col-sm-4 col-md-3 sidebar';
+                // }
                 //remove edit form if switching from child
                 this.editChildShow = false;
-                var sideBar = document.getElementById('sidebar-div');
-                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
-                }
+                this.removeShadow();
+                // var sideBar = document.getElementById('sidebar-div');
+                // if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                //     sideBar.className = 'col-sm-4 col-md-3 sidebar';
+                // }
             },
             editChildShow: function (value) {
 
@@ -167,10 +169,14 @@
         methods: {
             openAddQuoteForm: function () {
                 this.addQuoteShow = true;
-                var sideBar = document.getElementById('sidebar-div');
-                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
-                    sideBar.className += ' overlay-sidebar-shadow';
-                }
+                this.editChildShow = false;
+
+                this.addShadow();
+
+                // var sideBar = document.getElementById('sidebar-div');
+                // if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                //     sideBar.className += ' overlay-sidebar-shadow';
+                // }
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
@@ -192,6 +198,18 @@
             },
             showRandomQuote: function () {
                 this.randomQuote = this.randomQuotesArray[Math.floor(Math.random() * this.randomQuotesArray.length)];
+            },
+            removeShadow: function () {
+                var sideBar = document.getElementById('sidebar-div');
+                if(this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className = 'col-sm-4 col-md-3 sidebar';
+                }
+            },
+            addShadow: function() {
+                var sideBar = document.getElementById('sidebar-div');
+                if(!this.hasClass(sideBar, 'overlay-sidebar-shadow')) {
+                    sideBar.className += ' overlay-sidebar-shadow';
+                }
             }
         },
         components: {}
@@ -280,7 +298,7 @@
     .show-image button {
         position:absolute;
         display:none;
-        z-index: 999;
+        z-index: 10;
     }
     .show-image button.share {
         top:45%;

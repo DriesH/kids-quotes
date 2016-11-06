@@ -73,28 +73,21 @@
                     childName: '',
                     gender: '',
                 }
-
             }
-        },
-        computed: {
-
-        },
-        watch: {
-
-        },
+        },        
         ready () {
-            var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-            this.editChild.childName   = this.currentChildren[index].childName;
-            this.editChild.gender      = this.currentChildren[index].gender;
+            this.getCurrentChildInformation();
         },
         methods: {
             editChildFn: function () {
                 this.$http.post('api/child/' + this.selectedChild + '/edit', this.editChild).then((success_response) => {
-                    if( success_response === 1 ){
-
+                    if( success_response.body === '1' ){
+                        this.closeEditChildForm();
+                        this.updateChildList();
+                        alert('Succesfully updated!');
                     }
                 }, (error_response) => {
-
+                    alert('Error while updating...');
                 });
             },
             closeEditChildForm: function () {
@@ -110,10 +103,17 @@
             },
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            },
+            getCurrentChildInformation: function () {
+                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
+                this.editChild.childName   = this.currentChildren[index].childName;
+                this.editChild.gender      = this.currentChildren[index].gender;
+            },
+            updateChildList: function() {
+                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
+                this.currentChildren[index].childName = this.editChild.childName;
+                this.currentChildren[index].gender    = this.editChild.gender;
             }
-        },
-        components: {
-
         }
     }
 </script>
