@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="sidebar-dries">
         <!-- FORM START -->
-        <form >
+        <form>
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -66,6 +66,9 @@
             },
             currentChildrenArray: {
                 type: Array
+            },
+            previousQuotes: {
+                type: Array
             }
         },
         data () {
@@ -124,6 +127,9 @@
                     if(response === 'deleted') {
                         this.currentChildrenArray.splice(index, 1);
                     }
+
+                    this.previousQuotes = [];
+                    this.selectedChild = 'none';
 
                     this.closeEditChildForm();
 
