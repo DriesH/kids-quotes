@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/_business_dashboard.css" media="screen" title="no title">
     <link rel="stylesheet" href="/css/_body_dashboard_business.css" media="screen" title="no title">
     <style>
-        nav{
+        nav {
             width: 100%;
             height: 80px;
             background-color: #2c3e50 !important;
