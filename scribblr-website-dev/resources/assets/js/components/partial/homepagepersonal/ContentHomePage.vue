@@ -132,7 +132,6 @@
     .content-text {
         font-family: "Source Sans Pro", sans-serif;
         color: black;
-        width: 520px;
         font-size:1.5em;
         font-weight: normal;
     }
