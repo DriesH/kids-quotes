@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PresetBackgroundSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(DataWebsiteSeeder::class);
+        $this->call(QuoteSeeder::class);
     }
 }
