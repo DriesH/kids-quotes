@@ -9,6 +9,10 @@
             height: 80px;
             background-color: #2c3e50 !important;
         }
+
+        #nav-collapse {
+            background-color: rgba(44, 62, 80, 0.75) !important;
+        }
     </style>
 @endsection
 
