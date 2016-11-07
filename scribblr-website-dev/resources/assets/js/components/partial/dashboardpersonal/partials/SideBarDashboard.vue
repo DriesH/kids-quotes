@@ -76,11 +76,14 @@
             },
             toggleNav: {
                 type: Function
+            },
+            currentChildrenArray: {
+                type: Array
             }
         },
         data () {
             return {
-                currentChildrenArray: []
+
             }
         },
         computed: {},

@@ -30,7 +30,7 @@
                 addQuoteShow: false,
                 editChildShow: false,
                 previousQuotes: [],
-                width: window.innerWidth
+                width: window.innerWidth,
             }
         },
         ready () {

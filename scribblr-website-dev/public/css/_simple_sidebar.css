@@ -96,9 +96,7 @@
         width: 250px;
     }
 
-    .addquotes-menu {
-        width: 900px;
-    }
+
 
     .addchild-form {
         width: 330px;
@@ -128,6 +126,9 @@
     }
     #wrapper.toggled {
         padding-left: 0;
+    }
+    .addquotes-menu {
+        width: 100% !important;
     }
 
 }
