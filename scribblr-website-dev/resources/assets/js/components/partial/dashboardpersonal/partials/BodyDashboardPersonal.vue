@@ -154,7 +154,7 @@
                     var index = this.previousQuotes.findIndex(x => x.id==id); //get the index of the object in the array.
                     this.previousQuotes.splice(index, 1); //delete the object in the array.
                 }, (error_response) => {
-                    alert("error");
+
                 });
             },
             showRandomQuote: function () {

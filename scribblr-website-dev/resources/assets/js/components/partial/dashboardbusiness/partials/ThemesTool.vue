@@ -52,7 +52,7 @@
             this.$http.get('api/business/themes').then((success_response) => {
                 this.themes = success_response.body;
             }, (error_response) => {
-                alert('error');
+                
             });
         },
         watch: {

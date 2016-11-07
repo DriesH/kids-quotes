@@ -147,7 +147,7 @@
                     this.previousQuotes = JSON.parse(success_response.body);
                 },
                 (error_response) => {
-                    alert('error');
+
                 });
             },
             showPanel: function () {
