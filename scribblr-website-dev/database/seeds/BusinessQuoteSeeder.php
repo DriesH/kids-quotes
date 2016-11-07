@@ -27,43 +27,29 @@ class BusinessQuoteSeeder extends Seeder
             'theme_id' => 3,
         ]);
         DB::table('business_quotes')->insert([
-            'illustration_name' => 'clouds.png',
+            'illustration_name' => 'moon.png',
             'quote_id' => 4,
             'theme_id' => 1,
         ]);
         DB::table('business_quotes')->insert([
-            'illustration_name' => 'elf.png',
-            'quote_id' => 5,
-            'theme_id' => 5,
-        ]);
-        DB::table('business_quotes')->insert([
-            'illustration_name' => 'moon.png',
-            'quote_id' => 6,
-            'theme_id' => 1,
-        ]);
-        DB::table('business_quotes')->insert([
             'illustration_name' => 'bed.png',
-            'quote_id' => 7,
+            'quote_id' => 5,
             'theme_id' => 8,
         ]);
         DB::table('business_quotes')->insert([
             'illustration_name' => 'car.png',
-            'quote_id' => 8,
+            'quote_id' => 6,
             'theme_id' => 3,
         ]);
-        DB::table('business_quotes')->insert([
-            'illustration_name' => 'tooth_fairy.png',
-            'quote_id' => 9,
-            'theme_id' => 5,
-        ]);
+
         DB::table('business_quotes')->insert([
             'illustration_name' => 'tree.png',
-            'quote_id' => 10,
+            'quote_id' => 7,
             'theme_id' => 1,
         ]);
         DB::table('business_quotes')->insert([
             'illustration_name' => 'wine.png',
-            'quote_id' => 11,
+            'quote_id' => 8,
             'theme_id' => 9,
         ]);
     }
