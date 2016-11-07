@@ -48,6 +48,7 @@
             <edit-child
                 style="z-index: 100;"
                 v-if="editChildShow"
+                v-bind:previous-quotes.sync="previousQuotes"
                 v-bind:current-children-array.sync="currentChildrenArray"
                 v-bind:side-bar-show.sync="sideBarShow"
                 v-bind:current-children.sync="currentChildren"

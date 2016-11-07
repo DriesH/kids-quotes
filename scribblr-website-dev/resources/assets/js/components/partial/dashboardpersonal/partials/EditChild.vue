@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="sidebar-dries">
         <!-- FORM START -->
-        <form >
+        <form>
             <!-- ALERT BOX START -->
             <div class="alert alert-danger animated" role="alert" v-if="errorMessagesForm.error" transition="bounce">
                 <p v-if="errorMessagesForm.childName">
@@ -66,6 +66,9 @@
             },
             currentChildrenArray: {
                 type: Array
+            },
+            previousQuotes: {
+                type: Array
             }
         },
         data () {
@@ -107,14 +110,14 @@
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             },
             getCurrentChildInformation: function () {
-                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-                this.editChild.childName   = this.currentChildren[index].childName;
-                this.editChild.gender      = this.currentChildren[index].gender;
+                var index = this.currentChildrenArray.findIndex(x => x.id==this.selectedChild);
+                this.editChild.childName   = this.currentChildrenArray[index].childName;
+                this.editChild.gender      = this.currentChildrenArray[index].gender;
             },
             updateChildList: function () {
-                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-                this.currentChildren[index].childName = this.editChild.childName;
-                this.currentChildren[index].gender    = this.editChild.gender;
+                var index = this.currentChildrenArray.findIndex(x => x.id==this.selectedChild);
+                this.currentChildrenArray[index].childName = this.editChild.childName;
+                this.currentChildrenArray[index].gender    = this.editChild.gender;
             },
             deleteChild: function (id) {
                 this.$http.get('api/child/delete/' + id).then((success_response) => {
@@ -124,6 +127,9 @@
                     if(response === 'deleted') {
                         this.currentChildrenArray.splice(index, 1);
                     }
+
+                    this.previousQuotes = [];
+                    this.selectedChild = 'none';
 
                     this.closeEditChildForm();
 

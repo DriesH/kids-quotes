@@ -20,53 +20,59 @@
             </div>
             <!-- ADD QUOTE BTN END -->
 
+            <div v-if="previousQuotes.length <= 0" class="alert alert-info col-md-4 col-md-push-4 text-center">
+                <strong>Hey you!</strong> <br> It's a bit empty in here, time to add some quotes!
+            </div>
+
             <!-- GRID WITH QUOTES START -->
-            <waterfall
-                :line="-"
-                :line-gap="400"
-                :min-line-gap="200"
-                :max-line-gap="400"
-                :interval="50"
-                :watch="previousQuotes">
+            <div v-else>
+                <waterfall
+                    :line="-"
+                    :line-gap="400"
+                    :min-line-gap="200"
+                    :max-line-gap="400"
+                    :interval="50"
+                    :watch="previousQuotes">
 
-                <waterfall-slot
-                    v-for="quote in previousQuotes"
-                    :width="380"
-                    :height="380"
-                    :move-class="item-move">
+                    <waterfall-slot
+                        v-for="quote in previousQuotes"
+                        :width="380"
+                        :height="380"
+                        :move-class="item-move">
 
-                    <div class="item"
-                        v-if="previousQuotes.length > 0">
+                        <div class="item"
+                            v-if="previousQuotes.length > 0">
 
-                        <div class="quote">
-                            <div class="show-image">
+                            <div class="quote">
+                                <div class="show-image">
 
-                                <img class="img-responsive" v-if="quote.preset_background"
-                                :src="path + quote.preset_background.background_filename" />
-                                <img class="img-responsive" v-else
-                                :src="path + quote.backgr_with_quote" />
+                                    <img class="img-responsive" v-if="quote.preset_background"
+                                    :src="path + quote.preset_background.background_filename" />
+                                    <img class="img-responsive" v-else
+                                    :src="path + quote.backgr_with_quote" />
 
-                                <button class="share btn btn-primary"
-                                    type="button"
-                                    name="share"
-                                    value="Share"
-                                    @click="shareImage(quote.backgr_with_quote)">
-                                    <i class="fa fa-facebook-official"></i> Share
-                                </button>
-                                <button class="delete btn btn-danger"
-                                    type="button"
-                                    name="name"
-                                    value="Delete"
-                                    @click="deleteQuote(quote.id)"><i class="fa fa-trash-o"></i> Delete</button>
+                                    <button class="share btn btn-primary"
+                                        type="button"
+                                        name="share"
+                                        value="Share"
+                                        @click="shareImage(quote.backgr_with_quote)">
+                                        <i class="fa fa-facebook-official"></i> Share
+                                    </button>
+                                    <button class="delete btn btn-danger"
+                                        type="button"
+                                        name="name"
+                                        value="Delete"
+                                        @click="deleteQuote(quote.id)"><i class="fa fa-trash-o"></i> Delete</button>
 
-                                <span class="quote_text">
-                                    <p class="quoteBox">{{ quote.quote }}</p>
-                                </span>
+                                    <span class="quote_text">
+                                        <p class="quoteBox">{{ quote.quote }}</p>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </waterfall-slot>
-            </waterfall>
+                    </waterfall-slot>
+                </waterfall>
+            </div>
             <!-- GRID WITH QUOTES END -->
         </div>
 
