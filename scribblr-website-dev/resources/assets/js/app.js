@@ -46,7 +46,6 @@ Vue.component('ThemesTool', require('./components/partial/dashboardbusiness/part
 Vue.component('WaterfallSlot', require('./components/waterfall/waterfall-slot.vue'));
 Vue.component('Waterfall', require('./components/waterfall/waterfall.vue'));
 
-Vue.component('development', require('./components/development/dashboard_personal_dev.vue'))
 
 
 

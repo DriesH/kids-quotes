@@ -131,32 +131,34 @@
 </script>
 
 <style lang="css" scoped>
-    .arrow{
+    .arrow {
         text-align: center;
         font-size: 4em;
         color: rgb(99, 99, 99);
     }
 
-    .arrow:hover{
+    .arrow:hover {
         cursor: default;
     }
 
-    .arrow>i:hover{
+    .arrow>i:hover {
         cursor: pointer;
         color: rgb(149, 149, 149);
     }
-    .top-buffer{
+
+    .top-buffer {
         margin-top: 100px;
     }
+
     /* wrapper around the 3 boxes */
-    #price-wrap{
+    #price-wrap {
         margin-top: 25px;
         margin-bottom: 100px;
         display: flex;
     }
 
     /* pricebox */
-    .price-box{
+    .price-box {
         height: 300px;
         width: 33.33333%;
         margin: 0 5px 0 5px;
@@ -172,7 +174,7 @@
         background-color: #9E9E9E;
     }
 
-    .price-box:hover{
+    .price-box:hover {
         height: 350px;
         transform: translateY(-20px);
         cursor: pointer;
@@ -183,7 +185,7 @@
     }
 
     /* header */
-    .header{
+    .header {
         height: 200px;
         padding: 20% 5%;
     }
@@ -208,19 +210,19 @@
         border: none;
         color: white;
     }
-    .header h4{
+    .header h4 {
         position: relative;
     }
-    .header h4 span{
+    .header h4 span {
         font-size: 10px;
     }
 
-    .body-price-box{
+    .body-price-box {
         width: 100%;
         height: auto;
     }
 
-    .body-price-box>h3{
+    .body-price-box>h3 {
         margin-top: 10%;
         margin-left: auto;
         margin-right: auto;
@@ -230,6 +232,18 @@
         color: black;
         padding: 10px;
         width: 80%;
+    }
+
+    @media screen and (max-width: 767px) {
+        #price-wrap{
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        .price-box{
+            width: 100%;
+            margin-bottom: 100px;
+        }
     }
 
 </style>

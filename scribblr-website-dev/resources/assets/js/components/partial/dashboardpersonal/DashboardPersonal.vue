@@ -1,20 +1,76 @@
 <template lang="html">
-    <div class="container-fluid" id="dashboardMain">
-        <div class="row" id="dashboardMainRow">
+    <div id="wrapper">
+        <div id="sidebar-wrapper"
+        :class="{
+            'sidebar-menu': addQuoteShow === false && addChildShow === false && editChildShow === false,
+            'editchild-menu': editChildShow === true,
+            'addquotes-menu': addQuoteShow === true,
+            'addchild-form': addChildShow === true
+        }">
+            <!-- SIDEBAR START -->
             <side-bar-dashboard
-            v-bind:current-children.sync="currentChildren"
-            v-bind:selected-child.sync="selectedChild"
-            v-bind:add-quote-show.sync="addQuoteShow"
-            v-bind:edit-child-show.sync="editChildShow"
-            v-bind:toggle-side-bar="toggleSideBar"></side-bar-dashboard>
+                v-if="sideBarShow"
+                v-bind:current-children.sync="currentChildren"
+                v-bind:current-children-array.sync="currentChildrenArray"
+                v-bind:selected-child.sync="selectedChild"
+                v-bind:add-quote-show.sync="addQuoteShow"
+                v-bind:edit-child-show.sync="editChildShow"
+                v-bind:has-class="hasClass"
+                v-bind:open-add-child-form="openAddChildForm"
+                v-bind:open-edit-child-form="openEditChildForm"
+                v-bind:toggle-nav="toggleNav">
+            </side-bar-dashboard>
+            <!-- SIDEBAR START -->
 
-            <body-dashboard-personal
-            v-bind:current-children.sync="currentChildren"
-            v-bind:selected-child.sync="selectedChild"
-            v-bind:edit-child-show.sync="editChildShow"
-            v-bind:get-previous-quotes="getPreviousQuotes"
-            v-bind:previous-quotes.sync="previousQuotes"
-            v-bind:toggle-side-bar="toggleSideBar"></body-dashboard-personal>
+            <!-- ADDQUOTES START -->
+            <add-quotes-dashboard
+                style="z-index: 100;"
+                v-if="addQuoteShow"
+                v-bind:side-bar-show.sync="sideBarShow"
+                v-bind:add-quote-show.sync="addQuoteShow"
+                v-bind:selected-child.sync="selectedChild"
+                v-bind:previous-quotes.sync="previousQuotes">
+            </add-quotes-dashboard>
+            <!-- ADDQUOTES START -->
+
+            <!-- ADDCHILD START -->
+            <add-child-form
+                style="z-index: 100;"
+                v-if="addChildShow"
+                v-bind:current-children-array.sync="currentChildrenArray"
+                v-bind:side-bar-show.sync="sideBarShow"
+                v-bind:add-child-show.sync="addChildShow"
+                v-bind:clear-child-form="clearChildForm">
+            </add-child-form>
+            <!-- ADDCHILD START -->
+
+            <!-- EDIT START -->
+            <edit-child
+                style="z-index: 100;"
+                v-if="editChildShow"
+                v-bind:current-children-array.sync="currentChildrenArray"
+                v-bind:side-bar-show.sync="sideBarShow"
+                v-bind:current-children.sync="currentChildren"
+                v-bind:edit-child-show.sync="editChildShow"
+                v-bind:selected-child.sync="selectedChild">
+            </edit-child>
+            <!-- EDIT END -->
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid" id="dashboardMain">
+                <!-- BODYDASHBOARD START -->
+                <body-dashboard-personal
+                    v-bind:current-children.sync="currentChildren"
+                    v-bind:selected-child.sync="selectedChild"
+                    v-bind:edit-child-show.sync="editChildShow"
+                    v-bind:get-previous-quotes="getPreviousQuotes"
+                    v-bind:previous-quotes.sync="previousQuotes"
+                    v-bind:open-add-quote-form="openAddQuoteForm"
+                    v-bind:toggle-nav="toggleNav">
+                </body-dashboard-personal>
+                <!-- BODYDASHBOARD END -->
+
+            </div>
         </div>
     </div>
 </template>
@@ -23,14 +79,16 @@
     export default {
         data () {
             return {
-                currentChildren: [
-
-                ],
+                currentChildren: [],
                 selectedChild: 'none',
+                sideBarShow: true,
                 addQuoteShow: false,
                 editChildShow: false,
+                addChildShow: false,
                 previousQuotes: [],
-                width: window.innerWidth
+                navIsShowing: false, //added toggle class
+                windowWidth: window.innerWidth,
+                currentChildrenArray: []
             }
         },
         ready () {
@@ -41,12 +99,43 @@
                 this.getChildren();
                 this.listenToWindow();
             },
+            toggleNav: function(e) {
+                e.preventDefault();
+                var $wrapper = $("#wrapper");
+                $wrapper.toggleClass("toggled");
+            },
+            openAddQuoteForm: function (e) {
+                this.addQuoteShow = true;
+                this.editChildShow = false;
+                this.addChildShow = false;
+                this.sideBarShow = false;
+
+                var $wrapper = $("#wrapper");
+
+                if(this.windowWidth >= 768) {
+                    $wrapper.removeClass("toggled");
+                }
+                else{
+                    $wrapper.addClass("toggled");
+                }
+            },
+            openAddChildForm: function () {
+                this.addChildShow = true;
+                this.editChildShow = false;
+                this.addQuoteShow = false;
+                this.sideBarShow = false;
+            },
+            openEditChildForm: function () {
+                this.editChildShow = true;
+                this.addQuoteShow = false;
+                this.addChildShow = false;
+                this.sideBarShow = false;
+            },
             getChildren: function () {
                 this.$http.get('/api/child').then((success_response) => {
                     this.$set('currentChildren', JSON.parse(success_response.body));
                     this.$nextTick(function(){
                         this.$broadcast('data-arrived', JSON.parse(success_response.body));
-
                     });
                 },
                 (error_response) => {
@@ -59,7 +148,7 @@
                     this.previousQuotes = JSON.parse(success_response.body);
                 },
                 (error_response) => {
-                    alert('error');
+
                 });
             },
             showPanel: function () {
@@ -68,35 +157,16 @@
             hasClass: function (element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             },
-            toggleSideBar: function(e) {
-                if (e !== undefined) {
-                    e.preventDefault();
-                }
-                var sideBar = document.getElementById('sidebar-div');
-                if(sideBar.style.visibility === 'visible') {
-                    sideBar.style.visibility = 'hidden';
-                }
-                else{
-                    sideBar.style.visibility = 'visible';
-                }
-            },
             listenToWindow: function() {
                 var self = this;
-                var sideBar = document.getElementById('sidebar-div');
-                window.addEventListener('resize', function(){
-                    this.width = window.innerWidth;
-                    if(this.width > 770) {
-                        if(sideBar.style.visibility === 'hidden') {
-                            sideBar.style.visibility = 'visible';
-                        }
-                    }
-                }, true);
+                window.addEventListener("resize", function() {
+                    self.windowWidth = window.innerWidth;
+                });
             }
-        },
-        components: {}
+        }
     }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 
 </style>

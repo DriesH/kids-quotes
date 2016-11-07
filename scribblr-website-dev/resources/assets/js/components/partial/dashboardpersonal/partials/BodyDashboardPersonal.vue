@@ -27,18 +27,16 @@
                 :min-line-gap="200"
                 :max-line-gap="400"
                 :interval="50"
-                :watch="previousQuotes"
-            >
+                :watch="previousQuotes">
+
                 <waterfall-slot
                     v-for="quote in previousQuotes"
                     :width="380"
                     :height="380"
-                    :move-class="item-move"
-                >
+                    :move-class="item-move">
 
                     <div class="item"
-                        v-if="previousQuotes.length > 0"
-                    >
+                        v-if="previousQuotes.length > 0">
 
                         <div class="quote">
                             <div class="show-image">
@@ -156,7 +154,7 @@
                     var index = this.previousQuotes.findIndex(x => x.id==id); //get the index of the object in the array.
                     this.previousQuotes.splice(index, 1); //delete the object in the array.
                 }, (error_response) => {
-                    alert("error");
+
                 });
             },
             showRandomQuote: function () {
@@ -255,7 +253,9 @@
         right:15%;
         box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.4);
     }
-
-
-
+    @media screen and (max-width: 767px) {
+        .quote_text {
+            font-size: 30px;
+        }
+    }
 </style>
