@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Child;
 
+use App\Quote;
+
 use App\User;
 
 use Auth;
@@ -79,5 +81,25 @@ class ChildController extends Controller
         ]);
 
         return $selectedChild;
+    }
+
+    public function delete($id) {
+        $quoteController = new QuoteController;
+
+        try {
+            $currentChild  = Child::where('id', $id)->firstOrFail();
+            $quotesOfChild = Quote::where('child_id', $currentChild->id)->get();
+        }
+        catch (\Exception $e) {
+            return "Cannot delete child.";
+        }
+
+        foreach($quotesOfChild as $quote) {
+            $quoteController->deleteQuote($quote->id);
+        }
+
+        $currentChild->delete();
+
+        return "deleted";
     }
 }
