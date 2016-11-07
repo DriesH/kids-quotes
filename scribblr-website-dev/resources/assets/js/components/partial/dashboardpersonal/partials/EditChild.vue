@@ -107,14 +107,14 @@
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             },
             getCurrentChildInformation: function () {
-                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-                this.editChild.childName   = this.currentChildren[index].childName;
-                this.editChild.gender      = this.currentChildren[index].gender;
+                var index = this.currentChildrenArray.findIndex(x => x.id==this.selectedChild);
+                this.editChild.childName   = this.currentChildrenArray[index].childName;
+                this.editChild.gender      = this.currentChildrenArray[index].gender;
             },
             updateChildList: function () {
-                var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
-                this.currentChildren[index].childName = this.editChild.childName;
-                this.currentChildren[index].gender    = this.editChild.gender;
+                var index = this.currentChildrenArray.findIndex(x => x.id==this.selectedChild);
+                this.currentChildrenArray[index].childName = this.editChild.childName;
+                this.currentChildrenArray[index].gender    = this.editChild.gender;
             },
             deleteChild: function (id) {
                 this.$http.get('api/child/delete/' + id).then((success_response) => {
