@@ -19,8 +19,8 @@ require('bootstrap-sass');
 window.Vue = require('vue');
 require('vue-resource');
 
-// Vue.config.debug = false;
-// Vue.config.silent = true;
+Vue.config.debug = false;
+Vue.config.silent = true;
 
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
