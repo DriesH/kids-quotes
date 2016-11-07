@@ -149,7 +149,7 @@
         },
         methods: {
             shareImage: function(imageWithExt){
-                var shareurl = 'scribblr.local/img/' + imageWithExt;
+                var shareurl = window.location.hostname + '/img/' + imageWithExt;
                 $('head').append('<meta property="og:title" content="Coaches Wisdom Telesummit" />');
                 window.open('https://www.facebook.com/sharer/sharer.php?u='+escape(shareurl)+'&t='+document.title, '',
                 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
