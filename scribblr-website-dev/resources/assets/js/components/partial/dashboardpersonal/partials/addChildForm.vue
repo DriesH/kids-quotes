@@ -55,6 +55,9 @@
             },
             sideBarShow: {
                 type: Boolean
+            },
+            currentChildrenArray: {
+                type: Array
             }
         },
         data () {

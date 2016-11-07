@@ -89,7 +89,6 @@
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 600;
         font-size: 35px;
-        padding: 0px;
         transition: 0.3s background-color, 0.3s color;
         margin-top: 80px;
     }
@@ -110,6 +109,23 @@
     p {
         margin-top: 35px;
     }
+
+    @media screen and (max-width: 767px) {
+        h1 span {
+            font-size: 55px;
+        }
+        .signup-btn {
+            width: 250px;
+            height: 45px;
+            font-size: 25px;
+        }
+        .banner {
+            background-position: -175px;
+            background-size: cover;
+            height: 100vh;
+        }
+    }
+
 
 
 </style>

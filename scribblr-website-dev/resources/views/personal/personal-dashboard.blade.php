@@ -9,13 +9,17 @@
             height: 80px;
             background-color: #2c3e50 !important;
         }
+
+        #nav-collapse {
+            background-color: rgba(44, 62, 80, 0.75) !important;
+        }
     </style>
 @endsection
 
 @section('content')
     <nav-bar></nav-bar>
-    {{-- <dashboard-personal></dashboard-personal> --}}
-    <development></development>
+    <dashboard-personal></dashboard-personal>
+
 @endsection
 
 

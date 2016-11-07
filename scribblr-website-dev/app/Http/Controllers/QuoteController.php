@@ -100,14 +100,24 @@ class QuoteController extends Controller
     }
 
     public function deleteQuote($quoteId) {
+        
+        try {
+            $deletedQuote = Quote::where('id', $quoteId)->firstOrFail();
+        }
+        catch (\Exception $e) {
+            return "Can not delete quote.";
+        }
 
-        $deletedQuote = Quote::where('id', $quoteId)->first();
+        $path_file_baked = 'pictures/uploadedbackground/withquote/' . $deletedQuote->backgr_with_quote;
+        $path_file_unbaked = 'pictures/uploadedbackground/withoutquote/' . $deletedQuote->backgr_with_quote;
 
-        unlink( 'pictures/uploadedbackground/withquote/' . $deletedQuote->backgr_with_quote ); //Delete img with baked in quote always
+        if (file_exists($path_file_baked)) { //Delete img with baked in quote always
+            unlink( $path_file_baked );
+        }
 
         //check if there is an unbaked custom bg
-        if( $deletedQuote->preset_background_id == 0 ) {
-            unlink( 'pictures/uploadedbackground/withoutquote/' . $deletedQuote->backgr_with_quote );
+        if( $deletedQuote->preset_background_id == 0 && file_exists($path_file_unbaked)) {
+            unlink( $path_file_unbaked );
         }
 
         $deletedQuote->backgr_with_quote = null;
@@ -117,7 +127,5 @@ class QuoteController extends Controller
         $deletedQuote->save();
 
         $deletedQuote->delete();
-
-
     }
 }

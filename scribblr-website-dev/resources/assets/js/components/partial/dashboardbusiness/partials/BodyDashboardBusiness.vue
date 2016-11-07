@@ -51,7 +51,7 @@
                     this.data = success_response.body;
                     this.randomize();
                 }, (error_response) => {
-                    alert('error');
+                    
                 });
             },
             randomize: function() {

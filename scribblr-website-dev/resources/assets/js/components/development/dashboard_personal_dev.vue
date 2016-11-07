@@ -11,6 +11,7 @@
             <side-bar-dashboard
                 v-if="sideBarShow"
                 v-bind:current-children.sync="currentChildren"
+                v-bind:current-children-array.sync="currentChildrenArray"
                 v-bind:selected-child.sync="selectedChild"
                 v-bind:add-quote-show.sync="addQuoteShow"
                 v-bind:edit-child-show.sync="editChildShow"
@@ -36,6 +37,7 @@
             <add-child-form
                 style="z-index: 100;"
                 v-if="addChildShow"
+                v-bind:current-children-array.sync="currentChildrenArray"
                 v-bind:side-bar-show.sync="sideBarShow"
                 v-bind:add-child-show.sync="addChildShow"
                 v-bind:clear-child-form="clearChildForm">
@@ -84,7 +86,8 @@
                 addChildShow: false,
                 previousQuotes: [],
                 navIsShowing: false, //added toggle class
-                windowWidth: window.innerWidth
+                windowWidth: window.innerWidth,
+                currentChildrenArray: []
             }
         },
         ready () {
@@ -144,7 +147,7 @@
                     this.previousQuotes = JSON.parse(success_response.body);
                 },
                 (error_response) => {
-                    alert('error');
+
                 });
             },
             showPanel: function () {

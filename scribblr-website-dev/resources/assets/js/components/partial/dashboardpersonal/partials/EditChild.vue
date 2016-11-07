@@ -44,7 +44,7 @@
             <!-- BUTTONS END -->
         </form>
         <!-- FORM END -->
-
+        <button class="btn btn-danger pull-left top-buffer" type="button" name="delete" @click="deleteChild(selectedChild)"><i class="fa fa-trash"></i> Delete</button>
     </div>
 </template>
 
@@ -63,6 +63,9 @@
             },
             sideBarShow: {
                 type: Boolean
+            },
+            currentChildrenArray: {
+                type: Array
             }
         },
         data () {
@@ -108,14 +111,32 @@
                 this.editChild.childName   = this.currentChildren[index].childName;
                 this.editChild.gender      = this.currentChildren[index].gender;
             },
-            updateChildList: function() {
+            updateChildList: function () {
                 var index = this.currentChildren.findIndex(x => x.id==this.selectedChild);
                 this.currentChildren[index].childName = this.editChild.childName;
                 this.currentChildren[index].gender    = this.editChild.gender;
+            },
+            deleteChild: function (id) {
+                this.$http.get('api/child/delete/' + id).then((success_response) => {
+                    var response = success_response.body;
+                    var index = this.currentChildrenArray.findIndex(x => x.id==this.selectedChild);
+
+                    if(response === 'deleted') {
+                        this.currentChildrenArray.splice(index, 1);
+                    }
+
+                    this.closeEditChildForm();
+
+                }, (error_response) => {
+
+                });
             }
         }
     }
 </script>
 
 <style lang="css" scoped>
+    .top-buffer{
+        margin-top: 100px;
+    }
 </style>
