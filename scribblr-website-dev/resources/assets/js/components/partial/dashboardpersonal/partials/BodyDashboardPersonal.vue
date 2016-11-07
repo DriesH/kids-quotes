@@ -255,7 +255,7 @@
     }
     @media screen and (max-width: 767px) {
         .quote_text {
-            font-size: 22px;
+            font-size: 30px;
         }
     }
 </style>

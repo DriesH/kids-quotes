@@ -39,7 +39,7 @@ class ChildController extends Controller
 
     public function newChild (Request $request) {
         $this->validate($request, [
-            'childName' => 'required',
+            'childName' => 'required|max:35',
             'gender' => 'required',
         ]);
 
@@ -54,24 +54,6 @@ class ChildController extends Controller
         ]);
 
         return $newChild;
-    }
-
-    public function getChild ($id) {
-        $userId = Auth::user()->id;
-
-        $userChildren = User::find($userId)->children()->get();
-
-        $currentChild = null;
-
-        foreach($userChildren as $child) {
-            dd($child->id);
-            if($child->id == $id) {
-                $currentChild = $child;
-            }
-        }
-
-
-        return json_encode($currentChild);
     }
 
     public function getChildren () {
@@ -90,7 +72,7 @@ class ChildController extends Controller
 
         $childNameUpdate    = $request->json('childName');
         $genderUpdate       = $request->json('gender');
-        
+
         $selectedChild = Child::where('id', $id)->update([
             'childName' => $childNameUpdate,
             'gender' => $genderUpdate
