@@ -40,8 +40,8 @@
                 </a>
             </li>
 
-            <li class="close-button" style="background-color: red !important;">
-                <a @click="toggleNav($event)">
+            <li class="close-button">
+                <a @click="toggleNav($event)" style="background-color: #e74c3c !important;">
                     <i class="fa fa-times"></i> CLOSE
                 </a>
             </li>
