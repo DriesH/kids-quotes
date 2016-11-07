@@ -94,12 +94,6 @@
                     this.currentChildrenArray.push(this.currentChildren[i]);
                 }
             });
-            //re-add everything
-            if(this.currentChildrenArray.length <= 0) {
-                for( var i=0; i < this.currentChildren.length; i++ ) {
-                    this.currentChildrenArray.push(this.currentChildren[i]);
-                }
-            }
         },
         watch: {
             selectedChild: function (value) {}
