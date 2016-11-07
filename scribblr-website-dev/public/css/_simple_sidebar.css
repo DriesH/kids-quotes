@@ -96,7 +96,9 @@
         width: 250px;
     }
 
-
+    .addquotes-menu {
+        width: 50%;
+    }
 
     .addchild-form {
         width: 330px;
