@@ -19,58 +19,43 @@ class QuoteSeeder extends Seeder
         ]);
 
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'apples.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e668691d61478551144.png',
+            'quote' => 'Dad! I think apples have apple juice in them.',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'bird.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e64b595941478551115.png',
+            'quote' => 'The birds are singing because they\'re so happy I\'m awake.',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'boat.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e67bc332b1478551163.png',
+            'quote' => 'Are boats like floating houses?',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'clouds.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e68fada301478551183.png',
+            'quote' => 'Look mommy, someone ate the moon!',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'elves.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e6b9631851478551225.png',
+            'quote' => 'I will miss you while I\'m sleeping...',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'moon.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e709a37ad1478551305.png',
+            'quote' => 'I never text and drive. Because I don\'t have a car. And I don\'t have a phone.',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'night.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e6d8914071478551256.png',
+            'quote' => 'Why are trees not called two\'s or fours?',
             'child_id' => 1,
         ]);
         DB::table('quotes')->insert([
-            'backgr_with_quote' => 'street.jpg',
-            'quote' => ' ',
-            'child_id' => 1,
-        ]);
-        DB::table('quotes')->insert([
-            'backgr_with_quote' => 'toothfairy.jpg',
-            'quote' => ' ',
-            'child_id' => 1,
-        ]);
-        DB::table('quotes')->insert([
-            'backgr_with_quote' => 'trees.jpg',
-            'quote' => ' ',
-            'child_id' => 1,
-        ]);
-        DB::table('quotes')->insert([
-            'backgr_with_quote' => 'wine.jpg',
-            'quote' => ' ',
+            'backgr_with_quote' => '5820e6f3247ff1478551283.png',
+            'quote' => 'Mommy, you smell like wine!',
             'child_id' => 1,
         ]);
     }
