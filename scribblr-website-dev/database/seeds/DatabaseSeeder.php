@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemeSeeder::class);
         $this->call(DataWebsiteSeeder::class);
         $this->call(QuoteSeeder::class);
+        $this->call(BusinessQuoteSeeder::class);
     }
 }
